@@ -1,0 +1,160 @@
+{
+  "networks": [
+    {
+      "name": "ttn",
+      "title": "The Things Network",
+      "regions": [
+        {
+          "name": "as920",
+          "label": "AS920",
+          "description": "AS920-923 MHz uplink and downlink. Used in Japan, Malaysia, Singapore."
+        },
+        {
+          "name": "as923",
+          "label": "AS923",
+          "description": "AS923-925 MHz uplink and downlink. Used in Brunei, Cambodia, Hong Kong, Indonesia, Laos, Taiwan, Thailand, Vietnam."
+        },
+        {
+          "name": "au915",
+          "label": "AU915",
+          "description": "AU915-928 MHz uplink."
+        },
+        {
+          "name": "au915-dl",
+          "label": "AU915 DL",
+          "description": "AU915-928 MHz downlink."
+        },
+        {
+          "name": "cn470",
+          "label": "CN470",
+          "description": "CN470-510 MHz uplink and downlink."
+        },
+        {
+          "name": "eu868",
+          "label": "EU868",
+          "description": "EU863-870 MHz uplink and downlink, with ETSI maximum duty cycles and TTN 30 seconds/24h Fair Access Policy. The Things Network uses the non-standard SF9BW125 data rate for RX2 in Europe. If your devices use OTAA, this will be configured automatically when they join. If your devices use ABP, you’ll need to program this RX2 data rate into the devices in order to make them work with TTN.\n\nSee [Frequency Plans](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html) for details.",
+          "notes": "",
+          "dataRates": [
+            {
+              "name": "DR6",
+              "notes": "868.3 MHz only",
+              "sf": 7,
+              "bw": 250
+            },
+            {
+              "name": "DR5",
+              "sf": 7,
+              "bw": 125
+            },
+            {
+              "name": "DR4",
+              "sf": 8,
+              "bw": 125
+            },
+            {
+              "name": "DR3",
+              "notes": "Also used for RX2",
+              "sf": 9,
+              "bw": 125
+            },
+            {
+              "name": "DR2",
+              "sf": 10,
+              "bw": 125
+            },
+            {
+              "name": "DR1",
+              "sf": 11,
+              "bw": 125
+            },
+            {
+              "name": "DR0",
+              "sf": 12,
+              "bw": 125
+            }
+          ]
+        },
+        {
+          "name": "in865",
+          "label": "IN865",
+          "description": "IN865-867 MHz uplink and downlink."
+        },
+        {
+          "name": "kr920",
+          "label": "KR920",
+          "description": "KR920-923 MHz uplink and downlink."
+        },
+        {
+          "name": "us902",
+          "label": "US902",
+          "description": "US902-928 MHz uplink. Used in USA, Canada and South America.",
+          "dataRates": [
+            {
+              "name": "DR4",
+              "notes": "904.6 MHz only",
+              "sf": 8,
+              "bw": 500
+            },
+            {
+              "name": "DR3",
+              "sf": 7,
+              "bw": 125
+            },
+            {
+              "name": "DR2",
+              "sf": 8,
+              "bw": 125
+            },
+            {
+              "name": "DR1",
+              "sf": 9,
+              "bw": 125
+            },
+            {
+              "name": "DR0",
+              "sf": 10,
+              "bw": 125
+            }
+          ]
+        },
+        {
+          "name": "us902-dl",
+          "label": "US902 DL",
+          "description": "US902-928 MHz downlink. Used in USA, Canada and South America.",
+          "dataRates": [
+            {
+              "name": "DR13",
+              "sf": 7,
+              "bw": 500
+            },
+            {
+              "name": "DR12",
+              "sf": 8,
+              "bw": 500
+            },
+            {
+              "name": "DR11",
+              "sf": 9,
+              "bw": 500
+            },
+            {
+              "name": "DR10",
+              "sf": 10,
+              "bw": 500
+            },
+            {
+              "name": "DR9",
+              "sf": 11,
+              "bw": 500
+            },
+            {
+              "name": "DR8",
+              "sf": 12,
+              "bw": 500
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

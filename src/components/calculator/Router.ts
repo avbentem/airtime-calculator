@@ -1,0 +1,30 @@
+import { History, Location } from 'history';
+import { AppConfig, Network, Region } from '../../AppConfig';
+
+/**
+ * Custom URL handling:
+ *
+ * - Updated URL for almost each change in the user input
+ * - URL does not include default values
+ * - Changing the network or region only replaces part of the URL, without wiping the trailing parameters
+ */
+
+export function parseUrl(history: History, location: Location, config: AppConfig): { network: Network | undefined, region: Region | undefined, parameters: string | undefined } {
+  // TODO trim process.env.PUBLIC_URL?
+  const [, networkName, regionName, parameters] = location.pathname.split('/');
+  const network = config.networks.find(network => network.name === networkName);
+  const region = network ? network.regions.find(region => region.name === regionName) : undefined;
+  return {network, region, parameters};
+}
+
+export function setUrl(history: History, location: Location, config: AppConfig, network: Network, region: Region, parameters?: string) {
+  const current = parseUrl(history, location, config);
+  // current.parameters might be undefined as well
+  const params = parameters === undefined ? current.parameters : parameters;
+  const url = process.env.PUBLIC_URL + '/' + network.name + '/' + region.name + (params ? '/' + params : '');
+  if (location.pathname === url) {
+    console.log(`No URL change needed; ${url}`);
+    return;
+  }
+  history.replace(url);
+}

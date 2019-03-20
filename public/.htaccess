@@ -1,0 +1,5 @@
+# Make React's routing work even when using direct navigation
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
