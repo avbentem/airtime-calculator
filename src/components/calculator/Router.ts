@@ -10,10 +10,10 @@ import { AppConfig, Network, Region } from '../../AppConfig';
  */
 
 export function parseUrl(history: History, location: Location, config: AppConfig): { network: Network | undefined, region: Region | undefined, parameters: string | undefined } {
-  // Even when using `<Router basename={process.env.PUBLIC_URL}>`, when deployed in a subfolder then
-  // location.pathname will still be the full path, including whatever is in process.env.PUBLIC_URL,
-  // so including that subfolder.
-  const [, networkName, regionName, parameters] = location.pathname.substr(process.env.PUBLIC_URL.length).split('/');
+  // Due to using `<Router basename={process.env.PUBLIC_URL}>`, even when deployed in a subfolder,
+  // location.pathname will only include a leading slash followed by our application's URL segments.
+  // So, no need to strip process.env.PUBLIC_URL here.
+  const [, networkName, regionName, parameters] = location.pathname.split('/');
   const network = config.networks.find(network => network.name === networkName);
   const region = network ? network.regions.find(region => region.name === regionName) : undefined;
   return {network, region, parameters};
@@ -23,10 +23,11 @@ export function setUrl(history: History, location: Location, config: AppConfig, 
   const current = parseUrl(history, location, config);
   // current.parameters might be undefined as well
   const params = parameters === undefined ? current.parameters : parameters;
-  const url = process.env.PUBLIC_URL + '/' + network.name + '/' + region.name + (params ? '/' + params : '');
+  const url = '/' + network.name + '/' + region.name + (params ? '/' + params : '');
   if (location.pathname === url) {
     console.log(`No URL change needed; ${url}`);
     return;
   }
+  // Due to using `<Router basename={process.env.PUBLIC_URL}>` this adds the process.env.PUBLIC_URL prefix
   history.replace(url);
 }

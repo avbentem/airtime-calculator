@@ -4,6 +4,8 @@ A simple React UI for the formulas defined in Semtech's [LoRa Modem Designer's G
 (AN1200.13)](./doc/LoraDesignGuide_STD.pdf), showing the airtime for data rates as used in the
 frequency plans of The Things Network.
 
+See it in action on <https://avbentem.github.io/lorawan-airtime-ui>.
+
 
 ## To do
 
@@ -17,7 +19,6 @@ Next versions might include:
 
 - support for MAC commands
 - a help page explaining the basics
-- test for installation on GitHub pages
 - support for FSK
 
 

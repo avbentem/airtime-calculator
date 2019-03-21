@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import GithubCorner from 'react-github-corner';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.scss';
 import { AppConfig } from './AppConfig';
@@ -58,6 +59,7 @@ export default function App() {
         {config.networks && (
           <Route render={props => <Calculator {...props} config={config} />} />
         )}
+        <GithubCorner href="https://github.com/avbentem/lorawan-airtime-ui" />
       </Container>
     </Router>
   );
