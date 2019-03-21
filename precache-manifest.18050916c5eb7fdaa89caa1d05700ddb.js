@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/lorawan-airtime-ui/static/js/runtime~main.2e301313.js"
   },
   {
-    "revision": "529558a074bed9923bad",
-    "url": "/lorawan-airtime-ui/static/js/main.88acb180.chunk.js"
+    "revision": "7674e2522eaf1b74ac86",
+    "url": "/lorawan-airtime-ui/static/js/main.de03a23d.chunk.js"
   },
   {
     "revision": "244f0a582cc9b124c5cb",
     "url": "/lorawan-airtime-ui/static/js/2.0307bee4.chunk.js"
   },
   {
-    "revision": "529558a074bed9923bad",
+    "revision": "7674e2522eaf1b74ac86",
     "url": "/lorawan-airtime-ui/static/css/main.e9e9b3b4.chunk.css"
   },
   {
-    "revision": "879c6d4602a31fe7399d0797800e3322",
+    "revision": "e8c9c22eebfc53ab5e2b7a66e5166ac7",
     "url": "/lorawan-airtime-ui/index.html"
   }
 ];
