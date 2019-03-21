@@ -17,7 +17,7 @@ Next versions might include:
 
 - support for MAC commands
 - a help page explaining the basics
-- test for installation outside of root (including testing `.htaccess` and GitHub pages)
+- test for installation on GitHub pages
 - support for FSK
 
 
@@ -35,7 +35,7 @@ share (most) of the data rates, like EU868.
 
 ## URL structure
 
-This app was created with sharable URLs in mind, so almost every user input yields an updated URL:
+This application was created with sharable URLs in mind, so almost every user input yields an updated URL:
 
 - `/<network>/<region>[/<parameters>]`, e.g. `/ttn/eu868` and `/ttn/us902/6,14,cr48`.
 
@@ -70,7 +70,7 @@ In the project directory, run:
 
 - `npm test`
 
-  Launches the test runner in the interactive watch mode. See the section about
+  Launches the test runner in the interactive watch mode. See the React documentation about
   [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for details.
 
 - `npm test -- --coverage`
@@ -82,5 +82,12 @@ In the project directory, run:
   Builds the app for production to the `build` folder. It correctly bundles React in production
   mode and optimizes the build for the best performance.
 
-  The build is minified and the filenames include the hashes. See the section about
+  The build is minified and the filenames include the hashes. See the React documentation about
   [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  
+  To ensure URLs like `/ttn/eu868/1,2` can be loaded without first loading the bare `/`, see for
+  example the Apache [`.htaccess`](./public/.htaccess) file.
+  
+  To build for a subfolder, set `"homepage": "/some/path/to/lorawan-airtime"` in `package.json`.
+  This will not affect the development server, which will always load from the root folder. For
+  deployment in the root folder, set it to `"/"` or don't set it at all.
