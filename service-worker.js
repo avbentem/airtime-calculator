@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/lorawan-airtime-ui/precache-manifest.04e1cd6227e0d17fb674541f86e0784a.js"
+  "/lorawan-airtime-ui/precache-manifest.056fb60b07561ebebf4c8ab66e6836f1.js"
 );
 
 workbox.clientsClaim();
