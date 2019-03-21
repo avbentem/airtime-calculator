@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/lorawan-airtime-ui/static/css/main.e9e9b3b4.chunk.css"
   },
   {
-    "revision": "ddbac3c48aec6a36f825034160c0fefd",
+    "revision": "ef46b8c50232766c262fcae57d455cbf",
     "url": "/lorawan-airtime-ui/index.html"
   }
 ];
