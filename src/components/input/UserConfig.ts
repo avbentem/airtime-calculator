@@ -35,15 +35,17 @@ export function decodeUserConfig(params: string = ''): UserConfig {
       continue;
     }
 
-    const lowerCase = value.toLowerCase();
-
-    if (lowerCase.startsWith('cr')) {
-      // boldly assume it's only cr45..cr48
-      result.codingRate = (value.substr(2).split('').join('/') as CodingRate);
+    if (/^cr4[5678]$/i.test(value)) {
+      if (!result.codingRate) {
+        result.codingRate = (value.substr(2).split('').join('/') as CodingRate);
+      } else {
+        console.warn(`Ignored string value ${value}; already parsed codingRate`);
+      }
       continue;
     }
 
     // Case-insensitive search in both the uplink and downlink MAC commands
+    const lowerCase = value.toLowerCase();
     const mac = UplinkMacCommands102.concat(DownlinkMacCommands102)
       .find(cmd => cmd.name.toLowerCase() === lowerCase);
     if (mac) {
