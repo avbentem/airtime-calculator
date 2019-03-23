@@ -10,6 +10,7 @@ export type AppConfig = {
 export type Network = {
   name: string;
   title?: string;
+  defaultRegion: string;
   regions: Region[];
 }
 

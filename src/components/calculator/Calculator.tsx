@@ -22,18 +22,19 @@ type CalculatorProps = {
  */
 export default function Calculator(props: CalculatorProps) {
 
+  const changeUrl = setUrl.bind(null, props.history, props.location, props.config);
   const {network, region, parameters} = parseUrl(props.history, props.location, props.config);
 
   if (!network) {
     const n = props.config.networks[0];
-    const r = n.regions.find(r => !!r.dataRates) as any;
-    setUrl(props.history, props.location, props.config, n, r);
+    const r = n.regions.find(r => r.name === n.defaultRegion) as Region;
+    changeUrl(n, r);
     return null;
   }
 
   if (!region) {
-    const r = network.regions.find(r => !!r.dataRates) as any;
-    setUrl(props.history, props.location, props.config, network, r);
+    const r = network.regions.find(r => r.name === network.defaultRegion) as Region;
+    changeUrl(network, r);
     return null;
   }
 
@@ -56,18 +57,18 @@ export default function Calculator(props: CalculatorProps) {
    */
   const handleParametersChange = (parameters: string) => {
     console.log('URL', parameters);
-    setUrl(props.history, props.location, props.config, network, region, parameters);
+    changeUrl(network, region, parameters);
   };
 
   const setRegion = (region: Region) => {
     console.log('region', region);
-    setUrl(props.history, props.location, props.config, network, region);
+    changeUrl(network, region);
   };
 
   return (
     <>
       <Row>
-        <Col>
+        <Col className="table-responsive">
           <ButtonGroup>
             {network.regions.map((r) =>
               <Button variant="outline-primary" size="sm" active={r.name === region.name} disabled={!r.dataRates}

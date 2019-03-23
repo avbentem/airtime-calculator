@@ -2,7 +2,8 @@
 
 A simple React UI for the formulas defined in Semtech's [LoRa Modem Designer's Guide
 (AN1200.13)](./doc/LoraDesignGuide_STD.pdf), showing the airtime for data rates as used in the
-frequency plans of The Things Network.
+[frequency plans](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html) of The
+Things Network (TTN), and showing the limitations that apply to the TTN public network.
 
 See it in action on <https://avbentem.github.io/lorawan-airtime-ui>.
 
@@ -13,7 +14,6 @@ This is work in progress. Version 1 should include:
 
 - definition of maximum duty cycle(s) per region
 - layout fixes (results; form inputs in Firefox; hide number spinner; pointer for help tooltips)
-- missing frequency plans
 
 Next versions might include:
 
@@ -25,12 +25,12 @@ Next versions might include:
 ## Data rates and frequency plans
 
 The frequency plans from which the data rates are shown, are those of The Things Network. They are
-defined in [config.json](./public/config.json).
-
-Currently only the data rates for EU868 and US902 are included.
+based on the [frequency plans](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html) and
+the LoRaWAN [Regional Parameters v1.0.2rB](./doc/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf),
+and defined in [config.json](./public/config.json).
 
 Some frequency plans have very different data rates for uplinks and downlinks; for those distinct
-"regions" are defined in this application, like for US915 (uplink) and US915 DL (downlink). Others
+"regions" are defined in this application, like for US902 (uplink) and US902 DL (downlink). Others
 share (most) of the data rates, like EU868.
 
 

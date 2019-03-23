@@ -3,37 +3,165 @@
     {
       "name": "ttn",
       "title": "The Things Network",
+      "defaultRegion": "eu868",
       "regions": [
-        {
-          "name": "as920",
-          "label": "AS920",
-          "description": "AS920-923 MHz uplink and downlink. Used in Japan, Malaysia, Singapore."
-        },
         {
           "name": "as923",
           "label": "AS923",
-          "description": "AS923-925 MHz uplink and downlink. Used in Brunei, Cambodia, Hong Kong, Indonesia, Laos, Taiwan, Thailand, Vietnam."
+          "description": "AS923 uplink and downlink. These data rates are used with different frequencies, depending on the country. AS920-923 MHz is used in Japan, Malaysia and Singapore; AS923-925 MHz in Brunei, Cambodia, Hong Kong, Indonesia, Laos, Taiwan, Thailand and Vietnam.",
+          "dataRates": [
+            {
+              "name": "DR6",
+              "notes": "922.1/924.5 MHz only",
+              "sf": 7,
+              "bw": 250
+            },
+            {
+              "name": "DR5",
+              "sf": 7,
+              "bw": 125
+            },
+            {
+              "name": "DR4",
+              "sf": 8,
+              "bw": 125
+            },
+            {
+              "name": "DR3",
+              "sf": 9,
+              "bw": 125
+            },
+            {
+              "name": "DR2",
+              "notes": "Also used for RX2",
+              "sf": 10,
+              "bw": 125
+            },
+            {
+              "name": "DR1",
+              "sf": 11,
+              "bw": 125
+            },
+            {
+              "name": "DR0",
+              "sf": 12,
+              "bw": 125
+            }
+          ]
         },
         {
           "name": "au915",
           "label": "AU915",
-          "description": "AU915-928 MHz uplink."
+          "description": "AU915-928 MHz uplink.",
+          "note": "Note that The Things Network uses the 2nd Sub-Band only (channels 8 to 15 and 65). You’ll need to program the specific channels into the devices in order to make them work with TTN.",
+          "dataRates": [
+            {
+              "name": "DR6",
+              "notes": "917.5 MHz only",
+              "sf": 8,
+              "bw": 500
+            },
+            {
+              "name": "DR5",
+              "sf": 7,
+              "bw": 125
+            },
+            {
+              "name": "DR4",
+              "sf": 8,
+              "bw": 125
+            },
+            {
+              "name": "DR3",
+              "sf": 9,
+              "bw": 125
+            },
+            {
+              "name": "DR2",
+              "sf": 10,
+              "bw": 125
+            }
+          ]
         },
         {
           "name": "au915-dl",
           "label": "AU915 DL",
-          "description": "AU915-928 MHz downlink."
+          "description": "AU915-928 MHz downlink.",
+          "dataRates": [
+            {
+              "name": "DR13",
+              "sf": 7,
+              "bw": 500
+            },
+            {
+              "name": "DR12",
+              "sf": 8,
+              "bw": 500
+            },
+            {
+              "name": "DR11",
+              "sf": 9,
+              "bw": 500
+            },
+            {
+              "name": "DR10",
+              "sf": 10,
+              "bw": 500
+            },
+            {
+              "name": "DR9",
+              "sf": 11,
+              "bw": 500
+            },
+            {
+              "name": "DR8",
+              "sf": 12,
+              "bw": 500
+            }
+          ]
         },
         {
           "name": "cn470",
           "label": "CN470",
-          "description": "CN470-510 MHz uplink and downlink."
+          "description": "CN470-510 MHz uplink and downlink.",
+          "dataRates": [
+            {
+              "name": "DR5",
+              "sf": 7,
+              "bw": 125
+            },
+            {
+              "name": "DR4",
+              "sf": 8,
+              "bw": 125
+            },
+            {
+              "name": "DR3",
+              "sf": 9,
+              "bw": 125
+            },
+            {
+              "name": "DR2",
+              "sf": 10,
+              "bw": 125
+            },
+            {
+              "name": "DR1",
+              "sf": 11,
+              "bw": 125
+            },
+            {
+              "name": "DR0",
+              "notes": "Also used for RX2",
+              "sf": 12,
+              "bw": 125
+            }
+          ]
         },
         {
           "name": "eu868",
           "label": "EU868",
           "description": "EU863-870 MHz uplink and downlink, with ETSI maximum duty cycles and TTN 30 seconds/24h Fair Access Policy. The Things Network uses the non-standard SF9BW125 data rate for RX2 in Europe. If your devices use OTAA, this will be configured automatically when they join. If your devices use ABP, you’ll need to program this RX2 data rate into the devices in order to make them work with TTN.\n\nSee [Frequency Plans](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html) for details.",
-          "notes": "",
           "dataRates": [
             {
               "name": "DR6",
@@ -77,12 +205,79 @@
         {
           "name": "in865",
           "label": "IN865",
-          "description": "IN865-867 MHz uplink and downlink."
+          "description": "IN865-867 MHz uplink and downlink.",
+          "dataRates": [
+            {
+              "name": "DR5",
+              "sf": 7,
+              "bw": 125
+            },
+            {
+              "name": "DR4",
+              "sf": 8,
+              "bw": 125
+            },
+            {
+              "name": "DR3",
+              "sf": 9,
+              "bw": 125
+            },
+            {
+              "name": "DR2",
+              "notes": "Also used for RX2",
+              "sf": 10,
+              "bw": 125
+            },
+            {
+              "name": "DR1",
+              "sf": 11,
+              "bw": 125
+            },
+            {
+              "name": "DR0",
+              "sf": 12,
+              "bw": 125
+            }
+          ]
         },
         {
           "name": "kr920",
           "label": "KR920",
-          "description": "KR920-923 MHz uplink and downlink."
+          "description": "KR920-923 MHz uplink and downlink.",
+          "dataRates": [
+            {
+              "name": "DR5",
+              "sf": 7,
+              "bw": 125
+            },
+            {
+              "name": "DR4",
+              "sf": 8,
+              "bw": 125
+            },
+            {
+              "name": "DR3",
+              "notes": "In the future possibly used for RX2",
+              "sf": 9,
+              "bw": 125
+            },
+            {
+              "name": "DR2",
+              "sf": 10,
+              "bw": 125
+            },
+            {
+              "name": "DR1",
+              "sf": 11,
+              "bw": 125
+            },
+            {
+              "name": "DR0",
+              "notes": "Also used for RX2",
+              "sf": 12,
+              "bw": 125
+            }
+          ]
         },
         {
           "name": "us902",
