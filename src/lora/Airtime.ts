@@ -2,27 +2,37 @@ export type CodingRate = '4/5' | '4/6' | '4/7' | '4/8';
 
 export default class Airtime {
   /**
-   * Calculates the LoRa airtime in microseconds.
+   * Calculates the LoRa airtime in milliseconds with two decimals.
    *
-   * See https://www.semtech.com/uploads/documents/LoraDesignGuide_STD.pdf#page=7
+   * See https://lora-developers.semtech.com/library/product-documents/ for
+   * the equations in AN1200.13 "LoRa Modem Designer’s Guide".
    *
-   * Spreading factor and bandwidth together define the data rate.
+   * Spreading factor and bandwidth together define the so called data rate.
    *
-   * @param size full packet size
+   * @param size full packet size. For LoRaWAN this includes the LoRaWAN header
+   *        (about 13 bytes when no MAC commands are included), the application
+   *        payload, and the MIC.
    * @param sf spreading factor, 6..12 (6 is not used in LoRaWAN)
    * @param bw bandwidth in kHz, typically 125, sometimes 250 or 500
    * @param codingRate coding rate, '4/5', '4/6', '4/7' or '4/8'
-   * @param lowDrOptimize low data rate optimization, 'auto', true or false
-   * @param explicitHeader true for LoRaWAN: this is the low-level header that
-   *        indicates coding rate, payload length and payload CRC presence. In
-   *        plain LoRa it can be left out if both sides have these parameters
-   *        fixed.
-   * @param preambleLength
+   * @param lowDrOptimize low data rate optimization, 'auto', true or false.
+   *        This is usually enabled for low data rates, to avoid issues with
+   *        drift of the crystal reference oscillator due to either temperature
+   *        change or motion. When enabled, specifically for 125 kHz bandwidth
+   *        and SF11 and SF12, this adds a small overhead to increase robustness
+   *        to reference frequency variations over the timescale of the packet.
+   * @param explicitHeader if the LoRa header is present, true or false. This is
+   *        the low-level header that defines, e.g., coding rate, payload length
+   *        and the presence of a CRC checksum. In plain LoRa it can be left out
+   *        if each transmission uses the very same parameters and the receiver
+   *        is aware of those. For LoRaWAN, where at least the payload length is
+   *        not fixed, the low-level LoRa header is always enabled.
+   * @param preambleLength number of preamble symbols. For LoRaWAN this is 8.
    */
   static calculate(size: number, sf: number, bw = 125, codingRate: CodingRate = '4/5',
                    lowDrOptimize: 'auto' | true | false = 'auto', explicitHeader = true, preambleLength = 8) {
 
-    // time in milliseconds
+    // All times in milliseconds
     const tSym = Math.pow(2, sf) / (bw * 1000) * 1000;
     const tPreamble = (preambleLength + 4.25) * tSym;
 
