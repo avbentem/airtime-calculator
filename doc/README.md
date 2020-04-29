@@ -3,7 +3,7 @@
 ## SX1272/3/6/7/8: LoRa Modem Designer’s Guide AN1200.13
 
 This [copy](./LoraDesignGuide_STD.pdf) was
-[downloaded from Semtech](https://www.semtech.com/uploads/documents/LoraDesignGuide_STD.pdf).
+[downloaded from Semtech](https://lora-developers.semtech.com/library/product-documents/).
 
 ## LoRaWAN™ Regional Parameters v1.0.2rB
 
