@@ -22,6 +22,10 @@ type CalculatorProps = {
  */
 export default function Calculator(props: CalculatorProps) {
 
+  // The real defaults are set in the UserInput component, and posted back using callbacks
+  const [packetSize, setPacketSize] = useState<number>(null as any);
+  const [codingRate, setCodingRate] = useState<CodingRate>(null as any);
+
   const changeUrl = setUrl.bind(null, props.history, props.location, props.config);
   const {network, region, parameters} = parseUrl(props.history, props.location, props.config);
 
@@ -37,10 +41,6 @@ export default function Calculator(props: CalculatorProps) {
     changeUrl(network, r);
     return null;
   }
-
-  // The real defaults are set in the UserInput component, and posted back using callbacks
-  const [packetSize, setPacketSize] = useState<number>(null as any);
-  const [codingRate, setCodingRate] = useState<CodingRate>(null as any);
 
   const handlePacketSizeChange = (size: number) => {
     console.log('packet size', packetSize, size);

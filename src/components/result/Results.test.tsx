@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import config from '../../../public/config.json';
 import { AppConfig, DataRate } from '../../AppConfig';
 import Airtime from '../../lora/Airtime';
@@ -19,11 +19,12 @@ describe('Results component', () => {
 
   // react-testing-library
   it('renders Result children', () => {
-    const {getByText} = render(<Results region={region} packetSize={23} codingRate="4/5" />);
+    const {getByText, getAllByText} = render(<Results region={region} packetSize={23} codingRate="4/5" />);
 
     // From child <Result> components
     region.dataRates.forEach((dr: DataRate) => {
-      expect(getByText(`SF${dr.sf}`)).toBeInTheDocument();
+      // Some SF might be used multiple times, using different BW
+      expect(getAllByText(`SF${dr.sf}`)[0]).toBeInTheDocument();
       // This is actually something like the following, with some more whitespace and newlines:
       //   <span class="sf">SF7</span><span class="bw">BW<br>125</span>
       // For that, the following would fail:
@@ -36,6 +37,6 @@ describe('Results component', () => {
       expect(getByText((content, element) => element.textContent === `${airtime}ms`)).toBeInTheDocument();
     });
 
-    expect(getByText('avg/hour')).toBeInTheDocument();
+    expect(getAllByText('avg/hour')).toHaveLength(region.dataRates.length);
   });
 });

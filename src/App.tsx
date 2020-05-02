@@ -44,7 +44,7 @@ export default function App() {
     return () => {
       didCancel = true;
     };
-  }, []);
+  }, [configUrl]);
 
   return (
     <Router basename={process.env.PUBLIC_URL}>

@@ -59,9 +59,19 @@ This application was created with sharable URLs in mind, so almost every user in
 
 ## Development and deployment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://create-react-app.dev/).
 
 In the project directory, run:
+
+- `npm install`
+
+  Downloads all dependencies. You can safely ignore the following warnings:
+
+  - `react-scripts@3.4.1 requires a peer of typescript@^3.2.1 but none is installed.`
+  - `sass-loader@8.0.2 requires a peer of node-sass@^4.0.0 but none is installed.`
+  - `sass-loader@8.0.2 requires a peer of sass@^1.3.0 but none is installed.`
+  - `sass-loader@8.0.2 requires a peer of fibers@>= 3.1.0 but none is installed.`
+  - `tsutils@3.17.1 requires a peer of typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || ...`
 
 - `npm start`
 
@@ -71,8 +81,8 @@ In the project directory, run:
 
 - `npm test`
 
-  Launches the test runner in the interactive watch mode. See the React documentation about
-  [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for details.
+  Launches the test runner in the interactive watch mode. See the Create React App documentation on
+  [running tests](https://create-react-app.dev/docs/running-tests) for details.
 
 - `npm test -- --coverage`
 
@@ -80,11 +90,9 @@ In the project directory, run:
 
 - `npm run build`
 
-  Builds the app for production to the `build` folder. It correctly bundles React in production
-  mode and optimizes the build for the best performance.
-
-  The build is minified and the filenames include the hashes. See the React documentation about
-  [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  Builds the app with minimized bundles for production to the `build` folder. See the Create React
+  App documentation on [deployment](https://create-react-app.dev/docs/deployment)
+  for more information.
   
   To ensure URLs like `/ttn/eu868/1,2` can be loaded without first loading the bare `/`, see for
   example the Apache [`.htaccess`](./public/.htaccess) file.

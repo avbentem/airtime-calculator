@@ -1,7 +1,7 @@
 import { createBrowserHistory as createHistory, createLocation } from 'history';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import cfg from '../../../public/config.json';
 import { AppConfig } from '../../AppConfig';
 import Calculator from './Calculator';
@@ -21,16 +21,25 @@ describe('Calculator component', () => {
     match: {} as any
   };
 
-  // react-testing-library
   it('renders UserInput child', () => {
-    const {getByLabelText, getByText} = render(<Calculator {...router} config={config} />);
-
+    const {getByLabelText} = render(<Calculator {...router} config={config} />);
     // We need some 'starts with' due to the help icon that's within the label text
-    expect(getByLabelText((content, element) => /^Header size/.test(element.textContent || ''))).toBeInTheDocument();
-    expect(getByLabelText((content, element) => /^Payload size/.test(element.textContent || ''))).toBeInTheDocument();
-    expect(getByLabelText((content, element) => /^Coding rate/.test(element.textContent || ''))).toBeInTheDocument();
+    expect(getByLabelText(/^Header size/)).toBeInTheDocument();
+    expect(getByLabelText(/^Payload size/)).toBeInTheDocument();
+    expect(getByLabelText(/^Coding rate/)).toBeInTheDocument();
+  });
 
+  it('renders region details', () => {
+    const {getByText} = render(<Calculator {...router} config={config} />);
+    // The network's title is suffixed with the region's label. Though that
+    // introduces newlines in the HTML, `getByText` does handle that.
     expect(getByText('The Things Network EU868')).toBeInTheDocument();
+    // Partial match
+    expect(getByText(/^EU863-870 MHz uplink and downlink/)).toBeInTheDocument();
+  });
+
+  it('renders Results child', () => {
+    const {getByText} = render(<Calculator {...router} config={config} />);
     // This is actually something like the following, with some more whitespace and newlines:
     //   <span class="sf">SF12</span><span class="bw">BW<br>125</span>
     // For that, the following would fail:
@@ -39,7 +48,5 @@ describe('Calculator component', () => {
     expect(getByText((content, element) => element.textContent === 'SF12BW125')).toBeInTheDocument();
 
     expect(getByText('DR0')).toBeInTheDocument();
-    expect(getByText('/24h')).toBeInTheDocument();
-    expect(getByText('avg/hour')).toBeInTheDocument();
   });
 });

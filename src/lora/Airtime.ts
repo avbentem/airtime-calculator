@@ -39,7 +39,8 @@ export default class Airtime {
     // H = 0 when the header is enabled, H = 1 when no header is present.
     const h = explicitHeader ? 0 : 1;
     // DE = 1 when the low data rate optimization is enabled, DE = 0 for disabled.
-    // When 'auto' then only for SF11 and SF12, on 125kHz
+    // When 'auto' then only for SF11 and SF12, on 125kHz.
+    // Allow for programming errors that pass string values from, e.g., some form input.
     const de = ((lowDrOptimize === 'auto' && +bw === 125 && +sf >= 11) || lowDrOptimize === true) ? 1 : 0;
     // CR is the coding rate from 1 to 4
     const cr = +codingRate[2] - 4;

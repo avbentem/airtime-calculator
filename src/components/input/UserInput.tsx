@@ -59,11 +59,11 @@ export default function UserInput(props: UserConfigProps) {
 
   useEffect(() => {
     props.setPacketSize(headerSize.value + payloadSize.value);
-  }, [headerSize, payloadSize]);
+  }, [props, headerSize.value, payloadSize.value]);
 
   useEffect(() => {
     props.setCodingRate(codingRate.value);
-  }, [codingRate]);
+  }, [props, codingRate.value]);
 
   /**
    * Tells the parent that the user's configuration has changed, to keep the URL synchronized with the current inputs.
@@ -78,7 +78,7 @@ export default function UserInput(props: UserConfigProps) {
    */
   useEffect(() => {
     props.setUserConfig(encodeUserConfig(payloadSize.value, headerSize.value, codingRate.value, macCommands.value));
-  }, [headerSize, payloadSize, codingRate]);
+  }, [props, headerSize.value, payloadSize.value, codingRate.value, macCommands.value]);
 
   const macCommandButtons = UplinkMacCommands102.map((cmd, idx) => (
     <div key={idx}>

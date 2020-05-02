@@ -1,16 +1,18 @@
 // For enzyme
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-// this adds jest-dom's custom assertions
-import 'jest-dom/extend-expect';
-import 'jest-enzyme';
 // For react-testing-library
-// react-testing-library renders your components to document.body,
-// this will ensure they're removed after each test.
-import 'react-testing-library/cleanup-after-each';
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom/extend-expect';
+// See https://github.com/FormidableLabs/enzyme-matchers/blob/master/packages/jest-enzyme/README.md#usage-with-create-react-app
+import 'jest-enzyme';
 import { AppConfig, DataRate, Network, Region } from './AppConfig';
 
 // For enzyme
+// See https://create-react-app.dev/docs/running-tests/#srcsetuptestsjs
 configure({adapter: new Adapter()});
 
 /**
