@@ -1,0 +1,9 @@
+# The folder node_modules is ignored by Prettier, but not by prettylint;
+# see https://github.com/ikatyang/prettylint/issues/209
+/.git
+/.idea
+/build
+/coverage
+/node_modules
+package-lock.json
+SCRAPBOOK.md

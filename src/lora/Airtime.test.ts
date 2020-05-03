@@ -1,6 +1,7 @@
 import Airtime from './Airtime';
 
-// As compared to https://docs.google.com/spreadsheets/d/1QvcKsGeTTPpr9icj4XkKXq4r2zTc2j0gsHLrnplzM3I
+// As compared to
+// https://docs.google.com/spreadsheets/d/1QvcKsGeTTPpr9icj4XkKXq4r2zTc2j0gsHLrnplzM3I
 describe('Airtime', () => {
   it('gets correct airtime for SF7BW125 CR4/5, using default bandwidth and coding rate', () => {
     expect(Airtime.calculate(14, 7)).toBeCloseTo(46.336, 2);
@@ -52,8 +53,8 @@ describe('Airtime', () => {
     expect(Airtime.calculate(25, 11)).toBeCloseTo(823.296, 2);
   });
 
-  // When due to programming errors string values are passed from, e.g, some form input, then either
-  // fail or return good results
+  // When due to programming errors string values are passed from, e.g, some
+  // form input, then either fail or return good results
   it('does not silently return wrong results for string values at runtime', () => {
     expect(Airtime.calculate('14' as any, '7' as any)).toBeCloseTo(46.336, 2);
     expect(Airtime.calculate('14' as any, '7' as any, '250' as any)).toBeCloseTo(23.168, 2);
@@ -61,6 +62,8 @@ describe('Airtime', () => {
     expect(Airtime.calculate('14' as any, '7' as any, '250' as any, '4/8')).toBeCloseTo(30.848, 2);
     expect(Airtime.calculate('14' as any, '8' as any)).toBeCloseTo(82.432, 2);
     expect(Airtime.calculate('14' as any, '11' as any, '125' as any)).toBeCloseTo(659.456, 2);
-    expect(Airtime.calculate('14' as any, '11' as any, '125' as any, '4/5', true, true)).toBeCloseTo(659.456, 2);
+    expect(
+      Airtime.calculate('14' as any, '11' as any, '125' as any, '4/5', true, true)
+    ).toBeCloseTo(659.456, 2);
   });
 });

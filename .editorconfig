@@ -5,9 +5,11 @@ root = true
 charset = utf-8
 indent_style = space
 indent_size = 2
+# See README.md for handing of `max_line_length` in WebStorm.
+max_line_length = 80
 insert_final_newline = true
 trim_trailing_whitespace = true
 
 [*.md]
-max_line_length = off
+max_line_length = 100
 trim_trailing_whitespace = false

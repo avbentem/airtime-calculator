@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Badge from 'react-bootstrap/Badge';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import { CodingRate } from '../../lora/Airtime';
-import { MacCommand, UplinkMacCommands102 } from '../../lora/MacCommands';
+import {CodingRate} from '../../lora/Airtime';
+import {MacCommand, UplinkMacCommands102} from '../../lora/MacCommands';
 import HelpTooltip from '../help/HelpTooltip';
-import { withFormControl } from './helpers';
+import {withFormControl} from './helpers';
 import NumberInput from './NumberInput';
-import { decodeUserConfig, encodeUserConfig } from './UserConfig';
+import {decodeUserConfig, encodeUserConfig} from './UserConfig';
 
 /**
- * The components determines its parameters given its URL fragment, and only tells the parent component about the total
- * packet size and the coding rate.
+ * The components determines its parameters given its URL fragment, and only
+ * tells the parent component about the total packet size and the coding rate.
  */
 type UserConfigProps = {
   userConfig?: string;
@@ -21,20 +21,19 @@ type UserConfigProps = {
   setUserConfig: (fragment: string) => void;
 };
 
-
 /**
  * Form using some controlled components to input the packet's details.
  *
  * TODO The state is maintained by the parent component.
  *
- * This reports the total LoRa packet size, the coding rate and its own fragment in the URL to its parent.
+ * This reports the total LoRa packet size, the coding rate and its own
+ * fragment in the URL to its parent.
  *
  * /ttn/eu868/1.0.x,4/5,15,LinkCheckReq,LinkAdrAns,DutyCycleAns,RXParamSetupAns,DevStatusAns,NewChannelAns,RXTimingSetupAns,TxParamSetupAns,DlChannelAns
  *
  *
  */
 export default function UserInput(props: UserConfigProps) {
-
   function useParam<T>(defaultValue: T) {
     const [value, setValue] = useState(defaultValue);
     return {value, setValue};
@@ -47,7 +46,7 @@ export default function UserInput(props: UserConfigProps) {
   const macCommands = useParam(params.macCommands);
 
   function increaseHeaderSize(size: number) {
-    headerSize.setValue(v => v + size);
+    headerSize.setValue((v) => v + size);
     // Same result:
     // headerSize.setValue(headerSize.value + size);
   }
@@ -66,25 +65,36 @@ export default function UserInput(props: UserConfigProps) {
   }, [props, codingRate.value]);
 
   /**
-   * Tells the parent that the user's configuration has changed, to keep the URL synchronized with the current inputs.
+   * Tells the parent that the user's configuration has changed, to keep the
+   * URL synchronized with the current inputs.
    *
-   * Rather than this callback, we could use a Route in the parent component and manage our own URL segment here.
-   * However, by design, when the user configuration only uses default values then that segment would not exist. And as
-   * the routing does not provide an API to only change a specific URL segment, this component would need to know about
-   * the URL segments of its parent to reliably change its own segment. (Like to detect excessive slashes and avoid
-   * endless loops.) Instead, the URL segment is passed to this component, and this component notifies the parent about
-   * changes. The parent needs to know about this segment anyhow, like when the parent component changes the region for
-   * which the user configuration should be preserved.
+   * Rather than this callback, we could use a Route in the parent component
+   * and manage our own URL segment here. However, by design, when the user
+   * configuration only uses default values then that segment would not exist.
+   * And as the routing does not provide an API to only change a specific URL
+   * segment, this component would need to know about the URL segments of its
+   * parent to reliably change its own segment. (Like to detect excessive
+   * slashes and avoid endless loops.) Instead, the URL segment is passed to
+   * this component, and this component notifies the parent about changes. The
+   * parent needs to know about this segment anyhow, like when the parent
+   * component changes the region for which the user configuration should be
+   * preserved.
    */
   useEffect(() => {
-    props.setUserConfig(encodeUserConfig(payloadSize.value, headerSize.value, codingRate.value, macCommands.value));
+    props.setUserConfig(
+      encodeUserConfig(payloadSize.value, headerSize.value, codingRate.value, macCommands.value)
+    );
   }, [props, headerSize.value, payloadSize.value, codingRate.value, macCommands.value]);
 
   const macCommandButtons = UplinkMacCommands102.map((cmd, idx) => (
     <div key={idx}>
-      <Badge onClick={() => addMacCommand(cmd)}
-             pill
-             variant={params.macCommands && params.macCommands.includes(cmd) ? 'primary' : 'secondary'}>{cmd.name} {cmd.size}</Badge>
+      <Badge
+        onClick={() => addMacCommand(cmd)}
+        pill
+        variant={params.macCommands && params.macCommands.includes(cmd) ? 'primary' : 'secondary'}
+      >
+        {cmd.name} {cmd.size}
+      </Badge>
       &nbsp;
     </div>
   ));
@@ -97,8 +107,7 @@ export default function UserInput(props: UserConfigProps) {
             <Form.Label>
               Header size
               {/*TODO For proper accessibility this should be outside the <label>*/}
-              <HelpTooltip
-                text="For a LoRaWAN 1.0.x uplink and downlink, the header is at least 13 bytes: Type (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4)." />
+              <HelpTooltip text="For a LoRaWAN 1.0.x uplink and downlink, the header is at least 13 bytes: Type (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4)." />
             </Form.Label>
             <NumberInput {...headerSize} min={13} />
           </Form.Group>
@@ -106,8 +115,7 @@ export default function UserInput(props: UserConfigProps) {
           <Form.Group as={Col} controlId="formApplicationPayloadSize">
             <Form.Label>
               Payload size
-              <HelpTooltip
-                text="The application payload size. Might be empty for a simple ACK or if the packet only includes MAC commands." />
+              <HelpTooltip text="The application payload size. Might be empty for a simple ACK or if the packet only includes MAC commands." />
             </Form.Label>
             <NumberInput {...payloadSize} />
           </Form.Group>
@@ -117,7 +125,11 @@ export default function UserInput(props: UserConfigProps) {
               Coding rate
               <HelpTooltip text="The coding rate (CR) used for forward error correction (FEC)." />
             </Form.Label>
-            <Form.Control as="select" {...withFormControl(codingRate)} className="xxtext-primary xxborder-primary">
+            <Form.Control
+              as="select"
+              {...withFormControl(codingRate)}
+              className="xxtext-primary xxborder-primary"
+            >
               <option value="4/5">4/5</option>
               <option value="4/6">4/6</option>
               <option value="4/7">4/7</option>

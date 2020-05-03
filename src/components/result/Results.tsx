@@ -1,9 +1,9 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { Region } from '../../AppConfig';
-import Airtime, { CodingRate } from '../../lora/Airtime';
-import { Result } from './Result';
+import {Region} from '../../AppConfig';
+import Airtime, {CodingRate} from '../../lora/Airtime';
+import {Result} from './Result';
 
 type ResultsProps = {
   region: Region;
@@ -15,7 +15,6 @@ type ResultsProps = {
  * Shows the results of the airtime calculations.
  */
 export default function Results({region, packetSize, codingRate}: ResultsProps) {
-
   if (!codingRate) {
     return null;
   }
@@ -33,9 +32,7 @@ export default function Results({region, packetSize, codingRate}: ResultsProps) 
   return (
     <>
       {/* Though the nested Result is actually a Card, a CardDeck does not yield a proper responsive result. */}
-      <Row className="justify-content-md-center">
-        {results}
-      </Row>
+      <Row className="justify-content-md-center">{results}</Row>
     </>
   );
 }

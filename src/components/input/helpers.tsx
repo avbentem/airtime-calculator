@@ -1,15 +1,15 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 
 /**
- * Returns an object that can be spread for use in Bootstrap forms, like `<FormControl {...withFormControl(state)}/>`.
+ * Returns an object that can be spread for use in Bootstrap forms, like
+ * `<FormControl {...withFormControl(state)}/>`.
  */
-export function withFormControl<T>(state: { value: T, setValue: Dispatch<SetStateAction<T>> }) {
-
+export function withFormControl<T>(state: {value: T; setValue: Dispatch<SetStateAction<T>>}) {
   // See https://github.com/react-bootstrap/react-bootstrap/issues/2781
   function onChange(event: React.FormEvent<any>) {
     // function onChange(event: React.FormEventHandler) {
     const target = event.currentTarget;
-    state.setValue(typeof state.value === 'number' ? +target.value as any : target.value);
+    state.setValue(typeof state.value === 'number' ? (+target.value as any) : target.value);
   }
 
   // FormControl expects a string for value

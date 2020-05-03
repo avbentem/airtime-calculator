@@ -7,12 +7,11 @@ Things Network (TTN), and showing the limitations that apply to the TTN public n
 
 See it in action on <https://avbentem.github.io/lorawan-airtime-ui>.
 
-
 ## To do
 
 This is work in progress. Version 1 should include:
 
-- definition of maximum duty cycle(s) per region
+- definition of maximum duty cycle(s) and dwell time per region
 - layout fixes (results; form inputs in Firefox; hide number spinner; pointer for help tooltips)
 
 Next versions might include:
@@ -20,7 +19,6 @@ Next versions might include:
 - support for MAC commands
 - a help page explaining the basics
 - support for FSK
-
 
 ## Data rates and frequency plans
 
@@ -32,7 +30,6 @@ and defined in [config.json](./public/config.json).
 Some frequency plans have very different data rates for uplinks and downlinks; for those distinct
 "regions" are defined in this application, like for US902 (uplink) and US902 DL (downlink). Others
 share (most) of the data rates, like EU868.
-
 
 ## URL structure
 
@@ -48,18 +45,19 @@ This application was created with sharable URLs in mind, so almost every user in
   - experimental: one or more [MAC commands](./src/lora/MacCommands.ts), like `LinkAdrReq`
 
 - Default values are not included in the `<parameters>` segment; this currently applies to:
- 
-   - payload size, 6 bytes: just a random choice (the default is included for a non-default header size)
-   - header size, 13 bytes: for a LoRaWAN 1.0.x uplink and downlink, the overhead is at least 13 bytes
-     for the Message Type (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4)
-   - coding rate, 4/5: as used for all downlinks
+
+  - payload size, 6 bytes: just a random choice (the default is included for a non-default header size)
+  - header size, 13 bytes: for a LoRaWAN 1.0.x uplink and downlink, the overhead is at least 13 bytes
+    for the Message Type (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4)
+  - coding rate, 4/5: as used for all downlinks
 
 - When all parameters use their defaults, the `<parameters>` segment and its slash are excluded.
-
 
 ## Development and deployment
 
 This project was bootstrapped with [Create React App](https://create-react-app.dev/).
+
+### NPM commands
 
 In the project directory, run:
 
@@ -88,15 +86,48 @@ In the project directory, run:
 
   Single test run with coverage.
 
+- `npm run lint`, `npm run lint:es`, `npm run lint:style` or `npm run lint:pretty`
+
+  Manually run all linters and Prettier, or run only those for code, styleheets, or the remaining
+  files. Unlike the pre-commit hook (see below), this is not limited to staged files.
+
 - `npm run build`
 
-  Builds the app with minimized bundles for production to the `build` folder. See the Create React
-  App documentation on [deployment](https://create-react-app.dev/docs/deployment)
-  for more information.
-  
+  Runs the linters, and (only) if all succeed builds the app with minimized bundles for production
+  into the `build` folder.
+
   To ensure URLs like `/ttn/eu868/1,2` can be loaded without first loading the bare `/`, see for
   example the Apache [`.htaccess`](./public/.htaccess) file.
-  
+
   To build for a subfolder, set `"homepage": "/some/path/to/lorawan-airtime"` in `package.json`.
   This will not affect the development server, which will always load from the root folder. For
-  deployment in the root folder, set it to `"/"` or don't set it at all.
+  deployment in the root folder, set it to `"/"` or don't set it at all. See also the Create React
+  App documentation about [deployment](https://create-react-app.dev/docs/deployment).
+
+### Linting and Prettier
+
+A pre-commit hook ensures that linting errors and formatting errors cannot be committed. To allow
+Prettier rules to supersede any formatting rules that might be defined by a linter, it is configured
+to run as a plugin for both ESLint and stylelint, and to explicitly run for the few file types not
+handled by either of those.
+
+Note that the pre-commit hook uses [lint-staged](https://github.com/okonet/lint-staged), which
+temporarily hides unstaged changes to partially staged files. This may make your IDE show warnings
+about files that were changed outside of the IDE.
+
+### Editor setup
+
+#### WebStorm
+
+- Enable Stylelint in _Languages and Frameworks | Style Sheets | Stylelint_.
+
+- The Prettier settings in [`.prettierrc.yaml`](.prettierrc.yaml) define `trailingComma: es5`. After
+  being prompted _"Use code style based in Prettier for this project?"_ in WebStorm, this will yield
+  _Coding Style | Punctuation | Trailing comma: Add when multiline_. Unfortunately this also applies
+  to function parameters, which adds an excessive comma when hitting Option-Command-L for Reformat
+  Code (but not for Option-Shift-Command-P for Reformat with Prettier). To avoid that, manually set
+  WebStorm to use _Trailing comma: Keep_.
+
+- The editor settings in [`.editorconfig`](.editorconfig) define `max_line_length`, which is used
+  when hitting Option-Command-L for Reformat Code, but not when using Option-Shift-Command-P for
+  Reformat with Prettier.

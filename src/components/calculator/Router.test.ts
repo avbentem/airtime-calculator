@@ -1,13 +1,12 @@
-import { createBrowserHistory as createHistory, createLocation } from 'history';
-import { Fixtures } from '../../setupTests';
-import { parseUrl, setUrl } from './Router';
+import {createBrowserHistory as createHistory, createLocation} from 'history';
+import {Fixtures} from '../../setupTests';
+import {parseUrl, setUrl} from './Router';
 
 const history = createHistory();
 const location = createLocation('/');
 const historyReplaceSpy = jest.spyOn(history, 'replace');
 
 describe('parseUrl', () => {
-
   it('handles empty path', () => {
     location.pathname = '';
     const parsed = parseUrl(history, location, Fixtures.config);
@@ -58,7 +57,6 @@ describe('parseUrl', () => {
 });
 
 describe('setUrl', () => {
-
   it('handles empty parameters', () => {
     location.pathname = '';
     setUrl(history, location, Fixtures.config, Fixtures.ttn as any, Fixtures.eu868);
@@ -80,5 +78,4 @@ describe('setUrl', () => {
     expect(historyReplaceSpy).toHaveBeenCalledTimes(0);
     historyReplaceSpy.mockReset();
   });
-
 });

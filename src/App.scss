@@ -1,8 +1,9 @@
 // App variables and overrides for Twitter Bootstrap
 @import './styles/variables';
 // Twitter Bootstrap and its default variables
+// Yarn 2 would require "../node_modules/bootstrap" rather than "~bootstrap";
+// see https://github.com/facebook/create-react-app/issues/2859
 @import '~bootstrap/scss/bootstrap.scss';
-
 
 .App {
   text-align: center;
@@ -21,9 +22,6 @@
 
 .App-link {
   color: #61dafb;
-}
-
-.Result {
 }
 
 .Result-unit {

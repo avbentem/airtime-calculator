@@ -1,5 +1,5 @@
-import { CodingRate } from '../../lora/Airtime';
-import { DownlinkMacCommands102, MacCommand, UplinkMacCommands102 } from '../../lora/MacCommands';
+import {CodingRate} from '../../lora/Airtime';
+import {DownlinkMacCommands102, MacCommand, UplinkMacCommands102} from '../../lora/MacCommands';
 
 type UserConfig = {
   macCommands?: MacCommand[];
@@ -8,16 +8,17 @@ type UserConfig = {
 export const defaults = {
   payloadSize: 6,
   headerSize: 13,
-  codingRate: '4/5' as CodingRate
+  codingRate: '4/5' as CodingRate,
 };
 
 /**
- * Takes the first integer argument to be the application payload size, the second as the LoRaWAN header size,
- * a single string starting with "cr" as the coding rate, and all other values as possible MAC commands.
+ * Takes the first integer argument to be the application payload size, the
+ * second as the LoRaWAN header size, a single string starting with "cr" as the
+ * coding rate, and all other values as possible MAC commands.
  */
 export function decodeUserConfig(params: string = ''): UserConfig {
   const result: UserConfig = {} as any;
-  const values = params.split(',').map(v => v.trim());
+  const values = params.split(',').map((v) => v.trim());
   for (let value of values) {
     if (value === '') {
       continue;
@@ -30,14 +31,16 @@ export function decodeUserConfig(params: string = ''): UserConfig {
       } else if (!result.headerSize) {
         result.headerSize = +value;
       } else {
-        console.warn(`Ignored numeric value ${value}; already parsed both payloadSize and headerSize`);
+        console.warn(
+          `Ignored numeric value ${value}; already parsed both payloadSize and headerSize`
+        );
       }
       continue;
     }
 
     if (/^cr4[5678]$/i.test(value)) {
       if (!result.codingRate) {
-        result.codingRate = (value.substr(2).split('').join('/') as CodingRate);
+        result.codingRate = value.substr(2).split('').join('/') as CodingRate;
       } else {
         console.warn(`Ignored string value ${value}; already parsed codingRate`);
       }
@@ -46,8 +49,9 @@ export function decodeUserConfig(params: string = ''): UserConfig {
 
     // Case-insensitive search in both the uplink and downlink MAC commands
     const lowerCase = value.toLowerCase();
-    const mac = UplinkMacCommands102.concat(DownlinkMacCommands102)
-      .find(cmd => cmd.name.toLowerCase() === lowerCase);
+    const mac = UplinkMacCommands102.concat(DownlinkMacCommands102).find(
+      (cmd) => cmd.name.toLowerCase() === lowerCase
+    );
     if (mac) {
       result.macCommands = (result.macCommands || []).concat(mac);
     } else {
@@ -61,7 +65,12 @@ export function decodeUserConfig(params: string = ''): UserConfig {
 /**
  * Encodes the user inputs for use in an URL segment.
  */
-export function encodeUserConfig(payloadSize: number, headerSize: number, codingRate?: CodingRate, macCommands?: MacCommand[]) {
+export function encodeUserConfig(
+  payloadSize: number,
+  headerSize: number,
+  codingRate?: CodingRate,
+  macCommands?: MacCommand[]
+) {
   const parts: (string | number)[] = [];
   if (payloadSize !== defaults.payloadSize || headerSize !== defaults.headerSize) {
     parts.push(payloadSize);
@@ -73,7 +82,7 @@ export function encodeUserConfig(payloadSize: number, headerSize: number, coding
     parts.push('cr' + codingRate.replace('/', ''));
   }
   if (macCommands) {
-    parts.push(...macCommands.map(cmd => cmd.name));
+    parts.push(...macCommands.map((cmd) => cmd.name));
   }
   return parts.join(',');
 }

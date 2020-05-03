@@ -1,0 +1,13 @@
+extends:
+  - react-app
+  # Disable any conflicting formatting rules, and run Prettier for the source
+  # files that the linter is handling:
+  - plugin:prettier/recommended
+rules:
+  no-warning-comments:
+    # Don't care about To Do's but fail on Fix Me's; this only affects source
+    # files as handled by ESLint (so: not stylesheets, nor other files)
+    - error
+    - terms:
+        - FIXME
+      location: anywhere

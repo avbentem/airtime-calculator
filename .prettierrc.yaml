@@ -1,0 +1,6 @@
+printWidth: 100
+semi: true
+# See README.md for handling of `trailingComma: es5` in WebStorm.
+trailingComma: es5
+singleQuote: true
+bracketSpacing: false
