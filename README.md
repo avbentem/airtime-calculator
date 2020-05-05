@@ -63,13 +63,7 @@ In the project directory, run:
 
 - `npm install`
 
-  Downloads all dependencies. You can safely ignore the following warnings:
-
-  - `react-scripts@3.4.1 requires a peer of typescript@^3.2.1 but none is installed.`
-  - `sass-loader@8.0.2 requires a peer of node-sass@^4.0.0 but none is installed.`
-  - `sass-loader@8.0.2 requires a peer of sass@^1.3.0 but none is installed.`
-  - `sass-loader@8.0.2 requires a peer of fibers@>= 3.1.0 but none is installed.`
-  - `tsutils@3.17.1 requires a peer of typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || ...`
+  Downloads all dependencies. You can safely ignore the warnings about missing peer dependencies.
 
 - `npm start`
 

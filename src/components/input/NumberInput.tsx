@@ -31,7 +31,7 @@ export default function NumberInput({min = 0, value, setValue}: NumberInputProps
   return (
     <InputGroup className="mb-3">
       <InputGroup.Prepend>
-        <Button onClick={dec} variant="outline-secondary">
+        <Button onClick={dec} variant="outline-secondary" aria-label="Decrease">
           -
         </Button>
       </InputGroup.Prepend>
@@ -40,10 +40,9 @@ export default function NumberInput({min = 0, value, setValue}: NumberInputProps
         type="number"
         min={min}
         placeholder="Enter number"
-        aria-label="Number"
       />
       <InputGroup.Append>
-        <Button onClick={inc} variant="outline-secondary">
+        <Button onClick={inc} variant="outline-secondary" aria-label="Increase">
           +
         </Button>
       </InputGroup.Append>

@@ -1,4 +1,4 @@
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import {shallow} from 'enzyme';
 import React from 'react';
 import config from '../../../public/config.json';
@@ -18,30 +18,29 @@ describe('Results component', () => {
 
   // react-testing-library
   it('renders Result children', () => {
-    const {getByText, getAllByText} = render(
-      <Results region={region} packetSize={23} codingRate="4/5" />
-    );
+    render(<Results region={region} packetSize={23} codingRate="4/5" />);
 
     // From child <Result> components
     region.dataRates.forEach((dr: DataRate) => {
-      // Some SF might be used multiple times, using different BW
-      expect(getAllByText(`SF${dr.sf}`)[0]).toBeInTheDocument();
-      // This is actually something like the following, with some more whitespace and newlines:
-      //   <span class="sf">SF7</span><span class="bw">BW<br>125</span>
-      // For that, the following would fail:
-      //   expect(getByText(`SF${dr.sf}BW${dr.bw}`)).toBeInTheDocument();
-      // So, find some parent:
-      expect(
-        getByText((content, element) => element.textContent === `SF${dr.sf}BW${dr.bw}`)
-      ).toBeInTheDocument();
+      // This is actually something like the following, with some more whitespace
+      // and newlines:
+      //   <div class="card-title h5">DR5</div>
+      //   <h4><span class="sf">SF7</span><span class="bw">BW<br>250</span></h4>
+      // For that, all the following would fail:
+      //   expect(screen.getByText('SF7BW250')).toBeInTheDocument();
+      //   expect(screen.getByText('SF7BW 250')).toBeInTheDocument();
+      //   expect(screen.getByText('SF7 BW 250')).toBeInTheDocument();
+      // But `screen.getByRole('heading', {name: 'SF7 BW 250'})` works just fine.
+      expect(screen.getByRole('heading', {name: `SF${dr.sf} BW ${dr.bw}`})).toBeInTheDocument();
 
       const airtime = Airtime.calculate(23, dr.sf, dr.bw, '4/5');
-      // Something like: `25.73<span className="Result-unit">ms</span>`
+      // Something like: `25.73<span className="Result-unit">ms</span>` so find
+      // some parent with the given concatenated text:
       expect(
-        getByText((content, element) => element.textContent === `${airtime}ms`)
+        screen.getByText((content, element) => element.textContent === `${airtime}ms`)
       ).toBeInTheDocument();
     });
 
-    expect(getAllByText('avg/hour')).toHaveLength(region.dataRates.length);
+    expect(screen.getAllByText('avg/hour')).toHaveLength(region.dataRates.length);
   });
 });

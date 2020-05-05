@@ -1,5 +1,7 @@
 extends:
   - react-app
+  - plugin:jest-dom/recommended
+  - plugin:testing-library/react
   # Disable any conflicting formatting rules, and run Prettier for the source
   # files that the linter is handling:
   - plugin:prettier/recommended
@@ -11,3 +13,9 @@ rules:
     - terms:
         - FIXME
       location: anywhere
+  testing-library/prefer-explicit-assert:
+    - error
+  testing-library/prefer-screen-queries:
+    - error
+  testing-library/prefer-wait-for:
+    - error
