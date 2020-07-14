@@ -1,8 +1,11 @@
+// noinspection CssInvalidAtRule for https://youtrack.jetbrains.com/issue/WEB-43358
+@import-normalize;
 // App variables and overrides for Twitter Bootstrap
 @import './styles/variables';
 // Twitter Bootstrap and its default variables
-// Yarn 2 would require "../node_modules/bootstrap" rather than "~bootstrap";
-// see https://github.com/facebook/create-react-app/issues/2859
+// node-sass along with Yarn 2, which defaults to using PnP, does not resolve
+// this import; see https://github.com/webpack-contrib/sass-loader/issues/802
+// https://github.com/facebook/create-react-app/issues/8757
 @import '~bootstrap/scss/bootstrap.scss';
 
 .App {

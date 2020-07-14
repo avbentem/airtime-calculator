@@ -109,11 +109,17 @@ Note that the pre-commit hook uses [lint-staged](https://github.com/okonet/lint-
 temporarily hides unstaged changes to partially staged files. This may make your IDE show warnings
 about files that were changed outside of the IDE.
 
+Beware that Sourcetree might [silently skip](https://jira.atlassian.com/browse/SRCTREE-7184) the
+pre-commit hook.
+
 ### Editor setup
 
 #### WebStorm
 
-- Enable Stylelint in _Languages and Frameworks | Style Sheets | Stylelint_.
+- Enable Stylelint in _Languages and Frameworks | Style Sheets | Stylelint_, and optionally disable
+  the standard inspections in _Editor | Inspections | CSS_. (For example, WebStorm does not like
+  `@import-normalize;` in [`App.scss`](./src/App.scss), but using `// noinspection CssInvalidAtRule`
+  already suppresses that specific inspection in this code.)
 
 - The Prettier settings in [`.prettierrc.yaml`](.prettierrc.yaml) define `trailingComma: es5`. After
   being prompted _"Use code style based in Prettier for this project?"_ in WebStorm, this will yield
