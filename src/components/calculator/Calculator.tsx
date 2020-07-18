@@ -68,7 +68,7 @@ export default function Calculator(props: CalculatorProps) {
   return (
     <>
       <Row>
-        <Col className="table-responsive">
+        <Col>
           <ButtonGroup>
             {network.regions.map((r) => (
               <Button
@@ -106,11 +106,20 @@ export default function Calculator(props: CalculatorProps) {
           <h2>
             {network.title} {region.label}
           </h2>
-          {region.description && <ReactMarkdown source={region.description} />}
         </Col>
       </Row>
 
-      <Results region={region} packetSize={packetSize} codingRate={codingRate} />
+      <Row className="justify-content-sm-center">
+        <Col>
+          <hr />
+          <Results region={region} packetSize={packetSize} codingRate={codingRate} />
+          <hr />
+        </Col>
+      </Row>
+
+      <Row className="justify-content-md-center">
+        <Col md="8">{region.description && <ReactMarkdown source={region.description} />}</Col>
+      </Row>
     </>
   );
 }

@@ -51,15 +51,9 @@ describe('Calculator component', () => {
 
   it('renders Results child', () => {
     render(<Calculator {...router} config={config} />);
-    // This is actually something like the following, with some more whitespace
-    // and newlines:
-    //   <div class="card-title h5">DR0</div>
-    //   <h4><span class="sf">SF12</span><span class="bw">BW<br>125</span></h4>
-    // For that, all the following would fail:
-    //   expect(getByText('SF12BW125')).toBeInTheDocument();
-    //   expect(getByText('SF12BW 125')).toBeInTheDocument();
-    //   expect(getByText('SF12 BW 125')).toBeInTheDocument();
     expect(screen.getByText('DR0')).toBeInTheDocument();
-    expect(screen.getByRole('heading', {name: 'SF12 BW 125'})).toBeInTheDocument();
+    // This actually uses a non-breaking space
+    expect(screen.getByText('1% max duty cycle')).toBeInTheDocument();
+    expect(screen.getByText('fair access policy')).toBeInTheDocument();
   });
 });

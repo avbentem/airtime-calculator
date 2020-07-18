@@ -22,22 +22,63 @@ describe('Results component', () => {
 
     // From child <Result> components
     region.dataRates.forEach((dr: DataRate) => {
-      // This is actually something like the following, with some more whitespace
-      // and newlines:
-      //   <div class="card-title h5">DR5</div>
-      //   <h4><span class="sf">SF7</span><span class="bw">BW<br>250</span></h4>
+      expect(screen.getByText(dr.name)).toBeInTheDocument();
+
+      // This is actually something like the following:
+      //
+      //   <div class="Result-datarate">
+      //     <span class="dr">DR6</span>
+      //     <span>
+      //       <span class="sf">
+      //         SF
+      //         7
+      //       </span>
+      //       <span class="Result-unit">
+      //         BW
+      //         <br>
+      //         250
+      //       </span>
+      //     </span>
+      //   </div>
+      //
       // For that, all the following would fail:
+      //
       //   expect(screen.getByText('SF7BW250')).toBeInTheDocument();
       //   expect(screen.getByText('SF7BW 250')).toBeInTheDocument();
-      //   expect(screen.getByText('SF7 BW 250')).toBeInTheDocument();
-      // But `screen.getByRole('heading', {name: 'SF7 BW 250'})` works just fine.
-      expect(screen.getByRole('heading', {name: `SF${dr.sf} BW ${dr.bw}`})).toBeInTheDocument();
+      //   expect(screen.getByText('SF 7 BW 250')).toBeInTheDocument();
+      //
+      // So find some parent with the given concatenated text:
+
+      expect(
+        screen.getByText((content, element) => {
+          return element.textContent === `SF${dr.sf}BW${dr.bw}`;
+        })
+      ).toBeInTheDocument();
+
+      // Something like, with some more whitespace, but yielding multiple parents with just that text:
+      //
+      //   <div class="Result-airtime">
+      //     <div>
+      //       <span>
+      //         1,482.8ms
+      //         <span class="Result-unit">
+      //           ms
+      //         </span>
+      //       </span>
+      //     </div>
+      //   </div>
+      // So, search for the formatted number, and limit on <span>:
 
       const airtime = Airtime.calculate(23, dr.sf, dr.bw, '4/5');
-      // Something like: `25.73<span className="Result-unit">ms</span>` so find
-      // some parent with the given concatenated text:
+      const formatted = airtime.toLocaleString('en-US', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      });
+
       expect(
-        screen.getByText((content, element) => element.textContent === `${airtime}ms`)
+        screen.getByText((content, element) => {
+          return element.tagName === 'SPAN' && element.textContent === `${formatted}ms`;
+        })
       ).toBeInTheDocument();
     });
 

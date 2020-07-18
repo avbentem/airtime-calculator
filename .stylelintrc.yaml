@@ -3,3 +3,10 @@ extends:
   # Disable any conflicting formatting rules, and run Prettier for the (part of
   # the) files that the linter has found to be stylesheets:
   - stylelint-prettier/recommended
+
+plugins:
+  - stylelint-scss
+
+rules:
+  at-rule-no-unknown: null
+  scss/at-rule-no-unknown: true

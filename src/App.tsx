@@ -50,7 +50,7 @@ export default function App() {
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <Container className="App">
+      <Container fluid className="App">
         <Row>
           <Col>
             <h1>LoRaWAN 1.0.x airtime calculator</h1>

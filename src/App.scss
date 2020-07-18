@@ -8,12 +8,19 @@
 // https://github.com/facebook/create-react-app/issues/8757
 @import '~bootstrap/scss/bootstrap.scss';
 
+// Expose the built-in CSS `min` function without Sass complaining about
+// incompatible parameters. See https://github.com/sass/libsass/issues/2701
+// and https://github.com/sass/sass/issues/2378#issuecomment-433868712
+//noinspection CssInvalidFunction
+@function css-min($numbers...) {
+  @return m#{i}n(#{$numbers});
+}
+
 .App {
   text-align: center;
 }
 
 .App-header {
-  //background-color: $primary-background;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,19 +34,147 @@
   color: #61dafb;
 }
 
+// Generate classes .Results-grid-1 thru .Results-grid-x for grids with the
+// given number of columns (plus a fixed-width leading column for the legend)
+// and a fixed number of rows.
+@mixin grid-cols {
+  @for $col-count from 1 through $result-grid-max-results {
+    .Results-grid-#{$col-count} {
+      grid-template-columns: 6em repeat($col-count, 1fr);
+      grid-template-rows: repeat(4, auto);
+    }
+  }
+}
+
+// Generate classes .Results-grid-1 thru .Results-grid-x for grids with the
+// given number of rows (plus a top header) and a fixed number of columns.
+@mixin grid-rows {
+  @for $row-count from 1 through $result-grid-max-results {
+    .Results-grid-#{$row-count} {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr repeat($row-count, auto);
+    }
+  }
+}
+
+@include grid-cols;
+
+.Results-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 1%;
+}
+
+.Results-legend,
+.Results-result {
+  // Beware: not accessible
+  display: contents;
+
+  // Given the above `display: contents` any background color needs to be set
+  // on child elements, while using `align-items: center` would make those
+  // child elements not use the full height. Instead, just force alignment of
+  // these children themselves:
+  > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5%;
+  }
+}
+
+.Results-legend {
+  text-align: right;
+  font-style: italic;
+}
+
+// As this also has `display: contents`, this does not work well with
+// `align-items: center` for the parent grid
+.Results-result-even > * {
+  background-color: #f9f9f9;
+}
+
+.Results-result-odd > * {
+  background-color: #eee;
+}
+
+// Font sizes relative to the current viewport width
+@media all and (min-width: $result-grid-breakpoint) {
+  .Results-legend {
+    font-size: css-min(2vw, 12pt);
+  }
+
+  .Result-datarate {
+    font-size: 2vw;
+  }
+
+  .Result-airtime {
+    font-size: 2.2vw;
+  }
+
+  .Result-dutycycle {
+    font-size: 1.9vw;
+  }
+
+  .Result-fairaccess {
+    font-size: 1.9vw;
+  }
+}
+
+// Transpose the results on small screens
+@media all and (max-width: $result-grid-breakpoint) {
+  @include grid-rows;
+
+  .Results-grid {
+    grid-auto-flow: row;
+  }
+
+  .Results-legend {
+    font-size: css-min(3vw, 10pt);
+    text-align: center;
+    > div {
+      justify-content: flex-end;
+    }
+  }
+
+  .Result-datarate {
+    font-size: css-min(5vw, 16pt);
+  }
+
+  .Result-airtime {
+    font-size: css-min(5vw, 20pt);
+  }
+
+  .Result-dutycycle {
+    font-size: 3vw;
+  }
+
+  .Result-fairaccess {
+    font-size: 3vw;
+  }
+}
+
 .Result-unit {
-  font-size: 40%;
-  display: inline-block;
-  text-align: left;
-}
-
-.sf {
-  //float: left;
-}
-
-.bw {
   font-size: 50%;
   line-height: 1em;
-  margin-top: 5%;
-  float: right;
+  display: inline-block;
+  text-align: left;
+  padding-left: 2px;
+}
+
+.Result-unit-bw {
+  text-align: center;
+  font-weight: bolder;
+}
+
+.Result-dr {
+  font-size: 90%;
+  margin: 0;
+}
+
+.Result-sf,
+.Result-fairaccess-messages-per-hour {
+  font-family: 'Arial Black', sans-serif;
+  font-weight: bolder;
+  font-size: 120%;
 }

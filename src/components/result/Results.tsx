@@ -1,6 +1,4 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import {Region} from '../../AppConfig';
 import Airtime, {CodingRate} from '../../lora/Airtime';
 import {Result} from './Result';
@@ -19,20 +17,26 @@ export default function Results({region, packetSize, codingRate}: ResultsProps) 
     return null;
   }
 
-  const results = region.dataRates.map((dr) => {
+  const results = region.dataRates.map((dr, idx) => {
     const airtime = Airtime.calculate(packetSize, dr.sf, dr.bw, codingRate);
     return (
-      <Col key={dr.name} xs="auto" sm="auto" md="auto" lg="auto" xl="auto">
-        {/*<Col xs="12" sm="auto" md="3" lg="2" xl="auto">*/}
+      <div key={dr.name} className={`Results-result Results-result-${idx % 2 ? 'odd' : 'even'}`}>
         <Result dr={dr} airtime={airtime} />
-      </Col>
+      </div>
     );
   });
 
   return (
     <>
-      {/* Though the nested Result is actually a Card, a CardDeck does not yield a proper responsive result. */}
-      <Row className="justify-content-md-center">{results}</Row>
+      <div className={`Results-grid Results-grid-${results.length}`}>
+        <div className="Results-legend">
+          <div>data rate</div>
+          <div>airtime</div>
+          <div>1%&nbsp;max duty&nbsp;cycle</div>
+          <div>fair access policy</div>
+        </div>
+        {results}
+      </div>
     </>
   );
 }

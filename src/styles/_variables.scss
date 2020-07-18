@@ -1,2 +1,7 @@
 // Bootstrap overrides
 $enable-responsive-font-sizes: true;
+
+// Application variables
+$result-grid-breakpoint: 800px;
+// The maximum number of results, excluding the header
+$result-grid-max-results: 10;
