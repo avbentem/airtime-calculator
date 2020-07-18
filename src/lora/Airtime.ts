@@ -2,7 +2,7 @@ export type CodingRate = '4/5' | '4/6' | '4/7' | '4/8';
 
 export default class Airtime {
   /**
-   * Calculates the LoRa airtime in milliseconds with two decimals.
+   * Calculates the LoRa airtime in milliseconds.
    *
    * See https://lora-developers.semtech.com/library/product-documents/ for the
    * equations in AN1200.13 "LoRa Modem Designer’s Guide".
@@ -59,6 +59,6 @@ export default class Airtime {
       );
     const tPayload = payloadSymbNb * tSym;
 
-    return +(tPreamble + tPayload).toFixed(2);
+    return tPreamble + tPayload;
   }
 }
