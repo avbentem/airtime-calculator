@@ -9,6 +9,7 @@ import {AppConfig, Region} from '../../AppConfig';
 import {CodingRate} from '../../lora/Airtime';
 import UserInput from '../input/UserInput';
 import Results from '../result/Results';
+import HorizontalScroll from '../scroll/HorizontalScroll';
 import {parseUrl, setUrl} from './Router';
 
 type CalculatorProps = {
@@ -69,20 +70,22 @@ export default function Calculator(props: CalculatorProps) {
     <>
       <Row>
         <Col>
-          <ButtonGroup>
-            {network.regions.map((r) => (
-              <Button
-                variant="outline-primary"
-                size="sm"
-                active={r.name === region.name}
-                disabled={!r.dataRates}
-                key={r.name}
-                onClick={() => setRegion(r)}
-              >
-                {r.label}
-              </Button>
-            ))}
-          </ButtonGroup>
+          <HorizontalScroll>
+            <ButtonGroup>
+              {network.regions.map((r) => (
+                <Button
+                  variant="outline-primary"
+                  size="sm"
+                  active={r.name === region.name}
+                  disabled={!r.dataRates}
+                  key={r.name}
+                  onClick={() => setRegion(r)}
+                >
+                  {r.label}
+                </Button>
+              ))}
+            </ButtonGroup>
+          </HorizontalScroll>
         </Col>
       </Row>
 

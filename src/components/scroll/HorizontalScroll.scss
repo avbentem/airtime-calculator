@@ -1,0 +1,58 @@
+$inset-left: inset 25px 0 30px -35px rgba(0, 0, 0, 1);
+$inset-right: inset -25px 0 30px -35px rgba(0, 0, 0, 1);
+
+.horizontal-scroll {
+  &__button {
+    display: none;
+    font-size: 5rem;
+    margin-top: -12px;
+    line-height: 1;
+    color: gray;
+
+    // Prevent side effects from clicking
+    user-select: none;
+
+    &--enabled {
+      color: red;
+      cursor: pointer;
+    }
+  }
+
+  // If any side overflows, then show both the left and right buttons
+  &--overflow-left &__button,
+  &--overflow-right &__button {
+    display: block;
+  }
+
+  &__content {
+    // Hide visible scrollbar on all platforms, to match macOS and most mobile
+    //noinspection CssUnknownProperty
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE 10+
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    &.table-responsive {
+      // Bootstrap's .table-responsive sets width: 100%, which would yield
+      // spacing between the buttons and the scrolling content.
+      width: inherit;
+    }
+  }
+
+  &--overflow-left &__content {
+    box-shadow: $inset-left;
+  }
+
+  &--overflow-right &__content {
+    box-shadow: $inset-right;
+  }
+
+  // We need #{&} as "&--overflow-left&--overflow-right" throws "may only be
+  // used at the beginning of a compound selector"
+  &--overflow-left#{&}--overflow-right &__content {
+    box-shadow: $inset-left, $inset-right;
+  }
+}
