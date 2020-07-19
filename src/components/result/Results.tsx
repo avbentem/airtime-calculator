@@ -19,8 +19,11 @@ export default function Results({region, packetSize, codingRate}: ResultsProps) 
 
   const results = region.dataRates.map((dr, idx) => {
     const airtime = Airtime.calculate(packetSize, dr.sf, dr.bw, codingRate);
+    const oddEven = `Results-result-${idx % 2 ? 'odd' : 'even'}`;
+    const highlight = `Results-result-highlight-${dr.highlight || 'none'}`;
+
     return (
-      <div key={dr.name} className={`Results-result Results-result-${idx % 2 ? 'odd' : 'even'}`}>
+      <div key={dr.name} className={`Results-result ${oddEven} ${highlight}`}>
         <Result dr={dr} airtime={airtime} />
       </div>
     );
@@ -29,7 +32,7 @@ export default function Results({region, packetSize, codingRate}: ResultsProps) 
   return (
     <>
       <div className={`Results-grid Results-grid-${results.length}`}>
-        <div className="Results-legend">
+        <div className={`Results-legend`}>
           <div>data rate</div>
           <div>airtime</div>
           <div>1%&nbsp;max duty&nbsp;cycle</div>

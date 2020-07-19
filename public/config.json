@@ -165,9 +165,10 @@
           "dataRates": [
             {
               "name": "DR6",
-              "notes": "868.3 MHz only",
+              "notes": "High bandwidth; 868.3 MHz only",
               "sf": 7,
-              "bw": 250
+              "bw": 250,
+              "highlight": "low"
             },
             {
               "name": "DR5",

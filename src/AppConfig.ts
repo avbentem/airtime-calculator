@@ -30,4 +30,5 @@ export type DataRate = {
   notes?: string;
   sf: number;
   bw: 125 | 250 | 500;
+  highlight?: 'none' | 'low';
 };

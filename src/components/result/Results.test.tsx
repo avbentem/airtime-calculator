@@ -21,24 +21,24 @@ describe('Results component', () => {
     render(<Results region={region} packetSize={23} codingRate="4/5" />);
 
     // From child <Result> components
-    region.dataRates.forEach((dr: DataRate) => {
+    region.dataRates.forEach((dr: DataRate, idx: number) => {
       expect(screen.getByText(dr.name)).toBeInTheDocument();
 
       // This is actually something like the following:
       //
       //   <div class="Result-datarate">
-      //     <span class="dr">DR6</span>
-      //     <span>
-      //       <span class="sf">
+      //     <div class="Result-dr">DR6</div>
+      //     <div>
+      //       <span class="Result-sf">
       //         SF
       //         7
       //       </span>
-      //       <span class="Result-unit">
+      //       <span class="Result-unit Result-unit-bw">
       //         BW
       //         <br>
       //         250
       //       </span>
-      //     </span>
+      //     </div>
       //   </div>
       //
       // For that, all the following would fail:
@@ -49,23 +49,26 @@ describe('Results component', () => {
       //
       // So find some parent with the given concatenated text:
 
-      expect(
-        screen.getByText((content, element) => {
-          return element.textContent === `SF${dr.sf}BW${dr.bw}`;
-        })
-      ).toBeInTheDocument();
+      const sfbw = screen.getByText((content, element) => {
+        return element.textContent === `SF${dr.sf}BW${dr.bw}`;
+      });
+      expect(sfbw).toBeInTheDocument();
+
+      // Only check the most basic styling, which is not otherwise indicated to the user
+      const oddEven = `Results-result-${idx % 2 ? 'odd' : 'even'}`;
+      const highlight = `Results-result-highlight-${dr.highlight || 'none'}`;
+      expect(sfbw.closest(`.${oddEven}`)).toBeInTheDocument();
+      expect(sfbw.closest(`.${highlight}`)).toBeInTheDocument();
 
       // Something like, with some more whitespace, but yielding multiple parents with just that text:
       //
       //   <div class="Result-airtime">
-      //     <div>
-      //       <span>
-      //         1,482.8ms
-      //         <span class="Result-unit">
-      //           ms
-      //         </span>
+      //     <span>
+      //       1,482.8
+      //       <span class="Result-unit">
+      //         ms
       //       </span>
-      //     </div>
+      //     </span>
       //   </div>
       // So, search for the formatted number, and limit on <span>:
 

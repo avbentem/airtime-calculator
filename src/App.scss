@@ -98,6 +98,10 @@
   background-color: #eee;
 }
 
+.Results-result-highlight-low > * {
+  color: #afafaf;
+}
+
 // Font sizes relative to the current viewport width
 @media all and (min-width: $result-grid-breakpoint) {
   .Results-legend {

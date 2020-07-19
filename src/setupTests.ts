@@ -16,6 +16,7 @@ export class Fixtures {
     name: 'DR6',
     sf: 7,
     bw: 250,
+    highlight: 'low',
   };
 
   static eu868dr5: DataRate = {
