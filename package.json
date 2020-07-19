@@ -1,10 +1,10 @@
 {
-  "name": "lorawan-airtime-ui",
-  "description": "LoRaWAN airtime calculator",
+  "name": "airtime-calculator",
+  "description": "Airtime calculator for LoRaWAN",
   "version": "1.0.0",
   "author": "Arjan van Bentem",
   "private": true,
-  "homepage": "https://avbentem.github.io/lorawan-airtime-ui",
+  "homepage": "https://avbentem.github.io/airtime-calculator",
   "scripts": {
     "start": "react-scripts start",
     "prebuild": "npm run lint",

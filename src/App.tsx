@@ -53,13 +53,13 @@ export default function App() {
       <Container fluid className="App">
         <Row>
           <Col>
-            <h1>LoRaWAN 1.0.x airtime calculator</h1>
+            <h1>Airtime calculator for LoRaWAN</h1>
             {/*TODO check if IE does not show text null */}
             <p>{progress}</p>
           </Col>
         </Row>
         {config.networks && <Route render={(props) => <Calculator {...props} config={config} />} />}
-        <GithubCorner href="https://github.com/avbentem/lorawan-airtime-ui" />
+        <GithubCorner href="https://github.com/avbentem/airtime-calculator" />
       </Container>
     </Router>
   );

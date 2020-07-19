@@ -1,11 +1,11 @@
-# LoRaWAN 1.0.x airtime calculator
+# Airtime calculator for LoRaWAN
 
 A simple React UI for the formulas defined in Semtech's [LoRa Modem Designer's Guide
 (AN1200.13)](./doc/LoraDesignGuide_STD.pdf), showing the airtime for data rates as used in the
 [frequency plans](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html) of The
 Things Network (TTN), and showing the limitations that apply to the TTN public network.
 
-See it in action on <https://avbentem.github.io/lorawan-airtime-ui>.
+See it in action on <https://avbentem.github.io/airtime-calculator>.
 
 ## To do
 
@@ -93,7 +93,7 @@ In the project directory, run:
   To ensure URLs like `/ttn/eu868/1,2` can be loaded without first loading the bare `/`, see for
   example the Apache [`.htaccess`](./public/.htaccess) file.
 
-  To build for a subfolder, set `"homepage": "/some/path/to/lorawan-airtime"` in `package.json`.
+  To build for a subfolder, set `"homepage": "/some/path/to/airtime-calculator"` in `package.json`.
   This will not affect the development server, which will always load from the root folder. For
   deployment in the root folder, set it to `"/"` or don't set it at all. See also the Create React
   App documentation about [deployment](https://create-react-app.dev/docs/deployment).
