@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/lorawan-airtime-ui/static/css/main.bf7a00e2.chunk.css",
-    "main.js": "/lorawan-airtime-ui/static/js/main.ff0f75c5.chunk.js",
-    "main.js.map": "/lorawan-airtime-ui/static/js/main.ff0f75c5.chunk.js.map",
-    "runtime-main.js": "/lorawan-airtime-ui/static/js/runtime-main.b2d30af9.js",
-    "runtime-main.js.map": "/lorawan-airtime-ui/static/js/runtime-main.b2d30af9.js.map",
-    "static/js/2.0a0f1414.chunk.js": "/lorawan-airtime-ui/static/js/2.0a0f1414.chunk.js",
-    "static/js/2.0a0f1414.chunk.js.map": "/lorawan-airtime-ui/static/js/2.0a0f1414.chunk.js.map",
-    "index.html": "/lorawan-airtime-ui/index.html",
-    "precache-manifest.72612a89b9cefed8a2ea465afcbbe9b9.js": "/lorawan-airtime-ui/precache-manifest.72612a89b9cefed8a2ea465afcbbe9b9.js",
-    "service-worker.js": "/lorawan-airtime-ui/service-worker.js",
-    "static/css/main.bf7a00e2.chunk.css.map": "/lorawan-airtime-ui/static/css/main.bf7a00e2.chunk.css.map",
-    "static/js/2.0a0f1414.chunk.js.LICENSE.txt": "/lorawan-airtime-ui/static/js/2.0a0f1414.chunk.js.LICENSE.txt"
+    "main.css": "/airtime-calculator/static/css/main.bf7a00e2.chunk.css",
+    "main.js": "/airtime-calculator/static/js/main.94ffa7ef.chunk.js",
+    "main.js.map": "/airtime-calculator/static/js/main.94ffa7ef.chunk.js.map",
+    "runtime-main.js": "/airtime-calculator/static/js/runtime-main.8eaaa61a.js",
+    "runtime-main.js.map": "/airtime-calculator/static/js/runtime-main.8eaaa61a.js.map",
+    "static/js/2.1bf48338.chunk.js": "/airtime-calculator/static/js/2.1bf48338.chunk.js",
+    "static/js/2.1bf48338.chunk.js.map": "/airtime-calculator/static/js/2.1bf48338.chunk.js.map",
+    "index.html": "/airtime-calculator/index.html",
+    "precache-manifest.4141665e4814ad69fa4da9f6a220d64d.js": "/airtime-calculator/precache-manifest.4141665e4814ad69fa4da9f6a220d64d.js",
+    "service-worker.js": "/airtime-calculator/service-worker.js",
+    "static/css/main.bf7a00e2.chunk.css.map": "/airtime-calculator/static/css/main.bf7a00e2.chunk.css.map",
+    "static/js/2.1bf48338.chunk.js.LICENSE.txt": "/airtime-calculator/static/js/2.1bf48338.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b2d30af9.js",
-    "static/js/2.0a0f1414.chunk.js",
+    "static/js/runtime-main.8eaaa61a.js",
+    "static/js/2.1bf48338.chunk.js",
     "static/css/main.bf7a00e2.chunk.css",
-    "static/js/main.ff0f75c5.chunk.js"
+    "static/js/main.94ffa7ef.chunk.js"
   ]
 }
