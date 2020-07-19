@@ -9,7 +9,7 @@ describe('App component', () => {
 
   it('renders application header', () => {
     const wrapper = shallow(<App />);
-    const title = <h1>LoRaWAN 1.0.x airtime calculator</h1>;
+    const title = <h1>Airtime calculator for LoRaWAN</h1>;
     expect(wrapper).toContainReact(title);
   });
 });
