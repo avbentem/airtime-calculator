@@ -62,7 +62,10 @@
 .Results-grid {
   display: grid;
   grid-auto-flow: column;
-  grid-gap: 1%;
+  // Using a percentage for row-gap makes the grid's content overflow at the
+  // bottom for `grid-auto-flow: row` on small screens.
+  column-gap: 1%;
+  row-gap: 3px;
 }
 
 .Results-legend,
@@ -108,7 +111,7 @@
   content: '\24D8';
   font-size: 70%;
 
-  // create a new stacking context to ensure icon does not interfere with
+  // Create a new stacking context to ensure the icon does not interfere with
   // existing content; needs a parent with `position: relative`
   position: absolute;
   top: 2px;
