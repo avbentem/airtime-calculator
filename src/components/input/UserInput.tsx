@@ -106,6 +106,7 @@ export default function UserInput(props: UserConfigProps) {
           <Form.Group as={Col} controlId="formHeaderSize">
             <HelpTooltip
               text="For a LoRaWAN 1.0.x uplink and downlink, the header is at least 13 bytes: Type (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4)."
+              placement="top"
               children={<Form.Label>Header size</Form.Label>}
             />
             <NumberInput {...headerSize} min={13} />
@@ -114,6 +115,7 @@ export default function UserInput(props: UserConfigProps) {
           <Form.Group as={Col} controlId="formApplicationPayloadSize">
             <HelpTooltip
               text="The application payload size. Might be empty for a simple ACK or if the packet only includes MAC commands."
+              placement="top"
               children={<Form.Label>Payload size</Form.Label>}
             />
             <NumberInput {...payloadSize} />
@@ -122,6 +124,7 @@ export default function UserInput(props: UserConfigProps) {
           <Form.Group as={Col} controlId="formCodingRate">
             <HelpTooltip
               text="The coding rate (CR) used for forward error correction (FEC)."
+              placement="top"
               children={<Form.Label>Coding rate</Form.Label>}
             />
             <Form.Control
