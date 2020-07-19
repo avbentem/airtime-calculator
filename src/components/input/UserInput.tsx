@@ -104,27 +104,26 @@ export default function UserInput(props: UserConfigProps) {
       <Form>
         <Form.Row>
           <Form.Group as={Col} controlId="formHeaderSize">
-            <Form.Label>
-              Header size
-              {/*TODO For proper accessibility this should be outside the <label>*/}
-              <HelpTooltip text="For a LoRaWAN 1.0.x uplink and downlink, the header is at least 13 bytes: Type (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4)." />
-            </Form.Label>
+            <HelpTooltip
+              text="For a LoRaWAN 1.0.x uplink and downlink, the header is at least 13 bytes: Type (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4)."
+              children={<Form.Label>Header size</Form.Label>}
+            />
             <NumberInput {...headerSize} min={13} />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formApplicationPayloadSize">
-            <Form.Label>
-              Payload size
-              <HelpTooltip text="The application payload size. Might be empty for a simple ACK or if the packet only includes MAC commands." />
-            </Form.Label>
+            <HelpTooltip
+              text="The application payload size. Might be empty for a simple ACK or if the packet only includes MAC commands."
+              children={<Form.Label>Payload size</Form.Label>}
+            />
             <NumberInput {...payloadSize} />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formCodingRate">
-            <Form.Label>
-              Coding rate
-              <HelpTooltip text="The coding rate (CR) used for forward error correction (FEC)." />
-            </Form.Label>
+            <HelpTooltip
+              text="The coding rate (CR) used for forward error correction (FEC)."
+              children={<Form.Label>Coding rate</Form.Label>}
+            />
             <Form.Control
               as="select"
               {...withFormControl(codingRate)}

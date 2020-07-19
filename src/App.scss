@@ -80,6 +80,8 @@
     flex-direction: column;
     justify-content: center;
     padding: 5%;
+    // Allow for using `position: absolute` in .Result-has-note
+    position: relative;
   }
 }
 
@@ -100,6 +102,17 @@
 
 .Results-result-highlight-low > * {
   color: #afafaf;
+}
+
+.Result-has-note::after {
+  content: '\24D8';
+  font-size: 70%;
+
+  // create a new stacking context to ensure icon does not interfere with
+  // existing content; needs a parent with `position: relative`
+  position: absolute;
+  top: 2px;
+  right: 3px;
 }
 
 // Font sizes relative to the current viewport width
