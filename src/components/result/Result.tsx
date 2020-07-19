@@ -25,7 +25,7 @@ export function Result({dr, airtime, maxDwellTime = 0}: ResultGridProps) {
   const fapMessages = 30000 / airtime;
   const fapDelay = (24 * 3600) / fapMessages;
 
-  const tooLong = maxDwellTime && airtime > maxDwellTime;
+  const tooLong = maxDwellTime > 0 && airtime > maxDwellTime;
 
   return (
     <>

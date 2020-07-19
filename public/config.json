@@ -283,12 +283,12 @@
         {
           "name": "us902",
           "label": "US902",
-          "description": "US902-928 MHz uplink. Used in USA, Canada and South America. Under FCC there are no duty cycle limitations (though LoRaWAN may still define some, like while joining) but there is a 400 ms maximum dwell time per channel.",
+          "description": "US902-928 MHz uplink. Used in USA, Canada and South America. Under FCC there are no duty cycle limitations (though LoRaWAN may still define some, like while joining) but there is a 400 milliseconds maximum dwell time per channel.",
           "maxDwellTime": 400,
           "dataRates": [
             {
               "name": "DR4",
-              "notes": "904.6 MHz only",
+              "notes": "High bandwidth; 904.6 MHz only",
               "sf": 8,
               "bw": 500
             },
@@ -317,7 +317,8 @@
         {
           "name": "us902-dl",
           "label": "US902 DL",
-          "description": "US902-928 MHz downlink. Used in USA, Canada and South America.",
+          "description": "US902-928 MHz downlink. Used in USA, Canada and South America. Under FCC there are no duty cycle limitations (though LoRaWAN may still define some, like while joining) but there is a 400 milliseconds maximum dwell time per channel.",
+          "maxDwellTime": 400,
           "dataRates": [
             {
               "name": "DR13",
