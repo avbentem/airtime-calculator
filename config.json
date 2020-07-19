@@ -283,7 +283,8 @@
         {
           "name": "us902",
           "label": "US902",
-          "description": "US902-928 MHz uplink. Used in USA, Canada and South America.",
+          "description": "US902-928 MHz uplink. Used in USA, Canada and South America. Under FCC there are no duty cycle limitations (though LoRaWAN may still define some, like while joining) but there is a 400 ms maximum dwell time per channel.",
+          "maxDwellTime": 400,
           "dataRates": [
             {
               "name": "DR4",
