@@ -6,6 +6,7 @@ import {DataRate} from '../../AppConfig';
 type ResultGridProps = {
   dr: DataRate;
   airtime: number;
+  maxDwellTime?: number;
 };
 
 function fmt(n: number, digits: number) {
@@ -16,7 +17,7 @@ function fmt(n: number, digits: number) {
  * A single result, showing the data rate (SF, bandwidth), time on air and
  * calculated limits.
  */
-export function Result({dr, airtime}: ResultGridProps) {
+export function Result({dr, airtime, maxDwellTime = 0}: ResultGridProps) {
   // Minimum delay in seconds between two packet starts, for maximum 1% duty cycle
   const dcDelay = airtime / 0.01 / 1000;
 
@@ -24,11 +25,15 @@ export function Result({dr, airtime}: ResultGridProps) {
   const fapMessages = 30000 / airtime;
   const fapDelay = (24 * 3600) / fapMessages;
 
+  const tooLong = maxDwellTime && airtime > maxDwellTime;
+
   return (
     <>
       <OverlayTrigger
         placement={`top`}
-        overlay={dr.notes ? <Tooltip id="Result-datarate-help">{dr.notes}</Tooltip> : <span />}
+        overlay={
+          dr.notes ? <Tooltip id={`Result-datarate-${dr.name}-help`}>{dr.notes}</Tooltip> : <span />
+        }
       >
         <div className={`Result-datarate ${dr.notes ? 'Result-has-note' : ''}`}>
           <div className="Result-dr">{dr.name}</div>
@@ -46,14 +51,18 @@ export function Result({dr, airtime}: ResultGridProps) {
       <OverlayTrigger
         placement={`top`}
         overlay={
-          <Tooltip id="Result-dutycycle-help">{fmt(airtime, 3)} milliseconds time on air</Tooltip>
+          <Tooltip id="Result-dutycycle-help">
+            {fmt(airtime, 3)} milliseconds time on air
+            {tooLong && `. This exceeds the maximum dwell time of ${maxDwellTime} milliseconds.`}
+          </Tooltip>
         }
       >
-        <div className="Result-airtime">
+        <div className={`Result-airtime ${tooLong ? 'Result-has-note' : ''}`}>
           <span>
             {fmt(airtime, 1)}
             <span className="Result-unit">ms</span>
           </span>
+          {tooLong && <span className={'Result-dwelltime'}>max dwell time exceeded</span>}
         </div>
       </OverlayTrigger>
 
@@ -68,7 +77,6 @@ export function Result({dr, airtime}: ResultGridProps) {
         }
       >
         <div className="Result-dutycycle">
-          {/*<div>*/}
           <div>
             {fmt(dcDelay, 1)}
             <span className="Result-unit">sec</span>
@@ -81,7 +89,6 @@ export function Result({dr, airtime}: ResultGridProps) {
               /hour
             </span>
           </div>
-          {/*</div>*/}
         </div>
       </OverlayTrigger>
 

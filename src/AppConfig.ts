@@ -22,6 +22,7 @@ export type Region = {
    */
   description?: string;
   notes?: string;
+  maxDwellTime?: number;
   dataRates: DataRate[];
 };
 
@@ -30,5 +31,8 @@ export type DataRate = {
   notes?: string;
   sf: number;
   bw: 125 | 250 | 500;
+  /**
+   * Default highlight of the results; may be overruled if limits are exceeded.
+   */
   highlight?: 'none' | 'low';
 };

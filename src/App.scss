@@ -107,6 +107,11 @@
   color: #afafaf;
 }
 
+.Results-result-highlight-error > * {
+  background-color: rgba(250, 235, 190, 0.27);
+  color: #afafaf;
+}
+
 .Result-has-note::after {
   content: '\24D8';
   font-size: 70%;
@@ -197,4 +202,9 @@
   font-family: 'Arial Black', sans-serif;
   font-weight: bolder;
   font-size: 120%;
+}
+
+.Result-dwelltime {
+  font-size: 50%;
+  font-weight: bold;
 }

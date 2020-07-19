@@ -11,8 +11,7 @@ See it in action on <https://avbentem.github.io/airtime-calculator>.
 
 This is work in progress. Version 1 should include:
 
-- definition of maximum duty cycle(s) and dwell time per region
-- layout fixes (results; form inputs in Firefox; hide number spinner; pointer for help tooltips)
+- verification of data rates and maximum dwell times per region
 
 Next versions might include:
 
