@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import {withFormControl} from './helpers';
+import './NumberInput.scss';
 
 type NumberInputProps = {
   min?: number;
@@ -38,6 +39,7 @@ export default function NumberInput({min = 0, value, setValue}: NumberInputProps
       <FormControl
         {...withFormControl({value, setValue})}
         type="number"
+        className="NumberInput"
         min={min}
         placeholder="Enter number"
       />

@@ -1,0 +1,10 @@
+// Remove spinner buttons from number inputs
+input.NumberInput {
+  &,
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+  }
+}
