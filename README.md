@@ -12,11 +12,14 @@ See it in action on <https://avbentem.github.io/airtime-calculator>.
 This is work in progress. Version 1 should include:
 
 - verification of data rates and maximum dwell times per region
+- fix caching on Github pages
 
-Next versions might include:
+Next versions may include:
 
-- support for MAC commands
+- add maximum packet size as per LoRaWAN specifications
+- copy popover text, or the full results, in Markdown format
 - a help page explaining the basics
+- support for MAC commands
 - support for FSK
 
 ## Data rates and frequency plans
@@ -53,6 +56,15 @@ This application was created with sharable URLs in mind, so almost every user in
   - coding rate, 4/5: as used for all downlinks
 
 - When all parameters use their defaults, the `<parameters>` segment and its slash are excluded.
+
+### URL structure and GitHub Pages
+
+To serve this single-page application from GitHub Pages, some trickery with a JavaScript redirect
+in [a custom 404 page](public/404.html) is needed. Unfortunately, some browsers (such as Brave) may
+try to be helpful and show an option like _"Do you want to check if a saved version is available on
+the Wayback Machine?"_ even when properly executing the expected redirect. It's unclear why the
+final 200 OK [removes the banner for some sites](https://github.com/brave/brave-browser/issues/8401)
+in Brave, but not for GitHub Pages.
 
 ## Development and deployment
 
