@@ -107,12 +107,14 @@
   color: #afafaf;
 }
 
-.Results-result-highlight-error > * {
+// Warnings such as exceeding the maximum dwell time may not be true problems
+// for some regions/countries
+.Results-result-highlight-warning > * {
   background-color: rgba(250, 235, 190, 0.27);
-  color: #afafaf;
 }
 
-.Result-has-note::after {
+.Result-has-note::after,
+.Result-has-warning::after {
   content: '\24D8';
   font-size: 70%;
 
@@ -121,6 +123,11 @@
   position: absolute;
   top: 2px;
   right: 3px;
+}
+
+.Result-has-warning::after {
+  content: '\2757';
+  color: red;
 }
 
 // Font sizes relative to the current viewport width
@@ -204,7 +211,7 @@
   font-size: 120%;
 }
 
-.Result-dwelltime {
+.Result-dwelltime-warning {
   font-size: 50%;
   font-weight: bold;
 }

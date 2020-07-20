@@ -57,12 +57,12 @@ export function Result({dr, airtime, maxDwellTime = 0}: ResultGridProps) {
           </Tooltip>
         }
       >
-        <div className={`Result-airtime ${tooLong ? 'Result-has-note' : ''}`}>
+        <div className={`Result-airtime ${tooLong ? 'Result-has-warning' : ''}`}>
           <span>
             {fmt(airtime, 1)}
             <span className="Result-unit">ms</span>
           </span>
-          {tooLong && <span className={'Result-dwelltime'}>max dwell time exceeded</span>}
+          {tooLong && <span className={'Result-dwelltime-warning'}>max dwell time exceeded</span>}
         </div>
       </OverlayTrigger>
 

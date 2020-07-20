@@ -21,7 +21,7 @@ export default function Results({region, packetSize, codingRate}: ResultsProps) 
     const airtime = Airtime.calculate(packetSize, dr.sf, dr.bw, codingRate);
     const tooLong = region.maxDwellTime && airtime > region.maxDwellTime;
     const oddEven = `Results-result-${idx % 2 ? 'odd' : 'even'}`;
-    const highlight = `Results-result-highlight-${tooLong ? 'error' : dr.highlight || 'none'}`;
+    const highlight = `Results-result-highlight-${tooLong ? 'warning' : dr.highlight || 'none'}`;
 
     return (
       <div key={dr.name} className={`Results-result ${oddEven} ${highlight}`}>

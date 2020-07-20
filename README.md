@@ -33,6 +33,33 @@ Some frequency plans have very different data rates for uplinks and downlinks; f
 "regions" are defined in this application, like for US902 (uplink) and US902 DL (downlink). Others
 share (most) of the data rates, like EU868.
 
+## Maximum duty cycle and maximum dwell time limitations
+
+- Both countries and the LoRaWAN specifications may define maximum duty cycle or maximum dwell time
+  limitations: when some frequency plan can be used in several countries, different countries may
+  still impose different legal limitations. [And](https://www.thethingsnetwork.org/forum/t/37924/2):
+
+  > It's important to keep in mind that the duty cycle limitations described in the tables of the
+  > specifications are LoRaWAN-imposed limitations, and not legal limitations. If you build
+  > commercial devices and want them to be LoRaWAN certified, they need to comply with the
+  > specification. Development devices don't have to be fully compliant with the specification. Any
+  > device (whether LoRaWAN or not, gateway or node, commercial or development) needs to be
+  > compliant with the legal limitations that apply in your country.
+  >
+  > [...]
+  >
+  > The LoRaWAN-imposed duty cycle applies to nodes only. Gateways are technically just LoRa devices,
+  > not LoRaWAN, so the LoRaWAN specification doesn’t apply to them. The regulatory duty cycle
+  > limitations typically apply to any transmitter.
+
+- Like for AS923:
+
+  - The LoRaWAN 1% maximum duty cycle [only applies](https://www.thethingsnetwork.org/forum/t/37924)
+    to 923.20 and 923.40 MHz.
+
+  - The 400 ms maximum dwell time [may not apply](https://www.thethingsnetwork.org/forum/t/36601/6)
+    for Australia.
+
 ## URL structure
 
 This application was created with sharable URLs in mind, so almost every user input yields an updated URL:
