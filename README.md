@@ -7,12 +7,7 @@ Things Network (TTN), and showing the limitations that apply to the TTN public n
 
 See it in action on <https://avbentem.github.io/airtime-calculator>.
 
-## To do
-
-This is work in progress. Version 1 should include:
-
-- verification of data rates and maximum dwell times per region
-- fix caching on Github pages
+## Wishlist
 
 Next versions may include:
 
