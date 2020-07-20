@@ -17,11 +17,15 @@ export type Network = {
 export type Region = {
   name: string;
   label: string;
+  title: string;
   /**
-   * Optional description. Supports Markdown.
+   * Optional description of the countries. Supports Markdown.
    */
-  description?: string;
-  notes?: string;
+  countries?: string;
+  /**
+   * Optional description of the limitations. Supports Markdown.
+   */
+  limitations?: string;
   maxDwellTime?: number;
   dataRates: DataRate[];
 };

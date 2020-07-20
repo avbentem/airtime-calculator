@@ -93,6 +93,12 @@ export default function Calculator(props: CalculatorProps) {
         <hr />
       </Row>
 
+      <Row className="justify-content-sm-center">
+        <Col>
+          <h3>{region.title}</h3>
+        </Col>
+      </Row>
+
       <Row className="justify-content-md-center">
         <Col md="auto">
           <UserInput
@@ -104,24 +110,19 @@ export default function Calculator(props: CalculatorProps) {
         </Col>
       </Row>
 
-      <Row className="justify-content-md-center">
-        <Col md="8">
-          <h2>
-            {network.title} {region.label}
-          </h2>
-        </Col>
-      </Row>
-
       <Row className="justify-content-sm-center">
         <Col>
-          <hr />
           <Results region={region} packetSize={packetSize} codingRate={codingRate} />
           <hr />
         </Col>
       </Row>
 
       <Row className="justify-content-md-center">
-        <Col md="8">{region.description && <ReactMarkdown source={region.description} />}</Col>
+        <Col md="8">{region.limitations && <ReactMarkdown source={region.limitations} />}</Col>
+      </Row>
+
+      <Row className="justify-content-md-center">
+        <Col md="8">{region.countries && <ReactMarkdown source={region.countries} />}</Col>
       </Row>
     </>
   );

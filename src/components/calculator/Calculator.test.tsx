@@ -34,19 +34,27 @@ describe('Calculator component', () => {
 
   it('renders UserInput child', () => {
     render(<Calculator {...router} config={config} />);
-    // We need a partial match due to the help icon that's within the label text
-    expect(screen.getByRole('spinbutton', {name: /^Header size/})).toBeInTheDocument();
-    expect(screen.getByRole('spinbutton', {name: /^Payload size/})).toBeInTheDocument();
-    expect(screen.getByRole('combobox', {name: /^Coding rate/})).toBeInTheDocument();
+    expect(screen.getByRole('spinbutton', {name: 'Header size'})).toBeInTheDocument();
+    expect(screen.getByRole('spinbutton', {name: 'Payload size'})).toBeInTheDocument();
+    expect(screen.getByRole('combobox', {name: 'Coding rate'})).toBeInTheDocument();
   });
 
   it('renders region details', () => {
     render(<Calculator {...router} config={config} />);
-    // The network's title is suffixed with the region's label. Though that
-    // introduces newlines in the HTML, `getByRole` and `getByText` handle that.
-    expect(screen.getByRole('heading', {name: 'The Things Network EU868'})).toBeInTheDocument();
-    // Partial match
-    expect(screen.getByText(/^EU863-870 MHz uplink and downlink/)).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', {name: 'EU863-870 uplink and downlink'})
+    ).toBeInTheDocument();
+    // Partial matches
+    expect(
+      screen.getByText(
+        /^For EU863-870, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network/
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /^EU863-870 is used in Albania, Andorra, Angola, Austria, Bahrain, Belgium, Bosnia and Herzegovina/
+      )
+    ).toBeInTheDocument();
   });
 
   it('renders Results child', () => {
