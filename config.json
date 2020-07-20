@@ -8,7 +8,10 @@
         {
           "name": "as923",
           "label": "AS923",
-          "description": "AS923 uplink and downlink. These data rates are used with different frequencies, depending on the country. AS920-923 MHz is used in Japan, Malaysia and Singapore; AS923-925 MHz in Brunei, Cambodia, Hong Kong, Indonesia, Laos, Taiwan, Thailand and Vietnam.",
+          "title": "AS920-923 and AS923-925 uplink and downlink",
+          "countries": "These data rates are used with different frequencies, depending on the country. AS920-923 MHz (\"AS1\") is used in Japan, Malaysia and Singapore. AS923-925 MHz (\"AS2\") is used in Brunei, Cambodia, Hong Kong, Indonesia, Laos, Taiwan, Thailand and Vietnam. Australia uses [both AS1 and AS2, next to AU915](https://www.thethingsnetwork.org/forum/t/can-australian-users-agree-on-using-a-single-frequency-plan/17660).",
+          "limitations": "For AS923, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, state that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=38) until the network server disables that using the `TxParamSetupReq` command. When used in Australia, a post in the TTN Forum suggests that maximum dwell times [may not apply](https://www.thethingsnetwork.org/forum/t/36601/6). Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
+          "maxDwellTime": 400,
           "dataRates": [
             {
               "name": "DR6",
@@ -33,17 +36,18 @@
             },
             {
               "name": "DR2",
-              "notes": "Also used for RX2",
               "sf": 10,
               "bw": 125
             },
             {
               "name": "DR1",
+              "notes": "Only allowed with ADR",
               "sf": 11,
               "bw": 125
             },
             {
               "name": "DR0",
+              "notes": "Only allowed with ADR",
               "sf": 12,
               "bw": 125
             }
@@ -52,12 +56,14 @@
         {
           "name": "au915",
           "label": "AU915",
-          "description": "AU915-928 MHz uplink.",
-          "note": "Note that The Things Network uses the 2nd Sub-Band only (channels 8 to 15 and 65). You’ll need to program the specific channels into the devices in order to make them work with TTN.",
+          "title": "AU915-928 uplink",
+          "countries": "AU915-928 is used in Argentina, Australia, Brazil, Chile and New Zealand.",
+          "limitations": "For AU915-928, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [define no dwell time limitations](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=28). However, 1.0.3 states that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-07/lorawan_regional_parameters_v1.0.3reva_0.pdf#page=37) until the network server disables that using the `TxParamSetupReq` command, just like for AS923 in 1.0.2 Rev B. A post in the TTN Forum suggests that maximum dwell times [may not apply for Australia](https://www.thethingsnetwork.org/forum/t/36601/6). Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
+          "maxDwellTime": 400,
           "dataRates": [
             {
               "name": "DR6",
-              "notes": "917.5 MHz only",
+              "notes": "High bandwidth. 917.5 MHz only.",
               "sf": 8,
               "bw": 500
             },
@@ -80,13 +86,27 @@
               "name": "DR2",
               "sf": 10,
               "bw": 125
+            },
+            {
+              "name": "DR1",
+              "notes": "Only allowed with ADR",
+              "sf": 11,
+              "bw": 125
+            },
+            {
+              "name": "DR0",
+              "notes": "Only allowed with ADR",
+              "sf": 12,
+              "bw": 125
             }
           ]
         },
         {
           "name": "au915-dl",
           "label": "AU915 DL",
-          "description": "AU915-928 MHz downlink.",
+          "title": "AU915-928 downlink",
+          "limitations": "See the countries and limitations described in AU915.",
+          "maxDwellTime": null,
           "dataRates": [
             {
               "name": "DR13",
@@ -123,7 +143,9 @@
         {
           "name": "cn470",
           "label": "CN470",
-          "description": "CN470-510 MHz uplink and downlink.",
+          "title": "CN470-510 uplink and downlink",
+          "countries": "CN470-510 is used in China.",
+          "limitations": "For CN470-510, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, describe there is [no dwell time limitation](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=33), and do not mention any maximum duty cycle either. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
           "dataRates": [
             {
               "name": "DR5",
@@ -147,12 +169,13 @@
             },
             {
               "name": "DR1",
+              "notes": "Only allowed with ADR",
               "sf": 11,
               "bw": 125
             },
             {
               "name": "DR0",
-              "notes": "Also used for RX2",
+              "notes": "Only allowed with ADR",
               "sf": 12,
               "bw": 125
             }
@@ -161,11 +184,14 @@
         {
           "name": "eu868",
           "label": "EU868",
-          "description": "EU863-870 MHz uplink and downlink, with ETSI maximum duty cycles and TTN 30 seconds/24h Fair Access Policy. The Things Network uses the non-standard SF9BW125 data rate for RX2 in Europe. If your devices use OTAA, this will be configured automatically when they join. If your devices use ABP, you’ll need to program this RX2 data rate into the devices in order to make them work with TTN.\n\nSee [Frequency Plans](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html) for details.",
+          "title": "EU863-870 uplink and downlink",
+          "countries": "EU863-870 is used in Albania, Andorra, Angola, Austria, Bahrain, Belgium, Bosnia and Herzegovina, Botswana, Bulgaria, Democratic Republic of the Congo, Croatia, Cyprus, Czech Republic, Denmark, Estonia, Eswatini (formerly Swaziland), Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Lesotho, Liechtenstein, Lithuania, Luxembourg, Madagascar, Malawi, Malta, Mauritius, Moldova, Montenegro, Mozambique, Namibia, The Netherlands, North Macedonia, Philippines, Poland, Portugal, Romania, Russia, Saudi Arabia, Serbia, Seychelles, Slovakia, Slovenia, South Africa, Spain, Sweden, Switzerland, Tanzania, Turkey, United Arab Emirates (UAE), United Kingdom (UK), Vatican City (Holy See), Zambia and Zimbabwe.",
+          "limitations": "For EU863-870, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [define duty-cycled limited transmissions](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=8) to comply with the European Telecommunications Standards Institute (ETSI) regulations. In ETSI, most bands use a maximum duty cycle of 1%, but some use 0.1% and 10%. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
+          "maxDwellTime": null,
           "dataRates": [
             {
               "name": "DR6",
-              "notes": "High bandwidth; 868.3 MHz only",
+              "notes": "High bandwidth. 868.3 MHz only.",
               "sf": 7,
               "bw": 250,
               "highlight": "low"
@@ -182,7 +208,6 @@
             },
             {
               "name": "DR3",
-              "notes": "Also used for RX2",
               "sf": 9,
               "bw": 125
             },
@@ -193,11 +218,13 @@
             },
             {
               "name": "DR1",
+              "notes": "Only allowed with ADR",
               "sf": 11,
               "bw": 125
             },
             {
               "name": "DR0",
+              "notes": "Only allowed with ADR",
               "sf": 12,
               "bw": 125
             }
@@ -206,7 +233,10 @@
         {
           "name": "in865",
           "label": "IN865",
-          "description": "IN865-867 MHz uplink and downlink.",
+          "title": "IN865-867 uplink and downlink",
+          "limitations": "For IN865-867, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [state](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=48) that neither dwell time nor duty-cycle limitations apply. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
+          "countries": "IN865-867 is used in India.",
+          "maxDwellTime": null,
           "dataRates": [
             {
               "name": "DR5",
@@ -225,17 +255,18 @@
             },
             {
               "name": "DR2",
-              "notes": "Also used for RX2",
               "sf": 10,
               "bw": 125
             },
             {
               "name": "DR1",
+              "notes": "Only allowed with ADR",
               "sf": 11,
               "bw": 125
             },
             {
               "name": "DR0",
+              "notes": "Only allowed with ADR",
               "sf": 12,
               "bw": 125
             }
@@ -244,7 +275,10 @@
         {
           "name": "kr920",
           "label": "KR920",
-          "description": "KR920-923 MHz uplink and downlink.",
+          "title": "KR920-923 uplink and downlink",
+          "countries": "KR920-923 is used in South Korea.",
+          "limitations": "For KR920-923, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [mandate](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=43) that Listen Before Talk Adaptive Frequency Agility (LBT AFA) is used. Hence, neither dwell time nor duty cycle limitations apply. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
+          "maxDwellTime": null,
           "dataRates": [
             {
               "name": "DR5",
@@ -258,7 +292,7 @@
             },
             {
               "name": "DR3",
-              "notes": "In the future possibly used for RX2",
+              "notes": "In the future possibly used for RX2, instead of SF12BW125",
               "sf": 9,
               "bw": 125
             },
@@ -269,26 +303,29 @@
             },
             {
               "name": "DR1",
+              "notes": "Only allowed with ADR",
               "sf": 11,
               "bw": 125
             },
             {
               "name": "DR0",
-              "notes": "Also used for RX2",
+              "notes": "Only allowed with ADR",
               "sf": 12,
               "bw": 125
             }
           ]
         },
         {
-          "name": "us902",
-          "label": "US902",
-          "description": "US902-928 MHz uplink. Used in USA, Canada and South America. Under FCC there are no duty cycle limitations (though LoRaWAN may still define some, like while joining) but there is a 400 milliseconds maximum dwell time per channel.",
+          "name": "us915",
+          "label": "US915",
+          "title": "US902-928 uplink",
+          "countries": "US902-928 is used in Bolivia, Canada, Colombia, Costa Rica, Dominican Republic, Ecuador, Guyana, Mexico, Panama, Paraguay, Peru, Puerto Rico, Suriname, United States of America (USA), Uruguay and Venezuela.",
+          "limitations": "For US902-928, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [describe](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=13) that FCC regulations impose a maximum dwell time of 400 milliseconds on uplinks. That makes SF11BW125 and SF12BW125 not suitable for any payload size.",
           "maxDwellTime": 400,
           "dataRates": [
             {
               "name": "DR4",
-              "notes": "High bandwidth; 904.6 MHz only",
+              "notes": "High bandwidth. 904.6 MHz only.",
               "sf": 8,
               "bw": 500
             },
@@ -315,9 +352,10 @@
           ]
         },
         {
-          "name": "us902-dl",
-          "label": "US902 DL",
-          "description": "US902-928 MHz downlink. Used in USA, Canada and South America. Under FCC there are no duty cycle limitations (though LoRaWAN may still define some, like while joining) but there is a 400 milliseconds maximum dwell time per channel.",
+          "name": "us915-dl",
+          "label": "US915 DL",
+          "title": "US902-928 downlink",
+          "limitations": "See the countries and limitations described in US915.",
           "maxDwellTime": 400,
           "dataRates": [
             {
