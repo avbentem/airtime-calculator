@@ -45,7 +45,9 @@ This application was created with sharable URLs in mind, so almost every user in
 
 - Default values are not included in the `<parameters>` segment; this currently applies to:
 
-  - payload size, 6 bytes: just a random choice (the default is included for a non-default header size)
+  - payload size, 12 bytes: just a random choice, which however nicely shows how the maximum dwell
+    time for US902 is quite limiting for DR0 SF10BW125 (the URL includes this default when using a
+    non-default header size)
   - header size, 13 bytes: for a LoRaWAN 1.0.x uplink and downlink, the overhead is at least 13 bytes
     for the Message Type (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4)
   - coding rate, 4/5: as used for all downlinks

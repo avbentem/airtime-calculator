@@ -6,7 +6,7 @@ type UserConfig = {
 } & typeof defaults;
 
 export const defaults = {
-  payloadSize: 6,
+  payloadSize: 12,
   headerSize: 13,
   codingRate: '4/5' as CodingRate,
 };
