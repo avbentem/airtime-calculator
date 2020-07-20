@@ -118,20 +118,20 @@ export function Result({dr, airtime, maxDwellTime = 0}: ResultGridProps) {
               (avg)
             </span>
           </div>
+          <div>
+            <span className="Result-fairaccess-messages-per-hour">{fmt(fapMessages / 24, 1)}</span>
+            <span className="Result-unit Result-unit-hour">
+              avg
+              <br />
+              /hour
+            </span>
+          </div>
           <div className="Result-fairaccess-messages-per-day">
             {fmt(Math.floor(fapMessages), 0)}
             <span className="Result-unit">
               msg
               <br />
               /24h
-            </span>
-          </div>
-          <div className="Result-fairaccess-messages-per-hour">
-            {fmt(fapMessages / 24, 1)}
-            <span className="Result-unit">
-              avg
-              <br />
-              /hour
             </span>
           </div>
         </div>

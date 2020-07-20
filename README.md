@@ -60,6 +60,21 @@ share (most) of the data rates, like EU868.
   - The 400 ms maximum dwell time [may not apply](https://www.thethingsnetwork.org/forum/t/36601/6)
     for Australia.
 
+## Time on air
+
+- Changing the payload size does not always affect the number of symbols that make up the LoRa
+  packet payload and header, or not for all data rates. For example, this is very visible for
+  application payload sizes of 12 versus 13 bytes. This is the expected outcome.
+
+- Semtech's [LoRa Modem Designer's Guide (AN1200.13)](./doc/LoraDesignGuide_STD.pdf) defines some
+  more parameters, especially preamble length (to detect the signal), header mode (to include a LoRa
+  header with details such as coding rate, payload length and CRC), and low data rate optimisation
+  mode (to avoid issues with drift of the crystal reference oscillator due to either temperature
+  change or motion). For LoRaWAN, these are not configurable, so not exposed as a user input.
+
+- For LoRaWAN, the preamble length is always 8, the LoRa-level header is always included, and low
+  data rate optimisation mode is active for SF11 and SF12 on 125 kHz.
+
 ## URL structure
 
 This application was created with sharable URLs in mind, so almost every user input yields an updated URL:
