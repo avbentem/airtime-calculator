@@ -181,13 +181,13 @@
   }
 
   .Result-dutycycle {
-    font-size: 3vw;
+    font-size: css-min(5vw, 20pt);
   }
 
   .Result-fairaccess {
     font-size: 3vw;
     .Result-fairaccess-messages-per-hour {
-      font-size: css-min(5vw, 26pt);
+      font-size: css-min(5vw, 20pt);
     }
   }
 }
