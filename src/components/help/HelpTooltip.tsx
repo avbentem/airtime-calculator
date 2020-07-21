@@ -5,7 +5,8 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import {uniqueId} from 'lodash';
 
 type HelpTooltipProps = {
-  text?: string;
+  content?: string | React.ReactElement;
+  showIcon?: boolean;
   placement?: Placement;
 };
 
@@ -14,24 +15,27 @@ type HelpTooltipProps = {
  * help text is set.
  */
 export default function HelpTooltip({
-  text,
-  placement = 'bottom',
+  content,
+  showIcon = false,
+  placement = 'top',
   children,
 }: PropsWithChildren<HelpTooltipProps>) {
   const [id] = useState(() => uniqueId('HelpTooltip-'));
 
-  if (!text) {
-    return null;
+  if (!content) {
+    return <>{children}</>;
   }
 
   return (
-    <OverlayTrigger placement={placement} overlay={<Tooltip id={id}>{text}</Tooltip>}>
-      <span>
+    <OverlayTrigger placement={placement} overlay={<Tooltip id={id}>{content}</Tooltip>}>
+      <div>
         {children}
-        <sup>
-          <small className="text-muted">&#9432;</small>
-        </sup>
-      </span>
+        {showIcon && (
+          <sup>
+            <small className="text-muted">&#9432;</small>
+          </sup>
+        )}
+      </div>
     </OverlayTrigger>
   );
 }

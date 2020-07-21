@@ -1,6 +1,6 @@
 /**
- * Application configuration, defining one or more networks, each having one or more regions, each defining specific
- * settings for their supported data rates.
+ * Application configuration, defining one or more networks, each having one or
+ * more regions, each defining specific settings for their supported data rates.
  */
 
 export type AppConfig = {
@@ -35,6 +35,11 @@ export type DataRate = {
   notes?: string;
   sf: number;
   bw: 125 | 250 | 500;
+  /**
+   * Maximum LoRaWAN-defined MAC payload size, allowing for repeater, not taking
+   * any maximum dwell time into account.
+   */
+  maxMacPayloadSize: number;
   /**
    * Default highlight of the results; may be overruled if limits are exceeded.
    */

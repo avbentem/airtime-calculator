@@ -2,13 +2,13 @@ import {render, screen} from '@testing-library/react';
 import {shallow} from 'enzyme';
 import React from 'react';
 import config from '../../../public/config.json';
-import {AppConfig, DataRate} from '../../AppConfig';
+import {AppConfig, DataRate, Region} from '../../AppConfig';
 import Airtime from '../../lora/Airtime';
 import Results from './Results';
 
 // Explicit set the type to satisfy the TS compiler, which otherwise throws:
 // Types of property 'bw' are incompatible. Type 'number' is not assignable to type '250 | 125 | 500'.
-const region = (config as AppConfig).networks[0].regions.find((r) => r.name === 'eu868') as any;
+const region = (config as AppConfig).networks[0].regions.find((r) => r.name === 'eu868') as Region;
 
 describe('Results component', () => {
   // Enzyme
@@ -62,15 +62,16 @@ describe('Results component', () => {
 
       // Something like, with some more whitespace, but yielding multiple parents with just that text:
       //
-      //   <div class="Result-airtime">
-      //     <span>
-      //       1,482.8
-      //       <span class="Result-unit">
-      //         ms
-      //       </span>
-      //     </span>
+      //   <div>
+      //     <div class="Result-airtime">
+      //       <div>
+      //         1,482.8
+      //         <span class="Result-unit">
+      //           ms
+      //         </span>
+      //       </div>
+      //     </div>
       //   </div>
-      // So, search for the formatted number, and limit on <span>:
 
       const airtime = Airtime.calculate(23, dr.sf, dr.bw, '4/5');
       const formatted = airtime.toLocaleString('en-US', {
@@ -80,7 +81,8 @@ describe('Results component', () => {
 
       expect(
         screen.getByText((content, element) => {
-          return element.tagName === 'SPAN' && element.textContent === `${formatted}ms`;
+          // Exclude parents that have no text themselves
+          return content !== '' && element.textContent === `${formatted}ms`;
         })
       ).toBeInTheDocument();
     });

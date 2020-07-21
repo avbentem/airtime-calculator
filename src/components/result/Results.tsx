@@ -19,13 +19,23 @@ export default function Results({region, packetSize, codingRate}: ResultsProps) 
 
   const results = region.dataRates.map((dr, idx) => {
     const airtime = Airtime.calculate(packetSize, dr.sf, dr.bw, codingRate);
-    const tooLong = region.maxDwellTime && airtime > region.maxDwellTime;
+    // PHYPayload = MHDR[1] | MACPayload[..] | MIC[4]
+    const maxPhyPayloadSize = dr.maxMacPayloadSize + 5;
+    const tooLong =
+      (region.maxDwellTime && airtime > region.maxDwellTime) ||
+      (dr.maxMacPayloadSize && packetSize > maxPhyPayloadSize);
     const oddEven = `Results-result-${idx % 2 ? 'odd' : 'even'}`;
     const highlight = `Results-result-highlight-${tooLong ? 'warning' : dr.highlight || 'none'}`;
 
     return (
       <div key={dr.name} className={`Results-result ${oddEven} ${highlight}`}>
-        <Result dr={dr} airtime={airtime} maxDwellTime={region.maxDwellTime} />
+        <Result
+          size={packetSize}
+          dr={dr}
+          airtime={airtime}
+          maxPhyPayloadSize={maxPhyPayloadSize}
+          maxDwellTime={region.maxDwellTime}
+        />
       </div>
     );
   });

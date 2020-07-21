@@ -10,7 +10,7 @@
           "label": "AS923",
           "title": "AS920-923 and AS923-925 uplink and downlink",
           "countries": "These data rates are used with different frequencies, depending on the country. AS920-923 MHz (\"AS1\") is used in Japan, Malaysia and Singapore. AS923-925 MHz (\"AS2\") is used in Brunei, Cambodia, Hong Kong, Indonesia, Laos, Taiwan, Thailand and Vietnam. Australia uses [both AS1 and AS2, next to AU915](https://www.thethingsnetwork.org/forum/t/can-australian-users-agree-on-using-a-single-frequency-plan/17660).",
-          "limitations": "For AS923, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, state that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=38) until the network server disables that using the `TxParamSetupReq` command. When used in Australia, a post in the TTN Forum suggests that maximum dwell times [may not apply](https://www.thethingsnetwork.org/forum/t/36601/6). A LoRaWAN-imposed maximum duty cycle of 1% applies to ([only](https://www.thethingsnetwork.org/forum/t/37924)) the 2 default channels, 923.20 and 923.40 MHz. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
+          "limitations": "For AS923, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, state that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=38) until the network server disables that using the `TxParamSetupReq` command. When used in Australia, a post in the TTN Forum suggests that maximum dwell times [may not apply](https://www.thethingsnetwork.org/forum/t/36601/6). A LoRaWAN-imposed maximum duty cycle of 1% applies to ([only](https://www.thethingsnetwork.org/forum/t/37924)) the 2 default channels, 923.20 and 923.40 MHz. Like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
           "maxDwellTime": 400,
           "dataRates": [
             {
@@ -18,39 +18,46 @@
               "notes": "High bandwidth. 922.1/924.5 MHz only.",
               "sf": 7,
               "bw": 250,
+              "maxMacPayloadSize": 230,
               "highlight": "low"
             },
             {
               "name": "DR5",
               "sf": 7,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR4",
               "sf": 8,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR3",
               "sf": 9,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 123
             },
             {
               "name": "DR2",
               "sf": 10,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 123
             },
             {
               "name": "DR1",
               "notes": "Only allowed with ADR",
               "sf": 11,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             },
             {
               "name": "DR0",
               "notes": "Only allowed with ADR",
               "sf": 12,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             }
           ]
         },
@@ -59,7 +66,7 @@
           "label": "AU915",
           "title": "AU915-928 uplink",
           "countries": "AU915-928 is used in Argentina, Australia (which also [uses AS923](https://www.thethingsnetwork.org/forum/t/can-australian-users-agree-on-using-a-single-frequency-plan/17660)), Brazil, Chile and New Zealand.",
-          "limitations": "For AU915-928, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [define no dwell time limitations](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=28). However, 1.0.3 states that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-07/lorawan_regional_parameters_v1.0.3reva_0.pdf#page=37) until the network server disables that using the `TxParamSetupReq` command, just like for AS923 in 1.0.2 Rev B. A post in the TTN Forum suggests that maximum dwell times [may not apply for Australia](https://www.thethingsnetwork.org/forum/t/36601/6). Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
+          "limitations": "For AU915-928, the February 2017 LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [define no dwell time limitations](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=28). However, the July 2018 1.0.3 states that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-07/lorawan_regional_parameters_v1.0.3reva_0.pdf#page=37) until the network server disables that using the `TxParamSetupReq` command, just like for AS923 in 1.0.2 Rev B. A post in the TTN Forum suggests that maximum dwell times [may not apply for Australia](https://www.thethingsnetwork.org/forum/t/36601/6). Like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
           "maxDwellTime": 400,
           "dataRates": [
             {
@@ -67,39 +74,46 @@
               "notes": "High bandwidth. 917.5 MHz only.",
               "sf": 8,
               "bw": 500,
+              "maxMacPayloadSize": 230,
               "highlight": "low"
             },
             {
               "name": "DR5",
               "sf": 7,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR4",
               "sf": 8,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR3",
               "sf": 9,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 123
             },
             {
               "name": "DR2",
               "sf": 10,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             },
             {
               "name": "DR1",
               "notes": "Only allowed with ADR",
               "sf": 11,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             },
             {
               "name": "DR0",
               "notes": "Only allowed with ADR",
               "sf": 12,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             }
           ]
         },
@@ -113,32 +127,38 @@
             {
               "name": "DR13",
               "sf": 7,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR12",
               "sf": 8,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR11",
               "sf": 9,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR10",
               "sf": 10,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR9",
               "sf": 11,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 117
             },
             {
               "name": "DR8",
               "sf": 12,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 41
             }
           ]
         },
@@ -147,39 +167,46 @@
           "label": "CN470",
           "title": "CN470-510 uplink and downlink",
           "countries": "CN470-510 is used in China.",
-          "limitations": "For CN470-510, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, describe there is [no dwell time limitation](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=33), and do not mention any maximum duty cycle either. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
+          "limitations": "For CN470-510, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, describe there is [no dwell time limitation](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=33), and do not mention any maximum duty cycle either. But [RP002-1.0.1](https://lora-alliance.org/sites/default/files/2020-06/rp_2-1.0.1.pdf#page=85) mentions that the maximum payload sizes have been adjusted to comply with a 1 second dwell time. Like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
           "dataRates": [
             {
               "name": "DR5",
               "sf": 7,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR4",
               "sf": 8,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR3",
               "sf": 9,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 172
             },
             {
               "name": "DR2",
               "sf": 10,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 94
             },
             {
               "name": "DR1",
               "notes": "Only allowed with ADR",
               "sf": 11,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 31
             },
             {
               "name": "DR0",
-              "notes": "Only allowed with ADR",
+              "notes": "No longer supported as of RP002-1.0.1. Only allowed with ADR.",
               "sf": 12,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": null,
+              "highlight": "low"
             }
           ]
         },
@@ -188,7 +215,7 @@
           "label": "EU868",
           "title": "EU863-870 uplink and downlink",
           "countries": "EU863-870 is used in Albania, Andorra, Angola, Austria, Bahrain, Belgium, Bosnia and Herzegovina, Botswana, Bulgaria, Democratic Republic of the Congo, Croatia, Cyprus, Czech Republic, Denmark, Estonia, Eswatini (formerly Swaziland), Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Lesotho, Liechtenstein, Lithuania, Luxembourg, Madagascar, Malawi, Malta, Mauritius, Moldova, Montenegro, Mozambique, Namibia, The Netherlands, North Macedonia, Philippines, Poland, Portugal, Romania, Russia, Saudi Arabia, Serbia, Seychelles, Slovakia, Slovenia, South Africa, Spain, Sweden, Switzerland, Tanzania, Turkey, United Arab Emirates (UAE), United Kingdom (UK), Vatican City (Holy See), Zambia and Zimbabwe.",
-          "limitations": "For EU863-870, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [define duty-cycled limited transmissions](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=8) to comply with the European Telecommunications Standards Institute (ETSI) regulations. In ETSI, most bands use a maximum duty cycle of 1%, but some use 0.1% and 10%. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
+          "limitations": "For EU863-870, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [define duty-cycled limited transmissions](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=8) to comply with the European Telecommunications Standards Institute (ETSI) regulations. In ETSI, most bands use a maximum duty cycle of 1%, but some use 0.1% and 10%. Like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
           "maxDwellTime": null,
           "dataRates": [
             {
@@ -196,39 +223,46 @@
               "notes": "High bandwidth. 868.3 MHz only.",
               "sf": 7,
               "bw": 250,
+              "maxMacPayloadSize": 230,
               "highlight": "low"
             },
             {
               "name": "DR5",
               "sf": 7,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR4",
               "sf": 8,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR3",
               "sf": 9,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 123
             },
             {
               "name": "DR2",
               "sf": 10,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             },
             {
               "name": "DR1",
               "notes": "Only allowed with ADR",
               "sf": 11,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             },
             {
               "name": "DR0",
               "notes": "Only allowed with ADR",
               "sf": 12,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             }
           ]
         },
@@ -237,40 +271,46 @@
           "label": "IN865",
           "title": "IN865-867 uplink and downlink",
           "countries": "IN865-867 is used in India.",
-          "limitations": "For IN865-867, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [state](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=48) that neither dwell time nor duty-cycle limitations apply. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
+          "limitations": "For IN865-867, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [state](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=48) that neither dwell time nor duty-cycle limitations apply. Like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
           "maxDwellTime": null,
           "dataRates": [
             {
               "name": "DR5",
               "sf": 7,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR4",
               "sf": 8,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR3",
               "sf": 9,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 123
             },
             {
               "name": "DR2",
               "sf": 10,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             },
             {
               "name": "DR1",
               "notes": "Only allowed with ADR",
               "sf": 11,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             },
             {
               "name": "DR0",
               "notes": "Only allowed with ADR",
               "sf": 12,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             }
           ]
         },
@@ -279,40 +319,46 @@
           "label": "KR920",
           "title": "KR920-923 uplink and downlink",
           "countries": "KR920-923 is used in South Korea.",
-          "limitations": "For KR920-923, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [mandate](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=43) that Listen Before Talk Adaptive Frequency Agility (LBT AFA) is used. Hence, neither dwell time nor duty cycle limitations apply. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
+          "limitations": "For KR920-923, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [mandate](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=43) that Listen Before Talk Adaptive Frequency Agility (LBT AFA) is used. Hence, neither dwell time nor duty cycle limitations apply. Like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
           "maxDwellTime": null,
           "dataRates": [
             {
               "name": "DR5",
               "sf": 7,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR4",
               "sf": 8,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR3",
               "sf": 9,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 123
             },
             {
               "name": "DR2",
               "sf": 10,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             },
             {
               "name": "DR1",
               "notes": "Only allowed with ADR",
               "sf": 11,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             },
             {
               "name": "DR0",
               "notes": "Only allowed with ADR",
               "sf": 12,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 59
             }
           ]
         },
@@ -329,27 +375,32 @@
               "notes": "High bandwidth. 904.6 MHz only.",
               "sf": 8,
               "bw": 500,
+              "maxMacPayloadSize": 230,
               "highlight": "low"
             },
             {
               "name": "DR3",
               "sf": 7,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR2",
               "sf": 8,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 133
             },
             {
               "name": "DR1",
               "sf": 9,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 61
             },
             {
               "name": "DR0",
               "sf": 10,
-              "bw": 125
+              "bw": 125,
+              "maxMacPayloadSize": 19
             }
           ]
         },
@@ -363,32 +414,38 @@
             {
               "name": "DR13",
               "sf": 7,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR12",
               "sf": 8,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR11",
               "sf": 9,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR10",
               "sf": 10,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 230
             },
             {
               "name": "DR9",
               "sf": 11,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 117
             },
             {
               "name": "DR8",
               "sf": 12,
-              "bw": 500
+              "bw": 500,
+              "maxMacPayloadSize": 41
             }
           ]
         }

@@ -127,7 +127,7 @@
 
 .Result-has-warning::after {
   content: '\2757';
-  color: red;
+  color: #f00;
 }
 
 // Font sizes relative to the current viewport width
@@ -217,7 +217,8 @@
   font-size: 120%;
 }
 
-.Result-dwelltime-warning {
+.Result-datarate-warning,
+.Result-airtime-warning {
   font-size: 50%;
   font-weight: bold;
 }

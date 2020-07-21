@@ -11,11 +11,11 @@ See it in action on <https://avbentem.github.io/airtime-calculator>.
 
 Next versions may include:
 
-- add maximum packet size as per LoRaWAN specifications
-- copy popover text, or the full results, in Markdown format
+- a way to copy popover text, or the full results, in Markdown format
 - a help page explaining the basics
 - support for MAC commands
 - support for FSK
+- an option to toggle if maximum dwell times are applicable
 
 ## Data rates and frequency plans
 
@@ -54,6 +54,22 @@ share (most) of the data rates, like EU868.
 
   - The 400 ms maximum dwell time [may not apply](https://www.thethingsnetwork.org/forum/t/36601/6)
     for Australia.
+
+## Maximum payload size
+
+The LoRaWAN specification(s) defines multiple options for the maximum payload size, like depending
+on dwell time settings, and with or without support for a possible repeater encapsulation.
+
+In the early specifications, these choices are quite confusing as often _smaller_ maximum values are
+listed when _no_ maximum dwell times apply. However, the February 2020 LoRaWAN Regional Parameters
+[RP002-1.0.1](./doc/rp_2-1.0.1.pdf) states that no MACPayload may be larger than 230 bytes,
+regardless of dwell time limitations, and in that version the numbers have been adjusted as well.
+
+This calculator uses the maximum payload sizes from RP002-1.0.1, allow for a possible repeater
+encapsulation, and do not take maximum dwell times into account. If the device will never operate
+under a repeater then the maximum size could be a bit larger. If dwell times have been defined then
+those will generate warnings in the calculator regardless the maximum payload size, allowing users
+to whom those dwell times do not apply to still see the correct (higher) maximum payload sizes.
 
 ## Time on air
 
