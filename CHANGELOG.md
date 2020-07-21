@@ -3,6 +3,8 @@
 ### Fixes
 
 - Document 1% duty cycle for the default channels of AS923.
+- Document usage of AS923 in Australia.
+- Layout fixes.
 
 ## 1.0.0 (2020-07-21)
 
