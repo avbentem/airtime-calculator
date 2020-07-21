@@ -15,9 +15,10 @@
           "dataRates": [
             {
               "name": "DR6",
-              "notes": "922.1/924.5 MHz only",
+              "notes": "High bandwidth. 922.1/924.5 MHz only.",
               "sf": 7,
-              "bw": 250
+              "bw": 250,
+              "highlight": "low"
             },
             {
               "name": "DR5",
@@ -65,7 +66,8 @@
               "name": "DR6",
               "notes": "High bandwidth. 917.5 MHz only.",
               "sf": 8,
-              "bw": 500
+              "bw": 500,
+              "highlight": "low"
             },
             {
               "name": "DR5",
@@ -234,8 +236,8 @@
           "name": "in865",
           "label": "IN865",
           "title": "IN865-867 uplink and downlink",
-          "limitations": "For IN865-867, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [state](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=48) that neither dwell time nor duty-cycle limitations apply. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
           "countries": "IN865-867 is used in India.",
+          "limitations": "For IN865-867, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [state](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=48) that neither dwell time nor duty-cycle limitations apply. Like for any region, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).",
           "maxDwellTime": null,
           "dataRates": [
             {
@@ -292,7 +294,6 @@
             },
             {
               "name": "DR3",
-              "notes": "In the future possibly used for RX2, instead of SF12BW125",
               "sf": 9,
               "bw": 125
             },
@@ -327,7 +328,8 @@
               "name": "DR4",
               "notes": "High bandwidth. 904.6 MHz only.",
               "sf": 8,
-              "bw": 500
+              "bw": 500,
+              "highlight": "low"
             },
             {
               "name": "DR3",
