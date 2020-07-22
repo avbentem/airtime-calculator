@@ -1,4 +1,10 @@
-## [1.1.0](https://github.com/avbentem/airtime-calculator/compare/v1.1.0...v1.0.0) (2020-07-22)
+## [1.1.1](https://github.com/avbentem/airtime-calculator/compare/v1.1.0...master) (future)
+
+### Fixes
+
+- More details on dwell time limitations.
+
+## [1.1.0](https://github.com/avbentem/airtime-calculator/compare/v1.0.0...v1.1.0) (2020-07-22)
 
 ### New features
 
