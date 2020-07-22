@@ -9,8 +9,8 @@
           "name": "as923",
           "label": "AS923",
           "title": "AS920-923 and AS923-925 uplink and downlink",
-          "countries": "These data rates are used with different frequencies, depending on the country. AS920-923 MHz (\"AS1\") is used in Japan, Malaysia and Singapore. AS923-925 MHz (\"AS2\") is used in Brunei, Cambodia, Hong Kong, Indonesia, Laos, Taiwan, Thailand and Vietnam. Australia uses [both AS1 and AS2, next to AU915](https://www.thethingsnetwork.org/forum/t/can-australian-users-agree-on-using-a-single-frequency-plan/17660).",
-          "limitations": "For AS923, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, state that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=38) until the network server disables that using the `TxParamSetupReq` command. When used in Australia, a post in the TTN Forum suggests that maximum dwell times [may not apply](https://www.thethingsnetwork.org/forum/t/36601/6). A LoRaWAN-imposed maximum duty cycle of 1% applies to ([only](https://www.thethingsnetwork.org/forum/t/37924)) the 2 default channels, 923.20 and 923.40 MHz. Like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
+          "countries": "The AS923 data rates are used with different frequencies, depending on the country. AS920-923 MHz (\"AS1\") is used in Japan, Malaysia and Singapore. AS923-925 MHz (\"AS2\") is used in Brunei, Cambodia, Hong Kong, Indonesia, Laos, Taiwan, Thailand and Vietnam. Australia uses [both AS1 and AS2, next to AU915](https://www.thethingsnetwork.org/forum/t/can-australian-users-agree-on-using-a-single-frequency-plan/17660).",
+          "limitations": "For AS923, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, state that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=38) until the network server disables that using the `TxParamSetupReq` command. When enabled then SF11 and SF12 are no longer allowed as the minimum LoRaWAN overhead already needs more time on air. When used in Australia, a post in the TTN Forum suggests that maximum dwell times [may not apply](https://www.thethingsnetwork.org/forum/t/36601/6).\n\nA LoRaWAN-imposed maximum duty cycle of 1% applies to ([only](https://www.thethingsnetwork.org/forum/t/37924)) the 2 default channels, 923.20 and 923.40 MHz. Like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
           "maxDwellTime": 400,
           "dataRates": [
             {
@@ -66,7 +66,7 @@
           "label": "AU915",
           "title": "AU915-928 uplink",
           "countries": "AU915-928 is used in Argentina, Australia (which also [uses AS923](https://www.thethingsnetwork.org/forum/t/can-australian-users-agree-on-using-a-single-frequency-plan/17660)), Brazil, Chile and New Zealand.",
-          "limitations": "For AU915-928, the February 2017 LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [define no dwell time limitations](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=28). However, the July 2018 1.0.3 states that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-07/lorawan_regional_parameters_v1.0.3reva_0.pdf#page=37) until the network server disables that using the `TxParamSetupReq` command, just like for AS923 in 1.0.2 Rev B. A post in the TTN Forum suggests that maximum dwell times [may not apply for Australia](https://www.thethingsnetwork.org/forum/t/36601/6). Like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
+          "limitations": "For AU915-928, the February 2017 LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [define no dwell time limitations](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=28). However, the July 2018 1.0.3 states that devices should assume a maximum [uplink dwell time of 400 milliseconds](https://lora-alliance.org/sites/default/files/2018-07/lorawan_regional_parameters_v1.0.3reva_0.pdf#page=37) until the network server disables that using the `TxParamSetupReq` command, just like for AS923 in 1.0.2 Rev B. When enabled then SF11 and SF12 are no longer allowed as the minimum LoRaWAN overhead already needs more time on air. Also, when the maximum dwell time is enabled, a delay of 20 seconds between any consecutive uplinks is recommended, but this value may be adjusted depending on local regulations. A post in the TTN Forum suggests that maximum dwell times [may not apply for Australia](https://www.thethingsnetwork.org/forum/t/36601/6).\n\nLike for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/can-i-register-an-abp-device-that-has-fixed-devaddr-nwkskey-and-appskey/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
           "maxDwellTime": 400,
           "dataRates": [
             {
@@ -121,7 +121,7 @@
           "name": "au915-dl",
           "label": "AU915 DL",
           "title": "AU915-928 downlink",
-          "limitations": "See the countries and limitations described in AU915.",
+          "limitations": "See the limitations and countries described in AU915.",
           "maxDwellTime": null,
           "dataRates": [
             {
@@ -367,7 +367,7 @@
           "label": "US915",
           "title": "US902-928 uplink",
           "countries": "US902-928 is used in Bolivia, Canada, Colombia, Costa Rica, Dominican Republic, Ecuador, Guyana, Mexico, Panama, Paraguay, Peru, Puerto Rico, Suriname, United States of America (USA), Uruguay and Venezuela.",
-          "limitations": "For US902-928, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [describe](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=13) that FCC regulations impose a maximum dwell time of 400 milliseconds on uplinks. That makes SF11BW125 and SF12BW125 not suitable for any payload size.",
+          "limitations": "For US902-928, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, [describe](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=13) that FCC regulations impose a maximum dwell time of 400 milliseconds on uplinks. That makes DR0 use SF10, as for SF11BW125 and SF12BW125 the minimum LoRaWAN overhead would already need more time on air than ever allowed.",
           "maxDwellTime": 400,
           "dataRates": [
             {
@@ -408,7 +408,7 @@
           "name": "us915-dl",
           "label": "US915 DL",
           "title": "US902-928 downlink",
-          "limitations": "See the countries and limitations described in US915.",
+          "limitations": "See the limitations and countries described in US915.",
           "maxDwellTime": 400,
           "dataRates": [
             {
