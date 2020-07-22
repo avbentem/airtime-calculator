@@ -123,20 +123,24 @@ export default function UserInput(props: UserConfigProps) {
             <NumberInput {...payloadSize} />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formCodingRate">
-            <HelpTooltip
-              showIcon={true}
-              content="The coding rate (CR) used for forward error correction (FEC)."
-            >
-              <Form.Label>Coding rate</Form.Label>
-            </HelpTooltip>
-            <Form.Control as="select" {...withFormControl(codingRate)}>
-              <option value="4/5">4/5</option>
-              <option value="4/6">4/6</option>
-              <option value="4/7">4/7</option>
-              <option value="4/8">4/8</option>
-            </Form.Control>
-          </Form.Group>
+          {/* Only expose the coding rate input when a non-default is used in the URL. */}
+          {/* A future version may include some "advanced settings" option. */}
+          {codingRate.value !== '4/5' && (
+            <Form.Group as={Col} controlId="formCodingRate">
+              <HelpTooltip
+                showIcon={true}
+                content="The coding rate (CR) used for forward error correction (FEC). Always 4/5 for LoRaWAN."
+              >
+                <Form.Label>Coding rate</Form.Label>
+              </HelpTooltip>
+              <Form.Control as="select" {...withFormControl(codingRate)}>
+                <option value="4/5">4/5</option>
+                <option value="4/6">4/6</option>
+                <option value="4/7">4/7</option>
+                <option value="4/8">4/8</option>
+              </Form.Control>
+            </Form.Group>
+          )}
         </Form.Row>
 
         {/* TODO Work in progress: somehow allow for adding/removing MAC commands; for now only when already in URL. */}

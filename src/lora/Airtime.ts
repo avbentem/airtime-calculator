@@ -13,8 +13,9 @@ export default class Airtime {
    *   header (about 9 bytes when no MAC commands are included), the application
    *   payload, and the MIC (4 bytes).
    * @param sf spreading factor, 6..12 (6 is not used in LoRaWAN)
-   * @param bw bandwidth in kHz, typically 125, sometimes 250 or 500
-   * @param codingRate coding rate, '4/5', '4/6', '4/7' or '4/8'
+   * @param bw bandwidth in kHz, typically 125, 250 or 500
+   * @param codingRate coding rate, '4/5', '4/6', '4/7' or '4/8'. For LoRaWAN
+   *   this is always '4/5'.
    * @param lowDrOptimize low data rate optimization, 'auto', true or false.
    *   This is usually enabled for low data rates, to avoid issues with drift
    *   of the crystal reference oscillator due to either temperature change or
@@ -32,7 +33,7 @@ export default class Airtime {
   static calculate(
     size: number,
     sf: number,
-    bw: any = 125,
+    bw: number,
     codingRate: CodingRate = '4/5',
     lowDrOptimize: 'auto' | true | false = 'auto',
     explicitHeader: boolean = true,

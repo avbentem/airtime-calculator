@@ -36,7 +36,6 @@ describe('Calculator component', () => {
     render(<Calculator {...router} config={config} />);
     expect(screen.getByRole('spinbutton', {name: 'Header size'})).toBeInTheDocument();
     expect(screen.getByRole('spinbutton', {name: 'Payload size'})).toBeInTheDocument();
-    expect(screen.getByRole('combobox', {name: 'Coding rate'})).toBeInTheDocument();
   });
 
   it('renders region details', () => {
