@@ -83,7 +83,7 @@ to whom those dwell times do not apply to still see the correct (higher) maximum
   length and CRC), and low data rate optimisation mode (to avoid issues with drift of the crystal
   reference oscillator due to either temperature change or motion). For LoRaWAN, these are not
   configurable, so are not exposed as a user input (except for CR, if a non-default value is set
-  through the URL.
+  through the URL).
 
 - For LoRaWAN, the preamble length is always 8, CR is always 4/5, the LoRa-level header is always
   included, and low data rate optimisation mode is active for SF11 and SF12 on 125 kHz.
@@ -96,8 +96,8 @@ This application was created with sharable URLs in mind, so almost every user in
 
 - `<parameters>` is a comma-separated list, and defines:
 
-  - the payload size, taken from the first integer value
-  - the header size, taken from the second integer value
+  - the application payload size, taken from the first integer value
+  - the LoRaWAN overhead size, taken from the second integer value
   - the coding rate, taken from one of `cr45`, `cr46`, `cr47`, `cr48`
   - experimental: one or more [MAC commands](./src/lora/MacCommands.ts), like `LinkAdrReq`
 
@@ -105,10 +105,11 @@ This application was created with sharable URLs in mind, so almost every user in
 
   - payload size, 12 bytes: just a random choice, which however nicely shows how the maximum dwell
     time for US902 is quite limiting for DR0 SF10BW125 (the URL includes this default when using a
-    non-default header size)
-  - header size, 13 bytes: for a LoRaWAN 1.0.x uplink and downlink, the overhead is at least 13 bytes
-    for the Message Type (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4)
-  - coding rate, 4/5: as used for all downlinks
+    non-default value for overhead size)
+  - overhead size, 13 bytes: for a LoRaWAN uplink and downlink, the overhead is at least 13 bytes
+    for MHDR (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4); additionally FOpts may
+    add one or more MAC commands
+  - coding rate, `cr45`: as fixed for LoRaWAN
 
 - When all parameters use their defaults, the `<parameters>` segment and its slash are excluded.
 
