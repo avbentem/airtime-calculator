@@ -1,8 +1,9 @@
-## [1.0.1](https://github.com/avbentem/airtime-calculator/compare/v1.0.0...master) (future)
+## [1.1.0](https://github.com/avbentem/airtime-calculator/compare/v1.0.0...master) (future)
 
 ### New features
 
 - Validate against LoRaWAN-defined maximum payload size.
+- LoRaWAN always uses coding rate 4/5: hide user input when default is used.
 
 ### Fixes
 
