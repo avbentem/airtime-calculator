@@ -34,7 +34,7 @@ describe('Calculator component', () => {
 
   it('renders UserInput child', () => {
     render(<Calculator {...router} config={config} />);
-    expect(screen.getByRole('spinbutton', {name: 'Header size'})).toBeInTheDocument();
+    expect(screen.getByRole('spinbutton', {name: 'Overhead size'})).toBeInTheDocument();
     expect(screen.getByRole('spinbutton', {name: 'Payload size'})).toBeInTheDocument();
   });
 
