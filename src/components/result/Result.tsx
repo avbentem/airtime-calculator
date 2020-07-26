@@ -1,6 +1,7 @@
 import React from 'react';
 import {DataRate} from '../../AppConfig';
 import HelpTooltip from '../help/HelpTooltip';
+import {fmt, withFullStops} from './helpers';
 
 type ResultGridProps = {
   dr: DataRate;

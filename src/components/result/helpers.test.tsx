@@ -1,4 +1,4 @@
-import {fmt, withFullStops} from './Result';
+import {fmt, withFullStops} from './helpers';
 
 describe('fmt', () => {
   it('rounds down if needed', () => {
