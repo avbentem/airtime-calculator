@@ -28,13 +28,13 @@ export default function Results({region, packetSize, codingRate}: ResultsProps) 
     const highlight = `Results-result-highlight-${tooLong ? 'warning' : dr.highlight || 'none'}`;
 
     return (
-      <div key={dr.name} className={`Results-result ${oddEven} ${highlight}`}>
+      <div key={dr.name} className={`Results-result ${oddEven} ${highlight}`} role={'row'}>
         <Result
           size={packetSize}
+          region={region}
           dr={dr}
           airtime={airtime}
           maxPhyPayloadSize={maxPhyPayloadSize}
-          maxDwellTime={region.maxDwellTime}
         />
       </div>
     );
@@ -42,14 +42,20 @@ export default function Results({region, packetSize, codingRate}: ResultsProps) 
 
   return (
     <>
-      <div className={`Results-grid Results-grid-${results.length}`}>
-        <div className={`Results-legend`}>
-          <div>data rate</div>
-          <div>airtime</div>
-          <div>1%&nbsp;max duty&nbsp;cycle</div>
-          <div>fair access policy</div>
+      <div
+        className={`Results-grid Results-grid-${results.length}`}
+        role="table"
+        data-label={`Time on air and limitations for a full LoRaWAN packet of ${packetSize} bytes in ${region.label}:`}
+      >
+        <div role="rowgroup">
+          <div className={`Results-legend`} role="row">
+            <div role="columnheader">data rate</div>
+            <div role="columnheader">airtime</div>
+            <div role="columnheader">1%&nbsp;max duty&nbsp;cycle</div>
+            <div role="columnheader">fair access policy</div>
+          </div>
         </div>
-        {results}
+        <div role="rowgroup">{results}</div>
       </div>
     </>
   );

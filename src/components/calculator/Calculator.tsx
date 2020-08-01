@@ -99,8 +99,8 @@ export default function Calculator(props: CalculatorProps) {
         </Col>
       </Row>
 
-      <Row className="justify-content-md-center">
-        <Col md="auto">
+      <Row className="justify-content-center">
+        <Col>
           <UserInput
             userConfig={parameters}
             setUserConfig={handleParametersChange}
@@ -110,7 +110,7 @@ export default function Calculator(props: CalculatorProps) {
         </Col>
       </Row>
 
-      <Row className="justify-content-sm-center">
+      <Row className="justify-content-center">
         <Col>
           <Results region={region} packetSize={packetSize} codingRate={codingRate} />
           <hr />

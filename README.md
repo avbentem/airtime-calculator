@@ -1,6 +1,6 @@
 # Airtime calculator for LoRaWAN
 
-A simple React UI for the formulas defined in Semtech's [LoRa Modem Designer's Guide
+A basic React UI for the formulas defined in Semtech's [LoRa Modem Designer's Guide
 (AN1200.13)](./doc/LoraDesignGuide_STD.pdf), showing the airtime for data rates as used in the
 [frequency plans](https://www.thethingsnetwork.org/docs/lorawan/frequency-plans.html) of The
 Things Network (TTN), and showing the limitations that apply to the TTN public network.
@@ -11,7 +11,6 @@ See it in action on <https://avbentem.github.io/airtime-calculator>.
 
 Next versions may include:
 
-- a way to copy popover text, or the full results, in Markdown format
 - a help page explaining the basics
 - support for MAC commands
 - support for FSK
@@ -87,6 +86,24 @@ to whom those dwell times do not apply to still see the correct (higher) maximum
 
 - For LoRaWAN, the preamble length is always 8, CR is always 4/5, the LoRa-level header is always
   included, and low data rate optimisation mode is active for SF11 and SF12 on 125 kHz.
+
+## Copying results
+
+The browser's copy event is mapped as follows:
+
+- If any text is selected, copy that. This is handled by the browser.
+
+- Otherwise, when a tooltip is active, copy its text. This yields both HTML and plain text formats.
+  On a desktop browser you'll need the keyboard to copy a tooltip.
+
+- Or else, copy the results. This only supports HTML.
+
+For the line breaks in the results grid, this uses a format that is very specific to the automatic
+conversion from HTML to Markdown in Discourse, like as used on the TTN Forum: Discourse replaces
+`<br>` with `\n` but then [rejects `\n` in table cells][discourse-md]. As a workaround, `<br>` is
+outputted as `&lt;br>`.
+
+[discourse-md]: https://github.com/discourse/discourse/blob/v2.5.0/app/assets/javascripts/discourse/app/lib/to-markdown.js#L342-L343
 
 ## URL structure
 

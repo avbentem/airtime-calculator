@@ -68,11 +68,14 @@
   row-gap: 3px;
 }
 
-.Results-legend,
-.Results-result {
+div[role='rowgroup'],
+div[role='row'] {
   // Beware: not accessible
   display: contents;
+}
 
+.Results-legend,
+.Results-result {
   // Given the above `display: contents` any background color needs to be set
   // on child elements, while using `align-items: center` would make those
   // child elements not use the full height. Instead, just force alignment of

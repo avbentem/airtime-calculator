@@ -1,4 +1,4 @@
-import {fmt, withFullStops} from './helpers';
+import {fmt, fmtSeconds, withFullStops} from './helpers';
 
 describe('fmt', () => {
   it('rounds down if needed', () => {
@@ -15,6 +15,27 @@ describe('fmt', () => {
   });
   it('adds thousands separator if needed', () => {
     expect(fmt(12345.67, 1)).toBe('12,345.7');
+  });
+});
+
+describe('fmtSeconds', () => {
+  it('returns trailing zero if needed', () => {
+    expect(fmtSeconds(12)).toBe('12.0 seconds');
+  });
+  it('returns seconds for small values', () => {
+    expect(fmtSeconds(12.344)).toBe('12.3 seconds');
+  });
+  it('returns seconds for small values', () => {
+    expect(fmtSeconds(120)).toBe('120.0 seconds');
+  });
+  it('returns seconds for small values', () => {
+    expect(fmtSeconds(120.0499)).toBe('120.0 seconds');
+  });
+  it('returns minutes for large values', () => {
+    expect(fmtSeconds(120.05)).toBe('2.0 minutes');
+  });
+  it('returns minutes for large values', () => {
+    expect(fmtSeconds(2.05 * 60)).toBe('2.1 minutes');
   });
 });
 

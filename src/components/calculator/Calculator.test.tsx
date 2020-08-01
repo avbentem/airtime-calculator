@@ -34,8 +34,8 @@ describe('Calculator component', () => {
 
   it('renders UserInput child', () => {
     render(<Calculator {...router} config={config} />);
-    expect(screen.getByRole('spinbutton', {name: 'Overhead size'})).toBeInTheDocument();
-    expect(screen.getByRole('spinbutton', {name: 'Payload size'})).toBeInTheDocument();
+    expect(screen.getByRole('spinbutton', {name: 'overhead size'})).toBeInTheDocument();
+    expect(screen.getByRole('spinbutton', {name: 'payload size'})).toBeInTheDocument();
   });
 
   it('renders region details', () => {

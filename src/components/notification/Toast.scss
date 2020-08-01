@@ -1,0 +1,14 @@
+.Toast {
+  position: fixed;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+
+  // Must be on top of the active button group item (for Regions; auto), the
+  // number spinners (2), and tooltips (1070)
+  z-index: 1071;
+
+  .header {
+    font-size: 1.3em;
+  }
+}

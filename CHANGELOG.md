@@ -1,4 +1,10 @@
-## [1.1.1](https://github.com/avbentem/airtime-calculator/compare/v1.1.0...master) (future)
+## [1.2.0](https://github.com/avbentem/airtime-calculator/compare/v1.1.0...master) (future)
+
+### New features
+
+- Copy (formatted) tooltip and result grid. For the grid, this uses a workaround
+  for the Discourse forum software: newlines in table cells use `&lt;br>`, to
+  support its automatic conversion from HTML to Markdown.
 
 ### Fixes
 

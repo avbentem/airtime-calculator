@@ -4,6 +4,7 @@ import React from 'react';
 import config from '../../../public/config.json';
 import {AppConfig, DataRate, Region} from '../../AppConfig';
 import Airtime from '../../lora/Airtime';
+import {textInMarkupMatcher} from '../../test/helpers';
 import Results from './Results';
 
 // Explicit set the type to satisfy the TS compiler, which otherwise throws:
@@ -24,54 +25,19 @@ describe('Results component', () => {
     region.dataRates.forEach((dr: DataRate, idx: number) => {
       expect(screen.getByText(dr.name)).toBeInTheDocument();
 
-      // This is actually something like the following:
-      //
-      //   <div class="Result-datarate">
-      //     <div class="Result-dr">DR6</div>
-      //     <div>
-      //       <span class="Result-sf">
-      //         SF
-      //         7
-      //       </span>
-      //       <span class="Result-unit Result-unit-bw">
-      //         BW
-      //         <br>
-      //         250
-      //       </span>
-      //     </div>
-      //   </div>
-      //
-      // For that, all the following would fail:
-      //
-      //   expect(screen.getByText('SF7BW250')).toBeInTheDocument();
-      //   expect(screen.getByText('SF7BW 250')).toBeInTheDocument();
-      //   expect(screen.getByText('SF 7 BW 250')).toBeInTheDocument();
-      //
-      // So find some parent with the given concatenated text:
+      const drsfbw = screen.getByText(textInMarkupMatcher(`${dr.name}SF${dr.sf}BW${dr.bw}`));
+      // Or:
+      //   const drsfbw = screen.getByRole('cell', {
+      //     name: textInMarkupMatcher(`${dr.name}SF${dr.sf}BW${dr.bw}`),
+      //   });
 
-      const sfbw = screen.getByText((content, element) => {
-        return element.textContent === `SF${dr.sf}BW${dr.bw}`;
-      });
-      expect(sfbw).toBeInTheDocument();
+      expect(drsfbw).toBeInTheDocument();
 
       // Only check the most basic styling, which is not otherwise indicated to the user
       const oddEven = `Results-result-${idx % 2 ? 'odd' : 'even'}`;
       const highlight = `Results-result-highlight-${dr.highlight || 'none'}`;
-      expect(sfbw.closest(`.${oddEven}`)).toBeInTheDocument();
-      expect(sfbw.closest(`.${highlight}`)).toBeInTheDocument();
-
-      // Something like, with some more whitespace, but yielding multiple parents with just that text:
-      //
-      //   <div>
-      //     <div class="Result-airtime">
-      //       <div>
-      //         1,482.8
-      //         <span class="Result-unit">
-      //           ms
-      //         </span>
-      //       </div>
-      //     </div>
-      //   </div>
+      expect(drsfbw.closest(`.${oddEven}`)).toBeInTheDocument();
+      expect(drsfbw.closest(`.${highlight}`)).toBeInTheDocument();
 
       const airtime = Airtime.calculate(23, dr.sf, dr.bw, '4/5');
       const formatted = airtime.toLocaleString('en-US', {
@@ -79,12 +45,7 @@ describe('Results component', () => {
         maximumFractionDigits: 1,
       });
 
-      expect(
-        screen.getByText((content, element) => {
-          // Exclude parents that have no text themselves
-          return content !== '' && element.textContent === `${formatted}ms`;
-        })
-      ).toBeInTheDocument();
+      expect(screen.getByText(textInMarkupMatcher(`${formatted}ms`))).toBeInTheDocument();
     });
 
     expect(screen.getAllByText('avg/hour')).toHaveLength(region.dataRates.length);

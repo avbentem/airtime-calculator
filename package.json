@@ -1,7 +1,7 @@
 {
   "name": "airtime-calculator",
   "description": "Airtime calculator for LoRaWAN",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "author": "Arjan van Bentem",
   "private": true,
   "homepage": "https://avbentem.github.io/airtime-calculator",
@@ -74,6 +74,7 @@
     "react-bootstrap": "^1.2.2",
     "react-dom": "^16.13.1",
     "react-github-corner": "^2.3.0",
+    "react-icons": "^3.10.0",
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",

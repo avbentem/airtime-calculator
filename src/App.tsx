@@ -8,6 +8,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './App.scss';
 import {AppConfig} from './AppConfig';
 import Calculator from './components/calculator/Calculator';
+import Toast from './components/notification/Toast';
+import useClipboard from './hooks/clipboard/useClipboard';
 
 /**
  * Loads the JSON configuration file and renders the application.
@@ -17,8 +19,6 @@ export default function App() {
   const [progress, setProgress] = useState<string | null>('Loading configuration...');
   const [config, setConfig] = useState({} as AppConfig);
 
-  // Given the empty array for deps, this only runs when component mounts;
-  // https://reactjs.org/docs/hooks-reference.html#conditionally-firing-an-effect
   useEffect(() => {
     let didCancel = false;
     const fetchConfig = async () => {
@@ -48,9 +48,12 @@ export default function App() {
     };
   }, [configUrl]);
 
+  const {notification: copyNotification} = useClipboard();
+
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Container fluid className="App">
+        <Toast notification={copyNotification} />
         <Row>
           <Col>
             <h1>Airtime calculator for LoRaWAN</h1>

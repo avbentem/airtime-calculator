@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {MouseEvent, useEffect, useState} from 'react';
 import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import {FaRegCopy} from 'react-icons/fa';
 import {CodingRate} from '../../lora/Airtime';
 import {MacCommand, UplinkMacCommands102} from '../../lora/MacCommands';
 import HelpTooltip from '../help/HelpTooltip';
@@ -86,6 +88,16 @@ export default function UserInput(props: UserConfigProps) {
     );
   }, [props, headerSize.value, payloadSize.value, codingRate.value, macCommands.value]);
 
+  /**
+   * Trigger the built-in copy event.
+   */
+  function copy(e: MouseEvent) {
+    document.execCommand('copy');
+    // We need `currentTarget` rather than `target`, to support clicking the
+    // icon in the button, in which case the button is not the (first) target
+    (e.currentTarget as HTMLElement).blur();
+  }
+
   const macCommandButtons = UplinkMacCommands102.map((cmd, idx) => (
     <div key={idx}>
       <Badge
@@ -102,23 +114,23 @@ export default function UserInput(props: UserConfigProps) {
   return (
     <>
       <Form>
-        <Form.Row>
-          <Form.Group as={Col} controlId="formHeaderSize">
+        <Form.Row className="justify-content-center">
+          <Form.Group as={Col} xs={4} sm={3} lg={2} controlId="formHeaderSize">
             <HelpTooltip
               showIcon={true}
               content="For an uplink and downlink, the overhead is at least 13 bytes: MHDR (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4). Also, FOpts may include MAC commands."
             >
-              <Form.Label>Overhead size</Form.Label>
+              <Form.Label>overhead size</Form.Label>
             </HelpTooltip>
             <NumberInput {...headerSize} min={13} />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formApplicationPayloadSize">
+          <Form.Group as={Col} xs={4} sm={3} lg={2} controlId="formApplicationPayloadSize">
             <HelpTooltip
               showIcon={true}
               content="The application payload size. May be empty for a simple ACK or if the packet only includes MAC commands."
             >
-              <Form.Label>Payload size</Form.Label>
+              <Form.Label>payload size</Form.Label>
             </HelpTooltip>
             <NumberInput {...payloadSize} />
           </Form.Group>
@@ -126,12 +138,12 @@ export default function UserInput(props: UserConfigProps) {
           {/* Only expose the coding rate input when a non-default is used in the URL. */}
           {/* A future version may include some "advanced settings" option. */}
           {codingRate.value !== '4/5' && (
-            <Form.Group as={Col} controlId="formCodingRate">
+            <Form.Group as={Col} xs={4} sm={3} lg={2} controlId="formCodingRate">
               <HelpTooltip
                 showIcon={true}
                 content="The coding rate (CR) used for forward error correction (FEC). Always 4/5 for LoRaWAN."
               >
-                <Form.Label>Coding rate</Form.Label>
+                <Form.Label>coding rate</Form.Label>
               </HelpTooltip>
               <Form.Control as="select" {...withFormControl(codingRate)}>
                 <option value="4/5">4/5</option>
@@ -141,6 +153,20 @@ export default function UserInput(props: UserConfigProps) {
               </Form.Control>
             </Form.Group>
           )}
+
+          <Form.Group as={Col} xs={1} controlId="formCopy">
+            <HelpTooltip
+              showIcon={true}
+              content="If any text is selected, copy that. Otherwise, when a tooltip is active, copy its text. (Use the keyboard on a desktop browser.) Or else, copy the results."
+            >
+              <Form.Label>copy</Form.Label>
+            </HelpTooltip>
+            <div>
+              <Button variant="outline-secondary" aria-label="Copy" onClick={copy}>
+                <FaRegCopy size="1em" />
+              </Button>
+            </div>
+          </Form.Group>
         </Form.Row>
 
         {/* TODO Work in progress: somehow allow for adding/removing MAC commands; for now only when already in URL. */}

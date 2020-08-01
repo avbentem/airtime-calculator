@@ -30,7 +30,7 @@ export default function NumberInput({min = 0, value, setValue}: NumberInputProps
   }, [value, setValue]);
 
   return (
-    <InputGroup className="mb-3">
+    <InputGroup>
       <InputGroup.Prepend>
         <Button onClick={dec} variant="outline-secondary" aria-label="Decrease">
           -
