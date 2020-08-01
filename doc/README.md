@@ -13,4 +13,4 @@ This [copy](./lorawan_regional_parameters_v1.0.2_final_1944_1.pdf) was
 ## RP002-1.0.1 LoRaWAN® Regional Parameters
 
 This [copy](./rp_2-1.0.1.pdf) was
-[downloaded from the LoRa Alliance](https://lora-alliance.org/sites/default/files/2020-06/rp_2-1.0.1.pdf).
+[downloaded from the LoRa Alliance](https://lora-alliance.org/resource-hub/rp2-101-lorawanr-regional-parameters).
