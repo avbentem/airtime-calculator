@@ -1,10 +1,11 @@
 import React, {MouseEvent, useEffect, useState} from 'react';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import {FaRegCopy} from 'react-icons/fa';
+import {FaRegCopy, FaLink} from 'react-icons/fa';
 import {CodingRate} from '../../lora/Airtime';
 import {MacCommand, UplinkMacCommands102} from '../../lora/MacCommands';
 import HelpTooltip from '../help/HelpTooltip';
@@ -98,6 +99,16 @@ export default function UserInput(props: UserConfigProps) {
     (e.currentTarget as HTMLElement).blur();
   }
 
+  function copyUrl(e: MouseEvent) {
+    // A quick hack to not need a reference to the useClipboard component
+    const dummy = document.createElement('input');
+    document.body.appendChild(dummy);
+    dummy.value = window.location.href;
+    dummy.select();
+    copy(e);
+    document.body.removeChild(dummy);
+  }
+
   const macCommandButtons = UplinkMacCommands102.map((cmd, idx) => (
     <div key={idx}>
       <Badge
@@ -154,17 +165,33 @@ export default function UserInput(props: UserConfigProps) {
             </Form.Group>
           )}
 
-          <Form.Group as={Col} xs={1} controlId="formCopy">
+          <Form.Group as={Col} xs={3} sm={2} md={1} controlId="formShare">
             <HelpTooltip
               showIcon={true}
-              content="If any text is selected, copy that. Otherwise, when a tooltip is active, copy its text. (Use the keyboard on a desktop browser.) Or else, copy the results."
+              content={
+                <>
+                  <p>
+                    <FaRegCopy size="1em" /> copies any selected text, if applicable. Otherwise,
+                    when a tooltip is active, copies the tooltip's text. (Use the keyboard on a
+                    desktop browser.) Or else, copies the results.
+                  </p>
+                  <p>
+                    <FaLink size="1em" /> copies the current URL.
+                  </p>
+                </>
+              }
             >
-              <Form.Label>copy</Form.Label>
+              <Form.Label>share</Form.Label>
             </HelpTooltip>
             <div>
-              <Button variant="outline-secondary" aria-label="Copy" onClick={copy}>
-                <FaRegCopy size="1em" />
-              </Button>
+              <ButtonGroup>
+                <Button variant="outline-secondary" aria-label="Copy" onClick={copy}>
+                  <FaRegCopy size="1em" />
+                </Button>
+                <Button variant="outline-secondary" aria-label="Share" onClick={copyUrl}>
+                  <FaLink size="1em" />
+                </Button>
+              </ButtonGroup>
             </div>
           </Form.Group>
         </Form.Row>

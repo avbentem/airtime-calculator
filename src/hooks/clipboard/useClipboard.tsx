@@ -30,6 +30,19 @@ function createClipboardHandler(setNotification: (notification: AppNotification)
     if (window.getSelection && event instanceof ClipboardEvent && event.clipboardData) {
       if (hasUserSelection()) {
         // Delegate to the browser and boldly assume that the system copy works
+        if (isURL()) {
+          setNotification({
+            title: 'A shareable URL was copied',
+            content: (
+              <>
+                The URL shares the current settings for region, overhead size and payload size. Some
+                of those may be the default values, hence not explicitly visible in the URL.
+              </>
+            ),
+          });
+          return;
+        }
+
         setNotification({
           title: <>The selected text was copied</>,
           content: (
@@ -92,6 +105,15 @@ function hasUserSelection() {
   if (window.getSelection) {
     const selection = window.getSelection();
     return selection !== null && selection.toString() !== '';
+  }
+  // Unsupported browser
+  return false;
+}
+
+function isURL() {
+  if (window.getSelection) {
+    const selection = window.getSelection();
+    return selection !== null && /^https?:\/\//.test(selection.toString());
   }
   // Unsupported browser
   return false;

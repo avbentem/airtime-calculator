@@ -5,6 +5,7 @@
 - Copy (formatted) tooltip and result grid. For the grid, this uses a workaround
   for the Discourse forum software: newlines in table cells use `&lt;br>`, to
   support its automatic conversion from HTML to Markdown.
+- Share URL.
 
 ### Fixes
 
