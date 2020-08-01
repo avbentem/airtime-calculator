@@ -3,6 +3,7 @@
 ### Fixes
 
 - More details on dwell time limitations.
+- Make tooltip choose best position on small screens.
 
 ## [1.1.0](https://github.com/avbentem/airtime-calculator/compare/v1.0.0...v1.1.0) (2020-07-22)
 

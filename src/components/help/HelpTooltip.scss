@@ -1,0 +1,16 @@
+.HelpTooltip-trigger {
+  // Ensure embedded labels do not wrap their info icon on small screens
+  white-space: nowrap;
+}
+
+.tooltip-inner {
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  a {
+    // Make links use the regular text color, as they're only included for copy/paste,
+    // not for clicking by the user
+    color: inherit;
+  }
+}

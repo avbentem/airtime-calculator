@@ -3,6 +3,7 @@ import {Placement} from 'react-bootstrap/Overlay';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import {uniqueId} from 'lodash';
+import './HelpTooltip.scss';
 
 type HelpTooltipProps = {
   content?: string | React.ReactElement;
@@ -17,7 +18,7 @@ type HelpTooltipProps = {
 export default function HelpTooltip({
   content,
   showIcon = false,
-  placement = 'top',
+  placement = 'auto-end',
   children,
 }: PropsWithChildren<HelpTooltipProps>) {
   const [id] = useState(() => uniqueId('HelpTooltip-'));
@@ -28,7 +29,7 @@ export default function HelpTooltip({
 
   return (
     <OverlayTrigger placement={placement} overlay={<Tooltip id={id}>{content}</Tooltip>}>
-      <div>
+      <div className="HelpTooltip-trigger">
         {children}
         {showIcon && (
           <sup>
