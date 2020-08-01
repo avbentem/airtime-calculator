@@ -111,7 +111,7 @@ function textContent(elem: ReactElement | string | undefined): string {
   //   type: "p"
   //   props:
   //     children:
-  //       - "Hello"
+  //       - "Hello "
   //       - $$typeof: Symbol(react.element)
   //         type: "em"
   //         props:

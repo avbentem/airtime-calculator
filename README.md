@@ -101,7 +101,8 @@ The browser's copy event is mapped as follows:
 For the line breaks in the results grid, this uses a format that is very specific to the automatic
 conversion from HTML to Markdown in Discourse, like as used on the TTN Forum: Discourse replaces
 `<br>` with `\n` but then [rejects `\n` in table cells][discourse-md]. As a workaround, `<br>` is
-outputted as `&lt;br>`.
+outputted as `&lt;br>`, which is handled as expected in Discourse's editor but needs some editing
+when pasted elsewhere. Of course, using the static results is not quite useful anyhow.
 
 [discourse-md]: https://github.com/discourse/discourse/blob/v2.5.0/app/assets/javascripts/discourse/app/lib/to-markdown.js#L342-L343
 
