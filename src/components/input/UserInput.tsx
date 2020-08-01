@@ -126,24 +126,39 @@ export default function UserInput(props: UserConfigProps) {
     <>
       <Form>
         <Form.Row className="justify-content-center">
-          <Form.Group as={Col} xs={4} sm={3} lg={2} controlId="formHeaderSize">
+          <Form.Group as={Col} xs={4} sm={3} lg={2} controlId="formOverheadSize">
             <HelpTooltip
               showIcon={true}
-              content="For an uplink and downlink, the overhead is at least 13 bytes: MHDR (1), DevAddr (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4). Also, FOpts may include MAC commands."
+              content={
+                <>
+                  For an uplink and downlink, the overhead is at least 13 bytes: MHDR (1), DevAddr
+                  (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4). Also, FOpts may include up to 15
+                  bytes for MAC commands.
+                </>
+              }
             >
               <Form.Label>overhead size</Form.Label>
             </HelpTooltip>
-            <NumberInput {...headerSize} min={13} />
+            {/* Length field for FCtrl is 4 bits, hence max 15 bytes for MAC commands */}
+            <NumberInput {...headerSize} min={13} max={28} />
           </Form.Group>
 
           <Form.Group as={Col} xs={4} sm={3} lg={2} controlId="formApplicationPayloadSize">
             <HelpTooltip
               showIcon={true}
-              content="The application payload size. May be empty for a simple ACK or if the packet only includes MAC commands."
+              content={
+                <>
+                  The application payload size. Maximum 222 bytes, assuming 13 bytes of overhead.
+                  May be empty for a simple ACK or if the packet only includes MAC commands.
+                </>
+              }
             >
               <Form.Label>payload size</Form.Label>
             </HelpTooltip>
-            <NumberInput {...payloadSize} />
+            {/* When operating in "repeater compatible" mode, no MACPayload may be larger than 230
+             bytes, and full packet PHYPayload = MHDR[1] | MACPayload[..] | MIC[4]. So, assuming a
+             13 bytes overhead, 230 - 8 = 222 bytes application payload. */}
+            <NumberInput {...payloadSize} max={222} />
           </Form.Group>
 
           {/* Only expose the coding rate input when a non-default is used in the URL. */}

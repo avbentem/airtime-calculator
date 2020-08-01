@@ -7,6 +7,7 @@ import './NumberInput.scss';
 
 type NumberInputProps = {
   min?: number;
+  max?: number;
   value: number;
   setValue: Dispatch<SetStateAction<number>>;
 };
@@ -14,7 +15,7 @@ type NumberInputProps = {
 /**
  * A Bootstrap form input field with decrement and increment buttons.
  */
-export default function NumberInput({min = 0, value, setValue}: NumberInputProps) {
+export default function NumberInput({min = 0, max, value, setValue}: NumberInputProps) {
   function dec() {
     if (value > min) {
       setValue(value - 1);
@@ -22,7 +23,9 @@ export default function NumberInput({min = 0, value, setValue}: NumberInputProps
   }
 
   function inc() {
-    setValue((v) => v + 1);
+    if (typeof max === 'undefined' || value < max) {
+      setValue((v) => v + 1);
+    }
   }
 
   useEffect(() => {
