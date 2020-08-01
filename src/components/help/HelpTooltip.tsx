@@ -29,7 +29,7 @@ export default function HelpTooltip({
 
   return (
     <OverlayTrigger placement={placement} overlay={<Tooltip id={id}>{content}</Tooltip>}>
-      <div className="HelpTooltip-trigger">
+      <div>
         {children}
         {showIcon && (
           <sup>
