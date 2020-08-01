@@ -171,12 +171,13 @@ export default function UserInput(props: UserConfigProps) {
               content={
                 <>
                   <p>
-                    <FaRegCopy size="1em" /> copies any selected text, if applicable. Otherwise,
-                    when a tooltip is active, copies the tooltip's text. (Use the keyboard on a
-                    desktop browser.) Or else, copies the results.
+                    Use <FaRegCopy size="1em" /> or your keyboard to copy any selected text, if
+                    applicable. Otherwise, when a tooltip is active, the tooltip's text is copied.
+                    (This needs the keyboard on a desktop browser.) Or else, this copies the
+                    results.
                   </p>
                   <p>
-                    <FaLink size="1em" /> copies the current URL.
+                    Use <FaLink size="1em" /> to copy the current URL.
                   </p>
                 </>
               }
