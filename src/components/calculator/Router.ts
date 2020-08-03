@@ -38,7 +38,6 @@ export function setUrl(
   const params = parameters === undefined ? current.parameters : parameters;
   const url = '/' + network.name + '/' + region.name + (params ? '/' + params : '');
   if (location.pathname === url) {
-    console.log(`No URL change needed; ${url}`);
     return;
   }
   // Due to using `<Router basename={process.env.PUBLIC_URL}>` this adds the process.env.PUBLIC_URL prefix

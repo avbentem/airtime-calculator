@@ -44,12 +44,10 @@ export default function Calculator(props: CalculatorProps) {
   }
 
   const handlePacketSizeChange = (size: number) => {
-    console.log('packet size', packetSize, size);
     setPacketSize(size);
   };
 
   const handleCodingRateChange = (cr: CodingRate) => {
-    console.log('coding rate', codingRate, cr);
     setCodingRate(cr);
   };
 
@@ -57,12 +55,10 @@ export default function Calculator(props: CalculatorProps) {
    * Saves the updated user configuration in the current URL.
    */
   const handleParametersChange = (parameters: string) => {
-    console.log('URL', parameters);
     changeUrl(network, region, parameters);
   };
 
   const setRegion = (region: Region) => {
-    console.log('region', region);
     changeUrl(network, region);
   };
 
