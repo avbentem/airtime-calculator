@@ -5,7 +5,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import {FaRegCopy, FaLink} from 'react-icons/fa';
+import {FaCopy, FaLink} from 'react-icons/fa';
 import {CodingRate} from '../../lora/Airtime';
 import {MacCommand, UplinkMacCommands102} from '../../lora/MacCommands';
 import HelpTooltip from '../help/HelpTooltip';
@@ -100,12 +100,31 @@ export default function UserInput(props: UserConfigProps) {
   }
 
   function copyUrl(e: MouseEvent) {
-    // A quick hack to not need a reference to the useClipboard component
-    const dummy = document.createElement('input');
+    // A quick hack to not need a reference to the useClipboard component. Most
+    // examples would simply use an `<input>` element along with `.select()`.
+    // But as the clipboard handler relies on `document.getSelection()`, which
+    // does not work on the content of `<textarea>` and `<input>` elements in
+    // Firefox, Edge (Legacy) and Internet Explorer, we need some trickery; see
+    // https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection
+    if (!window.getSelection) {
+      alert(
+        'Sorry, your browser does not support this. Please copy the URL from the location bar.'
+      );
+      return;
+    }
+    const dummy = document.createElement('p');
+    dummy.textContent = window.location.href;
     document.body.appendChild(dummy);
-    dummy.value = window.location.href;
-    dummy.select();
-    copy(e);
+    const range = document.createRange();
+    range.setStartBefore(dummy);
+    range.setEndAfter(dummy);
+    const selection = window.getSelection();
+    if (selection) {
+      // In case the user already selected some text
+      selection.removeAllRanges();
+      selection.addRange(range);
+      copy(e);
+    }
     document.body.removeChild(dummy);
   }
 
@@ -186,7 +205,7 @@ export default function UserInput(props: UserConfigProps) {
               content={
                 <>
                   <p>
-                    Use <FaRegCopy size="1em" /> or your keyboard to copy any selected text, if
+                    Use <FaCopy size="1em" /> or your keyboard to copy any selected text, if
                     applicable. Otherwise, when a tooltip is active, the tooltip's text is copied.
                     (This needs the keyboard on a desktop browser.) Or else, this copies the
                     results.
@@ -202,7 +221,7 @@ export default function UserInput(props: UserConfigProps) {
             <div>
               <ButtonGroup>
                 <Button variant="outline-secondary" aria-label="Copy" onClick={copy}>
-                  <FaRegCopy size="1em" />
+                  <FaCopy size="1em" />
                 </Button>
                 <Button variant="outline-secondary" aria-label="Share" onClick={copyUrl}>
                   <FaLink size="1em" />

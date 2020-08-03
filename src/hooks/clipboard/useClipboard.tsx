@@ -30,7 +30,7 @@ function createClipboardHandler(setNotification: (notification: AppNotification)
     if (window.getSelection && event instanceof ClipboardEvent && event.clipboardData) {
       if (hasUserSelection()) {
         // Delegate to the browser and boldly assume that the system copy works
-        if (isURL()) {
+        if (isUrl()) {
           setNotification({
             title: 'A shareable URL was copied',
             content: (
@@ -101,6 +101,14 @@ function createClipboardHandler(setNotification: (notification: AppNotification)
   };
 }
 
+/**
+ * Determine if the user selected some text.
+ *
+ * This does not work on the content of `<textarea>` and `<input>` elements in
+ * Firefox, Edge (Legacy) and Internet Explorer; see the June 2001 issue report
+ * at https://bugzilla.mozilla.org/show_bug.cgi?id=85686 and see
+ * https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection
+ */
 function hasUserSelection() {
   if (window.getSelection) {
     const selection = window.getSelection();
@@ -110,7 +118,7 @@ function hasUserSelection() {
   return false;
 }
 
-function isURL() {
+function isUrl() {
   if (window.getSelection) {
     const selection = window.getSelection();
     return selection !== null && /^https?:\/\//.test(selection.toString());
