@@ -1,4 +1,4 @@
-## [1.2.0](https://github.com/avbentem/airtime-calculator/compare/v1.1.0...master) (future)
+## [1.2.0](https://github.com/avbentem/airtime-calculator/compare/v1.1.0...v1.2.0) (2020-08-03)
 
 ### New features
 
@@ -6,6 +6,7 @@
   for the Discourse forum software: newlines in table cells use `&lt;br>`, to
   support its automatic conversion from HTML to Markdown.
 - Share URL.
+- New icons.
 
 ### Fixes
 
