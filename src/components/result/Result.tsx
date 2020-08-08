@@ -67,7 +67,7 @@ export function Result({region, dr, size, airtime, maxPhyPayloadSize}: ResultGri
         content={
           <>
             On SF{dr.sf}BW{dr.bw}, a total packet size of {size} bytes{' '}
-            <a href={document.location.href}>needs {fmt(airtime, 2)} milliseconds time on air</a>.
+            <a href={window.location.href}>needs {fmt(airtime, 2)} milliseconds time on air</a>.
             {dwellTimeExceeded && (
               <>
                 {' '}
@@ -128,7 +128,7 @@ export function Result({region, dr, size, airtime, maxPhyPayloadSize}: ResultGri
             <p>
               The <a href="https://www.thethingsnetwork.org/forum/t/1300">TTN Fair Access Policy</a>{' '}
               allows for at most 30 seconds time on air per device, per 24 hours. So, an{' '}
-              <a href={document.location.href}>
+              <a href={window.location.href}>
                 airtime of {fmt(airtime, 1)} milliseconds for {size} bytes on SF{dr.sf}BW{dr.bw}
               </a>{' '}
               imposes a limit of {fmt(fapMessages, 1)} messages per day.

@@ -1,3 +1,13 @@
+## [1.2.1](https://github.com/avbentem/airtime-calculator/compare/v1.2.0...master) (future)
+
+### New features
+
+- The shareable URL now includes some text to provide context.
+
+### Fixes
+
+- Handle copy button without user selection in Safari.
+
 ## [1.2.0](https://github.com/avbentem/airtime-calculator/compare/v1.1.0...v1.2.0) (2020-08-03)
 
 ### New features

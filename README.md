@@ -104,7 +104,11 @@ conversion from HTML to Markdown in Discourse, like as used on the TTN Forum: Di
 outputted as `&lt;br>`, which is handled as expected in Discourse's editor but needs some editing
 when pasted elsewhere. Of course, using the static results is not quite useful anyhow.
 
+For `text/plain` no URL is added, as Discourse [prefers the plain text content][discourse-plain] if
+that is longer than the HTML.
+
 [discourse-md]: https://github.com/discourse/discourse/blob/v2.5.0/app/assets/javascripts/discourse/app/lib/to-markdown.js#L342-L343
+[discourse-plain]: https://github.com/discourse/discourse/blob/v2.5.0/app/assets/javascripts/discourse/app/components/d-editor.js#L904
 
 ## URL structure
 

@@ -6,6 +6,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import {FaCopy, FaLink} from 'react-icons/fa';
+import {triggerCopy, triggerCopyUrl} from '../../hooks/clipboard/helpers';
 import {CodingRate} from '../../lora/Airtime';
 import {MacCommand, UplinkMacCommands102} from '../../lora/MacCommands';
 import HelpTooltip from '../help/HelpTooltip';
@@ -89,43 +90,16 @@ export default function UserInput(props: UserConfigProps) {
     );
   }, [props, headerSize.value, payloadSize.value, codingRate.value, macCommands.value]);
 
-  /**
-   * Trigger the built-in copy event.
-   */
   function copy(e: MouseEvent) {
-    document.execCommand('copy');
+    triggerCopy();
     // We need `currentTarget` rather than `target`, to support clicking the
     // icon in the button, in which case the button is not the (first) target
     (e.currentTarget as HTMLElement).blur();
   }
 
   function copyUrl(e: MouseEvent) {
-    // A quick hack to not need a reference to the useClipboard component. Most
-    // examples would simply use an `<input>` element along with `.select()`.
-    // But as the clipboard handler relies on `document.getSelection()`, which
-    // does not work on the content of `<textarea>` and `<input>` elements in
-    // Firefox, Edge (Legacy) and Internet Explorer, we need some trickery; see
-    // https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection
-    if (!window.getSelection) {
-      alert(
-        'Sorry, your browser does not support this. Please copy the URL from the location bar.'
-      );
-      return;
-    }
-    const dummy = document.createElement('p');
-    dummy.textContent = window.location.href;
-    document.body.appendChild(dummy);
-    const range = document.createRange();
-    range.setStartBefore(dummy);
-    range.setEndAfter(dummy);
-    const selection = window.getSelection();
-    if (selection) {
-      // In case the user already selected some text
-      selection.removeAllRanges();
-      selection.addRange(range);
-      copy(e);
-    }
-    document.body.removeChild(dummy);
+    triggerCopyUrl();
+    (e.currentTarget as HTMLElement).blur();
   }
 
   const macCommandButtons = UplinkMacCommands102.map((cmd, idx) => (
@@ -211,7 +185,7 @@ export default function UserInput(props: UserConfigProps) {
                     results.
                   </p>
                   <p>
-                    Use <FaLink size="1em" /> to copy the current URL.
+                    Use <FaLink size="1em" /> to copy a shareable URL.
                   </p>
                 </>
               }

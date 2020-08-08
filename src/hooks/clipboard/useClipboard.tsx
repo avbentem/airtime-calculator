@@ -2,6 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {AppNotification} from '../../components/notification/AppNotification';
 
 /**
+ * Tokens that may be put onto the browser's clipboard to trigger special
+ * handling in this hook.
+ */
+export enum ClipboardActionToken {
+  Default = 'CLIPBOARD_ACTION_DEFAULT',
+  ShareUrl = 'CLIPBOARD_ACTION_URL',
+}
+
+/**
  * Bind browser's copy event to copy the user's selection, or the active tooltip
  * window, or the result grid, all as plain text and as HTML. Return a result
  * message for feedback to the user.
@@ -28,21 +37,22 @@ export default function useClipboard() {
 function createClipboardHandler(setNotification: (notification: AppNotification) => void) {
   return (event: Event) => {
     if (window.getSelection && event instanceof ClipboardEvent && event.clipboardData) {
+      if (shareUrl(event)) {
+        setNotification({
+          title: 'A shareable URL was copied',
+          content: (
+            <>
+              The URL shares the current settings for region, overhead size and payload size. Some
+              of those may be the default values, hence not explicitly visible in the URL.
+            </>
+          ),
+        });
+        return;
+      }
+
       if (hasUserSelection()) {
         // Delegate to the browser and boldly assume that the system copy works
-        if (isUrl()) {
-          setNotification({
-            title: 'A shareable URL was copied',
-            content: (
-              <>
-                The URL shares the current settings for region, overhead size and payload size. Some
-                of those may be the default values, hence not explicitly visible in the URL.
-              </>
-            ),
-          });
-          return;
-        }
-
+        // if (isUrl()) {
         setNotification({
           title: <>The selected text was copied</>,
           content: (
@@ -87,9 +97,22 @@ function createClipboardHandler(setNotification: (notification: AppNotification)
             </>
           ),
         });
+        return;
       }
 
       // Should not happen; delegate to the browser
+      setNotification({
+        title: 'Action failed',
+        content: (
+          <>
+            <p>
+              Somehow copying failed. Care to{' '}
+              <a href="https://github.com/avbentem/airtime-calculator/issues">share more details</a>
+              ?
+            </p>
+          </>
+        ),
+      });
       return;
     }
 
@@ -109,21 +132,32 @@ function createClipboardHandler(setNotification: (notification: AppNotification)
  * at https://bugzilla.mozilla.org/show_bug.cgi?id=85686 and see
  * https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection
  */
-function hasUserSelection() {
+function hasUserSelection(): boolean {
   if (window.getSelection) {
-    const selection = window.getSelection();
-    return selection !== null && selection.toString() !== '';
+    const selection = (window.getSelection() || '').toString();
+    return selection !== '' && selection !== ClipboardActionToken.Default;
   }
   // Unsupported browser
   return false;
 }
 
-function isUrl() {
-  if (window.getSelection) {
-    const selection = window.getSelection();
-    return selection !== null && /^https?:\/\//.test(selection.toString());
+function shareUrl(event: ClipboardEvent): boolean {
+  if (!window.getSelection || !event.clipboardData) {
+    return false;
   }
-  // Unsupported browser
+  const selection = window.getSelection();
+  if (selection && selection.toString() === ClipboardActionToken.ShareUrl) {
+    event.clipboardData.setData(
+      'text/html',
+      `Learn about the limits of LoRaWAN, using the online <a href="${window.location.href}">airtime calculator</a>.`
+    );
+    event.clipboardData.setData(
+      'text/plain',
+      `Learn about the limits of LoRaWAN, using the online airtime calculator at ${window.location.href}`
+    );
+    event.preventDefault();
+    return true;
+  }
   return false;
 }
 
@@ -131,11 +165,11 @@ function getTooltip() {
   return document.querySelector('[role="tooltip"] .tooltip-inner');
 }
 
-function hasTooltip() {
+function hasTooltip(): boolean {
   return getTooltip() !== null;
 }
 
-function copyTooltip(event: ClipboardEvent) {
+function copyTooltip(event: ClipboardEvent): boolean {
   if (!event.clipboardData) {
     return false;
   }
@@ -144,6 +178,10 @@ function copyTooltip(event: ClipboardEvent) {
     if (tooltip instanceof HTMLElement && tooltip.innerHTML) {
       event.clipboardData.setData('text/html', tooltip.innerHTML);
     }
+    // Beware that when the plain text content is longer than the HTML content,
+    // Discourse will somehow prefer the plain text over the HTML version:
+    // https://github.com/discourse/discourse/blob/v2.5.0/app/assets/javascripts/discourse/app/components/d-editor.js#L904
+    // So, don't boldly add the current URL to the plain text content.
     if (tooltip && tooltip.textContent) {
       event.clipboardData.setData('text/plain', tooltip.textContent);
     }
@@ -161,7 +199,7 @@ function getChildrenByRole(elem: Element, role: string) {
   return Array.from(elem.querySelectorAll(`[role="${role}"]`));
 }
 
-function copyResultGrid(event: ClipboardEvent) {
+function copyResultGrid(event: ClipboardEvent): boolean {
   if (!event.clipboardData) {
     return false;
   }
@@ -194,14 +232,15 @@ function copyResultGrid(event: ClipboardEvent) {
       'text/html',
       `<p>${label}</p>
 ${table}
-<p>See <a href="${document.location.href}">the airtime calculator</a> for interactive results.</p>`
+<p>See <a href="${window.location.href}">the airtime calculator</a> for many more details and interactive results.</p>`
     );
 
+    // In Discourse, this is also used when pasting into a code block
     event.clipboardData.setData(
       'text/plain',
       `Unfortunately, the table layout is not supported when pasting as plain text.
 
-Please paste as formatted text, or see ${document.location.href} for formatted results.`
+Please paste as formatted text, or see ${window.location.href} for many more details and formatted, interactive results.`
     );
 
     event.preventDefault();
