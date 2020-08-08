@@ -1,4 +1,4 @@
-## [1.2.1](https://github.com/avbentem/airtime-calculator/compare/v1.2.0...master) (future)
+## [1.2.1](https://github.com/avbentem/airtime-calculator/compare/v1.2.0...v1.2.1) (2020-08-08)
 
 ### New features
 
