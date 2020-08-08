@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/airtime-calculator/static/css/main.94c7c365.chunk.css",
-    "main.js": "/airtime-calculator/static/js/main.2f0e9636.chunk.js",
-    "main.js.map": "/airtime-calculator/static/js/main.2f0e9636.chunk.js.map",
+    "main.js": "/airtime-calculator/static/js/main.f12f6174.chunk.js",
+    "main.js.map": "/airtime-calculator/static/js/main.f12f6174.chunk.js.map",
     "runtime-main.js": "/airtime-calculator/static/js/runtime-main.8eaaa61a.js",
     "runtime-main.js.map": "/airtime-calculator/static/js/runtime-main.8eaaa61a.js.map",
     "static/js/2.f5bbab8f.chunk.js": "/airtime-calculator/static/js/2.f5bbab8f.chunk.js",
     "static/js/2.f5bbab8f.chunk.js.map": "/airtime-calculator/static/js/2.f5bbab8f.chunk.js.map",
     "index.html": "/airtime-calculator/index.html",
-    "precache-manifest.e30155c01479f811146a34de83acc005.js": "/airtime-calculator/precache-manifest.e30155c01479f811146a34de83acc005.js",
+    "precache-manifest.b8674caca6de1787a068f4a448937240.js": "/airtime-calculator/precache-manifest.b8674caca6de1787a068f4a448937240.js",
     "service-worker.js": "/airtime-calculator/service-worker.js",
     "static/css/main.94c7c365.chunk.css.map": "/airtime-calculator/static/css/main.94c7c365.chunk.css.map",
     "static/js/2.f5bbab8f.chunk.js.LICENSE.txt": "/airtime-calculator/static/js/2.f5bbab8f.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.8eaaa61a.js",
     "static/js/2.f5bbab8f.chunk.js",
     "static/css/main.94c7c365.chunk.css",
-    "static/js/main.2f0e9636.chunk.js"
+    "static/js/main.f12f6174.chunk.js"
   ]
 }
