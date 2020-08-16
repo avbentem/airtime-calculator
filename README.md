@@ -74,7 +74,8 @@ to whom those dwell times do not apply to still see the correct (higher) maximum
 
 - Changing the payload size does not always affect the number of symbols that make up the LoRa
   packet payload and header, or not for all data rates. For example, this is very visible for
-  application payload sizes of 12 versus 13 bytes. This is the expected outcome.
+  application payload sizes of 12 versus 13 bytes. This is the expected outcome, [caused by the 4/5
+  coding rate](https://www.thethingsnetwork.org/forum/t/37250/34).
 
 - Semtech's [LoRa Modem Designer's Guide (AN1200.13)](./doc/LoraDesignGuide_STD.pdf) defines some
   more parameters, especially preamble length (to detect the signal), coding rate (CR, for forward
