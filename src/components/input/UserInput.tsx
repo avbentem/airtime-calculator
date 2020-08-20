@@ -143,7 +143,9 @@ export default function UserInput(props: UserConfigProps) {
               content={
                 <>
                   The application payload size. Maximum 222 bytes, assuming 13 bytes of overhead.
-                  May be empty for a simple ACK or if the packet only includes MAC commands.
+                  May be empty for a simple ACK or if the packet only includes MAC commands. For the
+                  time on air, only the <em>total</em> size matters, being the overhead size plus
+                  the application payload size.
                 </>
               }
             >
