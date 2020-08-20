@@ -2,6 +2,8 @@
 
 ### Fixes
 
+- Lower minimum LoRaWAN overhead size to 12 bytes, as FPort is only given when an application
+  payload is present.
 - Improve documentation.
 
 ## [1.2.1](https://github.com/avbentem/airtime-calculator/compare/v1.2.0...v1.2.1) (2020-08-08)

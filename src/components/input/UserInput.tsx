@@ -124,16 +124,17 @@ export default function UserInput(props: UserConfigProps) {
               showIcon={true}
               content={
                 <>
-                  For an uplink and downlink, the overhead is at least 13 bytes: MHDR (1), DevAddr
-                  (4), FCtrl (1), FCnt (2), FPort (1) and MIC (4). Also, FOpts may include up to 15
-                  bytes for MAC commands.
+                  For a data uplink and downlink, the overhead is at least 12 bytes: MHDR (1),
+                  DevAddr (4), FCtrl (1), FCnt (2) and MIC (4). When an application payload is
+                  present, FPort (1) is given too. Also, FOpts may include up to 15 bytes for MAC
+                  commands.
                 </>
               }
             >
               <Form.Label>overhead size</Form.Label>
             </HelpTooltip>
             {/* Length field for FCtrl is 4 bits, hence max 15 bytes for MAC commands */}
-            <NumberInput {...headerSize} min={13} max={28} />
+            <NumberInput {...headerSize} min={12} max={28} />
           </Form.Group>
 
           <Form.Group as={Col} xs={4} sm={3} lg={2} controlId="formApplicationPayloadSize">
