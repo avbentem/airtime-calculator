@@ -167,7 +167,8 @@
           "label": "CN470",
           "title": "CN470-510 uplink and downlink",
           "countries": "CN470-510 is used in China.",
-          "limitations": "For CN470-510, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, describe there is [no dwell time limitation](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=33), and do not mention any maximum duty cycle either. But [RP002-1.0.1](https://lora-alliance.org/sites/default/files/2020-06/rp_2-1.0.1.pdf#page=85) mentions that the maximum payload sizes have been adjusted to comply with a 1 second dwell time.\n\nLike for any TTN region, the [TTN Fair Access Policy](https://www.thethingsnetwork.org/forum/t/1300) allows for at most 30 seconds uplink airtime and 10 downlink messages (including ACKs for confirmed uplinks) per device, per 24 hours. And like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/3831/16).",
+          "limitations": "For CN470-510, the LoRaWAN Regional Parameters 1.0.2 Rev B as used by the TTN community network, describe there is [no dwell time limitation](https://lora-alliance.org/sites/default/files/2018-05/lorawan_regional_parameters_v1.0.2_final_1944_1.pdf#page=33), and do not mention any maximum duty cycle either. But [RP002-1.0.1](https://lora-alliance.org/sites/default/files/2020-06/rp_2-1.0.1.pdf#page=85) mentions that the maximum payload sizes have been adjusted, and DR0 has been removed, to comply with a 1 second dwell time. That document also mentions Listen Before Talk, and states:\n\n _**Note**: The CN470-510 channel plan has been significantly changed from prior revisions and should be considered experimental pending published documents confirming plan compliant devices have been granted local regulatory approval. \\[...\\] The limitation of scope to small scale networks enters into effect after November 2021. Gateways and end-devices deployed prior to December 1, 2021 are not required to comply with this restriction._\n\nLike for any TTN region, the [TTN Fair Access Policy](https://www.thethingsnetwork.org/forum/t/1300) allows for at most 30 seconds uplink airtime and 10 downlink messages (including ACKs for confirmed uplinks) per device, per 24 hours. And like for any network, SF11 and SF12 [are only allowed when ADR is enabled](https://www.thethingsnetwork.org/forum/t/3831/16).\n\nPlease, feel free to create an issue or pull request [for this description](https://github.com/avbentem/airtime-calculator/blob/master/public/config.json).",
+          "maxDwellTime": 1000,
           "dataRates": [
             {
               "name": "DR5",
@@ -202,10 +203,10 @@
             },
             {
               "name": "DR0",
-              "notes": "No longer supported as of RP002-1.0.1. Only allowed with ADR.",
+              "notes": "No longer supported as of RP002-1.0.1, due to a maximum dwell time for which the minimum LoRaWAN overhead would already need more time on air than ever allowed. Only allowed with ADR.",
               "sf": 12,
               "bw": 125,
-              "maxMacPayloadSize": null,
+              "maxMacPayloadSize": 5,
               "highlight": "low"
             }
           ]
