@@ -26,9 +26,8 @@ export default function useClipboard() {
   useEffect(() => {
     const handler = createClipboardHandler(setNotification);
     window.addEventListener('copy', handler);
-    return () => {
-      window.removeEventListener('copy', handler);
-    };
+
+    return () => window.removeEventListener('copy', handler);
   }, []);
 
   return {notification};

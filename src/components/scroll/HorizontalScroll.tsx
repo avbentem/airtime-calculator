@@ -13,7 +13,6 @@ export default function HorizontalScroll({children}: HorizontalScrollProps) {
   const scrollContainer = useRef<HTMLDivElement>(null);
   const [hasOverflowLeft, setHasOverflowLeft] = useState(false);
   const [hasOverflowRight, setHasOverflowRight] = useState(false);
-  const [resize] = useState({width: -1, height: -1});
 
   const scrollX = (x: number) => {
     const scroll = scrollContainer.current;
@@ -49,12 +48,13 @@ export default function HorizontalScroll({children}: HorizontalScrollProps) {
       handleScroll();
       window.addEventListener('resize', handleScroll);
       scroll.addEventListener('scroll', handleScroll);
+
       return () => {
         scroll.removeEventListener('scroll', handleScroll);
         window.removeEventListener('resize', handleScroll);
       };
     }
-  }, [resize]);
+  }, []);
 
   return (
     <div
