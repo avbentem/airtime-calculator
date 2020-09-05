@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/airtime-calculator/precache-manifest.15607fe99bf80920d549a334b50bc5fa.js"
+  "/airtime-calculator/precache-manifest.7617e5b27f7528a1bcc0cbb42bbd26b9.js"
 );
 
 self.addEventListener('message', (event) => {
