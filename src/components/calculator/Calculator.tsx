@@ -8,6 +8,7 @@ import {RouteComponentProps} from 'react-router-dom';
 import {AppConfig, Region} from '../../AppConfig';
 import {CodingRate} from '../../lora/Airtime';
 import UserInput from '../input/UserInput';
+import Graph from '../result/Graph';
 import Results from '../result/Results';
 import HorizontalScroll from '../scroll/HorizontalScroll';
 import {parseUrl, setUrl} from './Router';
@@ -115,6 +116,28 @@ export default function Calculator(props: CalculatorProps) {
 
       <Row className="justify-content-md-center">
         <Col md="8">{region.limitations && <ReactMarkdown source={region.limitations} />}</Col>
+      </Row>
+
+      <Row className="justify-content-md-center">
+        <Col md="8">
+          <p>
+            The LoRa radio modulation, interleaving and forward error correction{' '}
+            <a href="https://www.epfl.ch/labs/tcl/wp-content/uploads/2020/02/Reverse_Eng_Report.pdf">
+              yield fixed-length blocks
+            </a>{' '}
+            for the transmissions, so a small change in the payload size does not always imply a
+            change in the time on air. Note that the breakpoints for a new block are not the same
+            for each data rate. The following graph shows the time on air for the <em>total</em>{' '}
+            payload sizes as allowed for each data rate for {region.label}, highlighting the
+            currently selected total packet size of {packetSize} bytes.
+          </p>
+        </Col>
+      </Row>
+
+      <Row className="Graph justify-content-center">
+        <Col>
+          <Graph region={region} selectedPacketSize={packetSize} codingRate={codingRate} />
+        </Col>
       </Row>
 
       <Row className="justify-content-md-center">

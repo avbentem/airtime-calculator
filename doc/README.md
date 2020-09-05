@@ -14,3 +14,14 @@ This [copy](./lorawan_regional_parameters_v1.0.2_final_1944_1.pdf) was
 
 This [copy](./rp_2-1.0.1.pdf) was
 [downloaded from the LoRa Alliance](https://lora-alliance.org/resource-hub/rp2-101-lorawanr-regional-parameters).
+
+## Complete Reverse Engineering of LoRa PHY
+
+This [copy](./Reverse_Eng_Report.pdf) was
+[downloaded from "LoRa PHY based on GNU Radio"](https://www.epfl.ch/labs/tcl/resources-and-sw/lora-phy/)
+on École polytechnique fédérale de Lausanne.
+
+## Known and Unknown Facts of LoRa: Experiences from a Large-scale Measurement Study
+
+This [copy](./TOSN_19_2.pdf) was
+[downloaded from Nanyang Technological University](https://wands.sg/publications/full_list/).

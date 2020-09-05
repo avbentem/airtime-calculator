@@ -149,6 +149,26 @@ in Brave, but not for GitHub Pages.
 
 This project was bootstrapped with [Create React App](https://create-react-app.dev/).
 
+To use a limited bundle for Plotly (removing about 690 kB from the build), while using the typings
+of the full bundle, a `paths` alias configuration is used in [`tsconfig.json`](./tsconfig.json).
+However, during testing or building, Create React App would boldly remove that:
+
+```text
+> react-scripts build
+
+The following changes are being made to your tsconfig.json file:
+  - compilerOptions.paths must not be set (aliased imports are not supported)
+
+...
+
+TypeScript error in /src/components/result/Graph.tsx(1,20):
+Could not find a declaration file for module 'plotly.js-basic-dist'
+```
+
+To mitigate that, some trickery with `extends` is used instead. This will still show the same
+message for `npm test` and `npm run build`, and will even pretty-format the base `tsconfig.json`,
+but in the end it won't touch the `extends` and use [`tsconfig-paths.json`](./tsconfig-paths.json).
+
 ### NPM commands
 
 In the project directory, run:

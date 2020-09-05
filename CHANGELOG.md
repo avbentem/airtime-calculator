@@ -1,5 +1,9 @@
 ## [master](https://github.com/avbentem/airtime-calculator/compare/v1.2.1...master) (future)
 
+### New features
+
+- Show graph for payload size vs airtime for a region's available data rates.
+
 ### Fixes
 
 - Lower minimum LoRaWAN overhead size to 12 bytes, as FPort is only given when an application

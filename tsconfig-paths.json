@@ -1,0 +1,11 @@
+{
+  // See README.md as for why this is not in tsconfig.json itself
+  "compilerOptions": {
+    // Make aliases absolute imports relative to the project root
+    "baseUrl": ".",
+    // Use typings of full Plotly for the limited basic bundle that we use
+    "paths": {
+      "plotly.js-basic-dist": ["node_modules/@types/plotly.js"]
+    }
+  }
+}
