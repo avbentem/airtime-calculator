@@ -14,7 +14,8 @@ Next versions may include:
 - a help page explaining the basics
 - support for MAC commands
 - support for FSK
-- an option to toggle if maximum dwell times are applicable
+- an option to toggle if maximum dwell times are applicable (and maybe toggle
+  the old/new maximum payload sizes for CN470-510)
 
 ## Data rates and frequency plans
 
@@ -64,8 +65,8 @@ listed when _no_ maximum dwell times apply. However, the February 2020 LoRaWAN R
 [RP002-1.0.1](./doc/rp_2-1.0.1.pdf) states that no MACPayload may be larger than 230 bytes,
 regardless of dwell time limitations, and in that version the numbers have been adjusted as well.
 
-This calculator uses the maximum payload sizes from RP002-1.0.1, allow for a possible repeater
-encapsulation, and do not take maximum dwell times into account. If the device will never operate
+This calculator uses the maximum payload sizes from RP002-1.0.1, which allow for a possible repeater
+encapsulation and do not take maximum dwell times into account. If the device will never operate
 under a repeater then the maximum size could be a bit larger. If dwell times have been defined then
 those will generate warnings in the calculator regardless the maximum payload size, allowing users
 to whom those dwell times do not apply to still see the correct (higher) maximum payload sizes.
@@ -74,8 +75,9 @@ to whom those dwell times do not apply to still see the correct (higher) maximum
 
 - Changing the payload size does not always affect the number of symbols that make up the LoRa
   packet payload and header, or not for all data rates. For example, this is very visible for
-  application payload sizes of 12 versus 13 bytes. This is the expected outcome, [caused by the 4/5
-  coding rate](https://www.thethingsnetwork.org/forum/t/37250/34).
+  application payload sizes of 12 versus 13 bytes. This is the expected outcome, [caused by the LoRa
+  radio modulation, interleaving and forward error correction](./doc/Reverse_Eng_Report.pdf). The
+  graph below the grid visualizes this.
 
 - Semtech's [LoRa Modem Designer's Guide (AN1200.13)](./doc/LoraDesignGuide_STD.pdf) defines some
   more parameters, especially preamble length (to detect the signal), coding rate (CR, for forward
