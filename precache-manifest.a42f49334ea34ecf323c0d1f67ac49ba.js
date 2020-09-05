@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c2d50a9482ada7b551b61b0a072e298c",
+    "revision": "07525dcfed8410a106c1d7ea47c23442",
     "url": "/airtime-calculator/index.html"
   },
   {
-    "revision": "5d365e7811f952c899ca",
+    "revision": "c7d6c808d4229e81728d",
     "url": "/airtime-calculator/static/css/main.838a6a35.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/airtime-calculator/static/js/2.5f08a0d5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5d365e7811f952c899ca",
-    "url": "/airtime-calculator/static/js/main.2b89531a.chunk.js"
+    "revision": "c7d6c808d4229e81728d",
+    "url": "/airtime-calculator/static/js/main.48bd82b7.chunk.js"
   },
   {
     "revision": "f00ba9cfc0493958b50b",
