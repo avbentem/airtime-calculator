@@ -71,7 +71,7 @@ export function Result({region, dr, size, airtime, maxPhyPayloadSize}: ResultGri
             {dwellTimeExceeded && (
               <>
                 {' '}
-                This exceeds the maximum dwell time of {maxDwellTime} milliseconds for{' '}
+                This exceeds the maximum dwell time of {fmt(maxDwellTime, 0)} milliseconds for{' '}
                 {region.label}.
               </>
             )}
