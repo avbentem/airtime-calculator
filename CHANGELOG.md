@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased](https://github.com/avbentem/airtime-calculator/compare/v1.3.0...HEAD)
+
+### Added
+
+- Show maximum dwell time in the graph, especially for regions where it may not
+  always be mandatory, hence the airtime may exceed the maximum dwell time.
+
 ## [1.3.0](https://github.com/avbentem/airtime-calculator/compare/v1.2.1...v1.3.0) - 2020-09-05
 
 ### Added

@@ -126,10 +126,11 @@ export default function Calculator(props: CalculatorProps) {
               yield fixed-length blocks
             </a>{' '}
             for the transmissions, so a small change in the payload size does not always imply a
-            change in the time on air. Note that the breakpoints for a new block are not the same
-            for each data rate. The following graph shows the time on air for the <em>total</em>{' '}
-            payload sizes as allowed for each data rate for {region.label}, highlighting the
-            currently selected total packet size of {packetSize} bytes.
+            change in the time on air. The start of new blocks is not the same for each data rate,
+            and the block size may also alternate within a single data rate. The following graph
+            shows the time on air for the <em>total</em> payload sizes as allowed for each data rate
+            for {region.label}, highlighting the currently selected total packet size of{' '}
+            {packetSize}&nbsp;bytes.
           </p>
         </Col>
       </Row>

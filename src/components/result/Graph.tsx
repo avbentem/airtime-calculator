@@ -66,12 +66,20 @@ export default function Graph({region, selectedPacketSize, codingRate}: GraphPro
   });
 
   /**
-   * Merge the given objects and increment the plot's revision to force updating
-   * the graph even if the identities of `data` and `layout` don't change. See
+   * Increment the plot's revision to force updating the graph even if the
+   * identities of `data` and `layout` don't change. See
    * https://github.com/plotly/react-plotly.js/blob/master/README.md#refreshing-the-plot
+   */
+  const triggerRender = () => setRevision((curr) => ++curr);
+
+  /**
+   * Merge the given objects and force updating the graph.
    */
   const mergeAndTriggerRender = <T,>(target: T, source: T | Partial<T>): T => {
     merge(target, source);
+    // We cannot delegate to `triggerRender` as then the linter can no longer
+    // properly determine the dependencies, and would expect us to include this
+    // very method in the useEffect's dependencies
     setRevision((curr) => ++curr);
     return target;
   };
@@ -88,7 +96,7 @@ export default function Graph({region, selectedPacketSize, codingRate}: GraphPro
    * As such, we don't need to update the state again, not even when we need to
    * fix the horizontal range to ensure it's always positive.
    *
-   * See see https://github.com/plotly/react-plotly.js/issues/43 and
+   * See https://github.com/plotly/react-plotly.js/issues/43 and
    * https://github.com/plotly/react-plotly.js/blob/master/README.md#state-management
    */
   const onUpdate = (figure: Readonly<Figure>) => {
@@ -98,7 +106,7 @@ export default function Graph({region, selectedPacketSize, codingRate}: GraphPro
       // left padding. There will also be some padding on the right (about the
       // same size as the one on the left); keep that to show that the full
       // graph is visible. For manual panning below 0, add the left padding to
-      // the right, for otherwise the range gets smaller and smaller.
+      // the right, for otherwise the range gets smaller for each fix.
       const autoRange = figure.layout.xaxis?.autorange;
       mergeAndTriggerRender(figure.layout, {
         xaxis: {
@@ -122,6 +130,16 @@ export default function Graph({region, selectedPacketSize, codingRate}: GraphPro
    */
   const toggleFitFullRange = () => {
     setXAxisFitFullRange((curr) => !curr);
+  };
+
+  /**
+   * Convert the given number to a logarithmic scale, or vice versa, like to
+   * properly position annotations on a logarithmic scale.
+   *
+   * For annotations, see https://github.com/plotly/plotly.js/issues/1258
+   */
+  const toLogarithmic = (toLogarithmic: boolean, y: number | string | undefined) => {
+    return toLogarithmic ? Math.log10(+(y ?? 1)) : Math.pow(10, +(y ?? 0));
   };
 
   useEffect(() => {
@@ -173,6 +191,56 @@ export default function Graph({region, selectedPacketSize, codingRate}: GraphPro
         }
       );
     });
+
+    if (region.maxDwellTime) {
+      setLayout((current) => {
+        const color = 'red';
+        return mergeAndTriggerRender(current, {
+          shapes: [
+            {
+              type: 'line',
+              x0: 0,
+              y0: region.maxDwellTime,
+              x1: 1,
+              y1: region.maxDwellTime,
+              xref: 'paper',
+              opacity: 0.2,
+              line: {
+                color: color,
+                width: 2,
+                dash: 'dashdot',
+              },
+            },
+          ],
+          // Shapes don't support hover text, so add an annotation
+          annotations: [
+            {
+              text: 'max dwell time',
+              x: 1,
+              xref: 'paper',
+              xanchor: 'right',
+              y:
+                current.yaxis?.type === 'log'
+                  ? toLogarithmic(true, region.maxDwellTime)
+                  : region.maxDwellTime,
+              yanchor: 'bottom',
+              showarrow: false,
+              font: {
+                color: color,
+              },
+              opacity: 0.4,
+            },
+          ],
+        });
+      });
+    } else if (prevRegion?.maxDwellTime) {
+      setLayout((current) => {
+        delete current.shapes;
+        delete current.annotations;
+        triggerRender();
+        return current;
+      });
+    }
   }, [region, prevRegion, codingRate, prevCodingRate, selectedPacketSize]);
 
   useEffect(() => {
@@ -182,6 +250,9 @@ export default function Graph({region, selectedPacketSize, codingRate}: GraphPro
           type: yAxisLogarithmic ? 'log' : 'linear',
           title: yAxisLogarithmic ? 'airtime (ms, logarithmic)' : 'airtime (ms)',
         },
+        annotations: current.annotations?.map((annotation) => ({
+          y: toLogarithmic(yAxisLogarithmic, annotation.y),
+        })),
       });
     });
   }, [yAxisLogarithmic]);
