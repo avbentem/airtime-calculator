@@ -121,6 +121,20 @@ export default function Calculator(props: CalculatorProps) {
       <Row className="justify-content-md-center">
         <Col md="8">
           <p>
+            Increasing the spreading factor SF by one step almost doubles the time on air (for the
+            same bandwidth BW). This also means that, say, a single transmission on SF10 takes more
+            time than 6&nbsp;transmissions on SF7, or may need about the same airtime as
+            3&nbsp;transmissions on SF7, SF8 and SF9 combined. This is why using{' '}
+            <a href="https://lora-developers.semtech.com/library/tech-papers-and-guides/understanding-adr">
+              ADR
+            </a>{' '}
+            or{' '}
+            <a href="https://lora-developers.semtech.com/library/tech-papers-and-guides/blind-adr">
+              Blind ADR
+            </a>{' '}
+            is important.
+          </p>
+          <p>
             The LoRa radio modulation, interleaving and forward error correction{' '}
             <a href="https://www.epfl.ch/labs/tcl/wp-content/uploads/2020/02/Reverse_Eng_Report.pdf">
               yield fixed-length blocks
