@@ -8,12 +8,12 @@ This [copy](./LoraDesignGuide_STD.pdf) was
 ## LoRaWAN™ Regional Parameters v1.0.2rB
 
 This [copy](./lorawan_regional_parameters_v1.0.2_final_1944_1.pdf) was
-[downloaded from the LoRa Alliance](https://lora-alliance.org/resource-hub/lorawantm-regional-parameters-v102rb).
+[downloaded from the LoRa Alliance](https://lora-alliance.org/resource_hub/lorawan-regional-parameters-v1-0-2rb/).
 
 ## RP002-1.0.1 LoRaWAN® Regional Parameters
 
 This [copy](./rp_2-1.0.1.pdf) was
-[downloaded from the LoRa Alliance](https://lora-alliance.org/resource-hub/rp2-101-lorawanr-regional-parameters).
+[downloaded from the LoRa Alliance](https://lora-alliance.org/resource_hub/rp2-101-lorawan-regional-parameters-2/).
 
 ## Complete Reverse Engineering of LoRa PHY
 

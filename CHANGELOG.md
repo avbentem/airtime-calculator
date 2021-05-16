@@ -12,6 +12,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Show maximum dwell time in the graph, especially for regions where it may not
   always be mandatory, hence the airtime may exceed the maximum dwell time.
 
+### Fixed
+
+- Update some broken links to the LoRa Alliance specifications (see [issue #4](https://github.com/avbentem/airtime-calculator/issues/4))
+
 ## [1.3.0](https://github.com/avbentem/airtime-calculator/compare/v1.2.1...v1.3.0) - 2020-09-05
 
 ### Added
@@ -23,7 +27,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Lower minimum LoRaWAN overhead size to 12 bytes, as FPort is only given when an application
   payload is present.
 - For CN470-510, add maximum dwell time and note about Listen Before Talk, as per [upcoming
-  regulations](https://lora-alliance.org/sites/default/files/2020-06/rp_2-1.0.1.pdf#page=51).
+  regulations](https://lora-alliance.org/wp-content/uploads/2020/11/rp_2-1.0.1.pdf#page=51).
 - Improve documentation.
 
 ## [1.2.1](https://github.com/avbentem/airtime-calculator/compare/v1.2.0...v1.2.1) - 2020-08-08
