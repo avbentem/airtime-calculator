@@ -125,11 +125,11 @@ export default function Calculator(props: CalculatorProps) {
             same bandwidth BW). This also means that, say, a single transmission on SF10 takes more
             time than 6&nbsp;transmissions on SF7, or may need about the same airtime as
             3&nbsp;transmissions on SF7, SF8 and SF9 combined. This is why using{' '}
-            <a href="https://lora-developers.semtech.com/library/tech-papers-and-guides/understanding-adr">
+            <a href="https://lora-developers.semtech.com/uploads/documents/files/Understanding_LoRa_Adaptive_Data_Rate_Downloadable.pdf">
               ADR
             </a>{' '}
             or{' '}
-            <a href="https://lora-developers.semtech.com/library/tech-papers-and-guides/blind-adr">
+            <a href="https://lora-developers.semtech.com/uploads/documents/files/LoRaWAN_Mobile_Apps-Blind_ADR_Downloadable.pdf">
               Blind ADR
             </a>{' '}
             is important.
